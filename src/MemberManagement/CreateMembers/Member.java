@@ -1,4 +1,8 @@
-package MemberManagement;
+package MemberManagement.CreateMembers;
+
+import MemberManagement.Discipline;
+import MemberManagement.MemberStatus;
+import MemberManagement.SubscriptionType;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,6 +17,7 @@ public class Member implements IMember{
     private LocalDate _dateEnrolled;
     private LocalDate _lastPayment;
     private List<Discipline> _disciplines;
+    private UUID _coachID;
 
     @Override
     public String name() {
@@ -31,7 +36,12 @@ public class Member implements IMember{
 
     @Override
     public UUID coach() {
-        return UUID.randomUUID();
+        return _coachID;
+    }
+
+    @Override
+    public void setCoach(UUID id) {
+        _coachID = id;
     }
 
     @Override
@@ -54,8 +64,16 @@ public class Member implements IMember{
         return _lastPayment;
     }
 
+    public void setLastPayment(LocalDate date){
+        _lastPayment = date;
+    }
+
     @Override
     public List<Discipline> disciplines() {
         return _disciplines;
+    }
+
+    public void setDisciplines(List<Discipline> disciplines){
+        _disciplines = disciplines;
     }
 }
