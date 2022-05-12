@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.UUID;
 
 public class Member implements IMember{
-    private String _name;
-    private int _id;
-    private LocalDate _birthDate;
-    private SubscriptionType _subscriptionType;
-    private MemberStatus _memberStatus;
-    private LocalDate _dateEnrolled;
-    private LocalDate _lastPayment;
-    private List<Discipline> _disciplines;
+    public String _name;
+    public int _id;
+    public LocalDate _birthDate;
+    public SubscriptionType _subscriptionType;
+    public MemberStatus _memberStatus;
+    public LocalDate _dateEnrolled;
+    public LocalDate _lastPayment;
+    public List<Discipline> _disciplines;
 
     @Override
     public String name() {
