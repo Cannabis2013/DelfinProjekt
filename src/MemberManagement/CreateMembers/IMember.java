@@ -19,4 +19,6 @@ public interface IMember {
     LocalDate dateEnrolled();
     LocalDate lastPayment();
     List<Discipline> disciplines();
+    boolean isValid();
+    void setValid(boolean v);
 }

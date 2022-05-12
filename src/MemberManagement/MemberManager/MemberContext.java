@@ -11,4 +11,5 @@ public interface MemberContext {
     List<IMember> members();
     List<IMember> regularMembers();
     List<IMember> competitionMembers();
+    void persist();
 }

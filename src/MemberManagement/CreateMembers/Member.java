@@ -18,6 +18,7 @@ public class Member implements IMember{
     private LocalDate _lastPayment;
     private List<Discipline> _disciplines;
     private UUID _coachID;
+    private boolean _validated;
 
     @Override
     public String name() {
@@ -71,6 +72,16 @@ public class Member implements IMember{
     @Override
     public List<Discipline> disciplines() {
         return _disciplines;
+    }
+
+    @Override
+    public boolean isValid() {
+        return _validated;
+    }
+
+    @Override
+    public void setValid(boolean v) {
+        _validated = v;
     }
 
     public void setDisciplines(List<Discipline> disciplines){
