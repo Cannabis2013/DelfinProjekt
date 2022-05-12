@@ -1,6 +1,7 @@
 package MemberManagement.MemberManager;
 
-import MemberManagement.CreateMembers.ICreateMember;
+import MemberManagement.CreateMembers.CreateDolphinMember;
+import MemberManagement.CreateMembers.CreateMember;
 import MemberManagement.CreateMembers.Member;
 import MemberManagement.Persistence.Persistence;
 import java.io.FileNotFoundException;
@@ -8,8 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class MemberManager implements MemberContext{
-    private ICreateMember _createRegular;
-    private ICreateMember _createCompetitor;
+    private CreateMember _createMember = new CreateDolphinMember();
     private IMembersContext _membersContext;
     private Persistence _persistMembers;
     public MemberManager(){
@@ -24,14 +24,8 @@ public class MemberManager implements MemberContext{
     }
 
     @Override
-    public void addRegular(String name, LocalDate birthDay, boolean passive) {
-        var member = _createRegular.createRegular(name,birthDay,passive);
-        _membersContext.addMember(member);
-    }
-
-    @Override
-    public void addCompetitor(String name, LocalDate birthDay, boolean passive) {
-        var member = _createRegular.createRegular(name,birthDay,passive);
+    public void add(String name, LocalDate birthDay) {
+        var member = _createMember.create(name,birthDay);
         _membersContext.addMember(member);
     }
 

@@ -1,11 +1,10 @@
 package MemberManagement.CreateMembers;
 
-import MemberManagement.SubscriptionStatus;
-
+import java.time.LocalDate;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-public abstract class AbstractCreateMember implements ICreateMember{
+public class CreateDolphinMember implements CreateMember {
     private String matchByRegex(String str, String regex){
         var pattern = Pattern.compile("\\s[A-z ]*\\s");
         var matcher = pattern.matcher(str);
@@ -50,10 +49,13 @@ public abstract class AbstractCreateMember implements ICreateMember{
         member.setLastName(lastName);
     }
 
-    protected void setMemberStatus(DolphinMember member, boolean isPassive){
-        if(!isPassive)
-            member.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
-        else
-            member.setSubscriptionStatus(SubscriptionStatus.PASSIVE);
+    @Override
+    public Member create(String fullName, LocalDate birthDate) {
+        var member = new DolphinMember();
+        setNameDetails(member,fullName);
+        member.setDateEnrolled(LocalDate.now());
+        member.setBirthDate(birthDate);
+        member.setSubscriptionID(createID());
+        return member;
     }
 }

@@ -9,12 +9,8 @@ public class DolphinMember implements Member {
     private String _foreName;
     private String _id;
     private LocalDate _birthDate;
-    private SubscriptionStatus _subscriptionStatus;
     private LocalDate _dateEnrolled;
-    private LocalDate _lastPayment;
     private List<Discipline> _disciplines;
-    private String _coachID;
-    private boolean _validated;
     private String _middleName;
     private String _lastName;
 
@@ -46,27 +42,7 @@ public class DolphinMember implements Member {
     public void setBirthDate(LocalDate date){_birthDate = date;}
 
     @Override
-    public SubscriptionStatus status() {return _subscriptionStatus;}
-
-    public void setSubscriptionStatus(SubscriptionStatus status){
-        _subscriptionStatus = status;
-    }
-
-    @Override
     public LocalDate dateEnrolled() {return _dateEnrolled;}
 
     public void setDateEnrolled(LocalDate date){_dateEnrolled = date;}
-
-    @Override
-    public LocalDate lastPayment() {return _lastPayment;}
-
-    public void setLastPayment(LocalDate date){_lastPayment = date;}
-
-    @Override
-    public boolean isValid() {return _validated;}
-
-    @Override
-    public void setValid(boolean v) {_validated = v;}
-
-    public void setDisciplines(List<Discipline> disciplines){_disciplines = disciplines;}
 }

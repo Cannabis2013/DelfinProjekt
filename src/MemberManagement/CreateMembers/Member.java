@@ -12,9 +12,5 @@ public interface Member{
     String lastName();
     String subscriptionID();
     LocalDate birthDate();
-    SubscriptionStatus status();
     LocalDate dateEnrolled();
-    LocalDate lastPayment();
-    boolean isValid();
-    void setValid(boolean v);
 }

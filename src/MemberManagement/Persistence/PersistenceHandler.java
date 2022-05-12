@@ -39,11 +39,7 @@ public class PersistenceHandler implements Persistence{
         out.print(";");
         out.print(member.birthDate());
         out.print(";");
-        out.print(member.status());
-        out.print(";");
         out.print(member.dateEnrolled());
-        out.print(";");
-        out.print(member.lastPayment());
         out.print(";");
         out.print("\n");
     }
