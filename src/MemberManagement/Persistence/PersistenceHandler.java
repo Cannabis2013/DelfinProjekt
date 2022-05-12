@@ -1,6 +1,6 @@
 package MemberManagement.Persistence;
 
-import MemberManagement.CreateMembers.IMember;
+import MemberManagement.CreateMembers.Member;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +14,7 @@ public class PersistenceHandler implements Persistence{
     File file = new File("resources/members.csv");
 
     @Override
-    public void save(List<IMember> members) throws FileNotFoundException {
+    public void save(List<Member> members) throws FileNotFoundException {
         if (file.exists() && !file.isDirectory()) {
             PrintStream out = new PrintStream(file);
             members.forEach(member -> {
@@ -24,22 +24,18 @@ public class PersistenceHandler implements Persistence{
     }
 
     @Override
-    public List<IMember> load() throws FileNotFoundException {
-        List<IMember> members = new ArrayList<>();
+    public List<Member> load() throws FileNotFoundException {
+        List<Member> members = new ArrayList<>();
         if (file.exists() && !file.isDirectory()) {
             Scanner scanner = new Scanner(file);
         }
         return members;
     }
 
-    private void saveMember(PrintStream out, IMember member) {
+    private void saveMember(PrintStream out, Member member) {
         out.print(member.foreName());
         out.print(";");
         out.print(member.subscriptionID());
-        out.print(";");
-        out.print(member.subscriptionType());
-        out.print(";");
-        out.print(member.coach());
         out.print(";");
         out.print(member.birthDate());
         out.print(";");
@@ -49,7 +45,6 @@ public class PersistenceHandler implements Persistence{
         out.print(";");
         out.print(member.lastPayment());
         out.print(";");
-        out.print(member.disciplines());
         out.print("\n");
     }
 }

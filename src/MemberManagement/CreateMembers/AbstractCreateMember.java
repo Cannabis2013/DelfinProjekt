@@ -1,16 +1,11 @@
 package MemberManagement.CreateMembers;
 
 import MemberManagement.SubscriptionStatus;
-import MemberManagement.SubscriptionType;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-public class CreateRegularMember implements ICreateMember{
-
+public abstract class AbstractCreateMember implements ICreateMember{
     private String matchByRegex(String str, String regex){
         var pattern = Pattern.compile("\\s[A-z ]*\\s");
         var matcher = pattern.matcher(str);
@@ -21,12 +16,11 @@ public class CreateRegularMember implements ICreateMember{
         return match;
     }
 
-    private UUID createID(){
+    private String createID(){
         var full = UUID.randomUUID();
         var fullAsString = full.toString();
         var firstFourCharacters = fullAsString.substring(0,4);
-        var id = UUID.fromString(firstFourCharacters);
-        return id;
+        return firstFourCharacters;
     }
 
     private String getForeName(String fullName){
@@ -47,18 +41,19 @@ public class CreateRegularMember implements ICreateMember{
         return lastName;
     }
 
-    @Override
-    public IMember create(String fullName, LocalDate birthDate, boolean isPassive) {
+    protected void setNameDetails(DolphinMember member, String fullName){
         var foreName = getForeName(fullName);
         var middleName = getMiddleNameIfAny(fullName);
         var lastName = getLastName(fullName);
-        var member = new Member(foreName,middleName,lastName);
-        member.setDateEnrolled(LocalDate.now());
-        member.setSubscriptionID(createID());
+        member.setForeName(foreName);
+        member.setMiddleName(middleName);
+        member.setLastName(lastName);
+    }
+
+    protected void setMemberStatus(DolphinMember member, boolean isPassive){
         if(!isPassive)
             member.setSubscriptionStatus(SubscriptionStatus.ACTIVE);
         else
             member.setSubscriptionStatus(SubscriptionStatus.PASSIVE);
-        return member;
     }
 }
