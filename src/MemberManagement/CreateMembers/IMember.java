@@ -1,7 +1,7 @@
 package MemberManagement.CreateMembers;
 
 import MemberManagement.Discipline;
-import MemberManagement.MemberStatus;
+import MemberManagement.SubscriptionStatus;
 import MemberManagement.SubscriptionType;
 
 import java.time.LocalDate;
@@ -9,13 +9,15 @@ import java.util.List;
 import java.util.UUID;
 
 public interface IMember {
-    String name();
-    int subscriptionID();
+    String foreName();
+    String middleName();
+    String lastName();
+    UUID subscriptionID();
     SubscriptionType subscriptionType();
     UUID coach();
     void setCoach(UUID id);
     LocalDate birthDate();
-    MemberStatus status();
+    SubscriptionStatus status();
     LocalDate dateEnrolled();
     LocalDate lastPayment();
     List<Discipline> disciplines();

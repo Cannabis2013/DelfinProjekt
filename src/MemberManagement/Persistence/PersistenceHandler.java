@@ -33,7 +33,7 @@ public class PersistenceHandler implements Persistence{
     }
 
     private void saveMember(PrintStream out, IMember member) {
-        out.print(member.name());
+        out.print(member.foreName());
         out.print(";");
         out.print(member.subscriptionID());
         out.print(";");
