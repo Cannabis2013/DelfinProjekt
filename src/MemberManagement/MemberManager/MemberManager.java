@@ -4,34 +4,34 @@ import MemberManagement.CreateMembers.CreateDolphinMember;
 import MemberManagement.CreateMembers.CreateMember;
 import MemberManagement.CreateMembers.Member;
 import MemberManagement.Persistence.Persistence;
+import MemberManagement.Persistence.PersistenceHandler;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 
 public class MemberManager implements MemberContext{
     private CreateMember _createMember = new CreateDolphinMember();
-    private IMembersContext _membersContext;
-    private Persistence _persistMembers;
+    private Entities<Member> _members = new DolphinMembers();
+    private Persistence _persistMembers = new PersistenceHandler();
     public MemberManager(){
-        // Load models
         List<Member> members;
         try {
             members = _persistMembers.load();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        _membersContext.setMembers(members);
+        _members.set(members);
     }
 
     @Override
     public void add(String name, LocalDate birthDay) {
         var member = _createMember.create(name,birthDay);
-        _membersContext.addMember(member);
+        _members.add(member);
     }
 
     @Override
     public Member member(String id) {
-        var members = _membersContext.members();
+        var members = _members.entities();
         var memberOptional = members.stream()
                 .filter(m -> m.subscriptionID().equals(id)).findFirst();
         if(!memberOptional.isPresent())
@@ -41,12 +41,12 @@ public class MemberManager implements MemberContext{
 
     @Override
     public List<Member> members() {
-        return _membersContext.members();
+        return _members.entities();
     }
 
     @Override
-    public void persist() {
-        var members = _membersContext.members();
+    public void save() {
+        var members = _members.entities();
         try {
             _persistMembers.save(members);
         } catch (FileNotFoundException e) {
@@ -54,4 +54,14 @@ public class MemberManager implements MemberContext{
         }
     }
 
+    @Override
+    public void load() {
+        List<Member> fetched;
+        try {
+            fetched = _persistMembers.load();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        _members.set(fetched);
+    }
 }

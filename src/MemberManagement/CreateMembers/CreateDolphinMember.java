@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class CreateDolphinMember implements CreateMember {
     private String matchByRegex(String str, String regex){
-        var pattern = Pattern.compile("\\s[A-z ]*\\s");
+        var pattern = Pattern.compile(regex);
         var matcher = pattern.matcher(str);
         if(!matcher.find())
             return "";
@@ -30,7 +30,7 @@ public class CreateDolphinMember implements CreateMember {
 
     private String getMiddleNameIfAny(String fullName){
         var match = matchByRegex(fullName,"\\s[A-z ]*\\s");
-        var middleName = match.substring(match.indexOf(" "),match.lastIndexOf(" "));
+        var middleName = match.substring(match.indexOf(" ") + 1,match.lastIndexOf(" "));
         return middleName;
     }
 
