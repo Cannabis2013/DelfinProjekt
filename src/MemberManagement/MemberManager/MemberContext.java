@@ -1,15 +1,14 @@
 package MemberManagement.MemberManager;
 
-import MemberManagement.CreateMembers.IMember;
+import MemberManagement.CreateMembers.Member;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public interface MemberContext {
-    void addRegular(String name, LocalDate birthDay, boolean passive);
-    void addCompetitor(String name, LocalDate birthDay, boolean passive);
-    List<IMember> members();
-    List<IMember> regularMembers();
-    List<IMember> competitionMembers();
-    void persist();
+    void add(String name, LocalDate birthDay);
+    Member member(String id);
+    List<Member> members();
+    void save();
+    void load();
 }

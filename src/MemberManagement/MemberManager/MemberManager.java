@@ -1,68 +1,52 @@
 package MemberManagement.MemberManager;
 
-import MemberManagement.CreateMembers.ICreateMember;
-import MemberManagement.CreateMembers.IMember;
+import MemberManagement.CreateMembers.CreateDolphinMember;
+import MemberManagement.CreateMembers.CreateMember;
+import MemberManagement.CreateMembers.Member;
 import MemberManagement.Persistence.Persistence;
-import MemberManagement.SubscriptionType;
-
+import MemberManagement.Persistence.PersistenceHandler;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 
 public class MemberManager implements MemberContext{
-    private ICreateMember _createRegular;
-    private ICreateMember _createCompetitor;
-    private IMembersContext _membersContext;
-    private Persistence _persistMembers;
+    private CreateMember _createMember = new CreateDolphinMember();
+    private Entities<Member> _members = new DolphinMembers();
+    private Persistence _persistMembers = new PersistenceHandler();
     public MemberManager(){
-        // Load models
-        List<IMember> members;
+        List<Member> members;
         try {
             members = _persistMembers.load();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        _membersContext.setMembers(members);
+        _members.set(members);
     }
 
     @Override
-    public void addRegular(String name, LocalDate birthDay, boolean passive) {
-        var member = _createRegular.create(name,birthDay,passive);
-        _membersContext.addMember(member);
+    public void add(String name, LocalDate birthDay) {
+        var member = _createMember.create(name,birthDay);
+        _members.add(member);
     }
 
     @Override
-    public void addCompetitor(String name, LocalDate birthDay, boolean passive) {
-        var member = _createRegular.create(name,birthDay,passive);
-        _membersContext.addMember(member);
+    public Member member(String id) {
+        var members = _members.entities();
+        var memberOptional = members.stream()
+                .filter(m -> m.subscriptionID().equals(id)).findFirst();
+        if(!memberOptional.isPresent())
+            return null;
+        return memberOptional.get();
     }
 
     @Override
-    public List<IMember> members() {
-        return _membersContext.members();
+    public List<Member> members() {
+        return _members.entities();
     }
 
     @Override
-    public List<IMember> regularMembers() {
-        var members = _membersContext.members();
-        var regulars = members.stream()
-                .filter(m -> m.subscriptionType() == SubscriptionType.REGULAR)
-                .toList();
-        return regulars;
-    }
-
-    @Override
-    public List<IMember> competitionMembers() {
-        var members = _membersContext.members();
-        var competitors = members.stream()
-                .filter(m -> m.subscriptionType() == SubscriptionType.COMPETITION)
-                .toList();
-        return competitors;
-    }
-
-    @Override
-    public void persist() {
-        var members = _membersContext.members();
+    public void save() {
+        var members = _members.entities();
         try {
             _persistMembers.save(members);
         } catch (FileNotFoundException e) {
@@ -70,4 +54,14 @@ public class MemberManager implements MemberContext{
         }
     }
 
+    @Override
+    public void load() {
+        List<Member> fetched;
+        try {
+            fetched = _persistMembers.load();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        _members.set(fetched);
+    }
 }

@@ -1,5 +1,5 @@
 package MemberManagement;
 
-public enum MemberStatus {
+public enum SubscriptionStatus {
     PASSIVE, ACTIVE
 }
