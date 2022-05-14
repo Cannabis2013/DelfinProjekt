@@ -3,20 +3,30 @@ package MemberManagement.MemberManager;
 import MemberManagement.CreateMembers.CreateDolphinMember;
 import MemberManagement.CreateMembers.CreateMember;
 import MemberManagement.CreateMembers.Member;
-import MemberManagement.Persistence.Persistence;
-import MemberManagement.Persistence.PersistenceHandler;
+import MemberManagement.Persistence.iManager;
+import MemberManagement.Persistence.iCSVPersistence;
+import MemberManagement.Persistence.CSVPersistence;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Scanner;
 
-public class MemberManager implements MemberContext{
+public class MemberManager implements MemberContext, iManager {
     private CreateMember _createMember = new CreateDolphinMember();
     private Entities<Member> _members = new DolphinMembers();
-    private Persistence _persistMembers = new PersistenceHandler();
+    private iCSVPersistence _persistMembers = new CSVPersistence();
+
+    @Override
+    public String file_path() {
+        return "resources/members.csv";
+    }
+
+
     public MemberManager(){
         List<Member> members;
         try {
-            members = _persistMembers.load();
+            members = _persistMembers.load(this);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -48,7 +58,7 @@ public class MemberManager implements MemberContext{
     public void save() {
         var members = _members.entities();
         try {
-            _persistMembers.save(members);
+            _persistMembers.save(file_path(), members);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -58,10 +68,23 @@ public class MemberManager implements MemberContext{
     public void load() {
         List<Member> fetched;
         try {
-            fetched = _persistMembers.load();
+            fetched = _persistMembers.load(this);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
         _members.set(fetched);
     }
+
+    @Override
+    public Object loadScheme(Scanner lineScanner) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String fullName = lineScanner.next();
+        String id = lineScanner.next();
+        LocalDate birthday = LocalDate.parse(lineScanner.next(), formatter);
+        LocalDate enrollmentDate = LocalDate.parse(lineScanner.next(), formatter);
+        return _createMember.loadMember(fullName, id, birthday, enrollmentDate);
+    }
+
+
+
 }
