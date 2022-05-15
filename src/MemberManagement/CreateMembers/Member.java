@@ -14,4 +14,5 @@ public interface Member{
     String subscriptionID();
     LocalDate birthDate();
     LocalDate dateEnrolled();
+    String queryString();
 }

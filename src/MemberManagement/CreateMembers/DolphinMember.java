@@ -2,9 +2,7 @@ package MemberManagement.CreateMembers;
 
 import MemberManagement.Discipline;
 import MemberManagement.Persistence.Persistable;
-import MemberManagement.SubscriptionStatus;
 
-import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -47,22 +45,17 @@ public class DolphinMember implements Member, Persistable {
     @Override
     public LocalDate dateEnrolled() {return _dateEnrolled;}
 
-
-
     public void setDateEnrolled(LocalDate date){_dateEnrolled = date;}
 
-
     @Override
-    public void saveScheme(PrintStream stream) {
-        stream.print(String.format("%s %s %s", _foreName, _middleName, _lastName));
-        stream.print(";");
-        stream.print(_id);
-        stream.print(";");
-        stream.print(_birthDate);
-        stream.print(";");
-        stream.print(_dateEnrolled);
-        stream.print(";");
-        stream.print("\n");
+    public String queryString() {
+        String fullName = String.format("%s %s %s", _foreName, _middleName, _lastName);
+        String id = _id;
+        String birthDate = _birthDate.toString();
+        String enrollment = _dateEnrolled.toString();
+        return String.format("%s;%s;%s;%s;\n", fullName, id, birthDate, enrollment);
     }
+
+
 
 }

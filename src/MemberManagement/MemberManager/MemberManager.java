@@ -3,24 +3,23 @@ package MemberManagement.MemberManager;
 import MemberManagement.CreateMembers.CreateDolphinMember;
 import MemberManagement.CreateMembers.CreateMember;
 import MemberManagement.CreateMembers.Member;
-import MemberManagement.Persistence.iManager;
+import MemberManagement.Persistence.Persistable;
+import MemberManagement.Persistence.Manager;
 import MemberManagement.Persistence.iCSVPersistence;
 import MemberManagement.Persistence.CSVPersistence;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
-public class MemberManager implements MemberContext, iManager {
+public class MemberManager implements MemberContext, Manager {
     private CreateMember _createMember = new CreateDolphinMember();
     private Entities<Member> _members = new DolphinMembers();
     private iCSVPersistence _persistMembers = new CSVPersistence();
 
-    @Override
-    public String file_path() {
-        return "resources/members.csv";
-    }
+
 
 
     public MemberManager(){
@@ -54,18 +53,25 @@ public class MemberManager implements MemberContext, iManager {
         return _members.entities();
     }
 
+
+
+    /// Persistence (Manager interface) section
     @Override
-    public void save() {
-        var members = _members.entities();
+    public String file_path() {
+        return "resources/members.csv";
+    }
+
+    @Override
+    public void csvSave() {
         try {
-            _persistMembers.save(file_path(), members);
+            _persistMembers.save(this);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void load() {
+    public void csvLoad() {
         List<Member> fetched;
         try {
             fetched = _persistMembers.load(this);
@@ -76,14 +82,22 @@ public class MemberManager implements MemberContext, iManager {
     }
 
     @Override
-    public Object loadScheme(Scanner lineScanner) {
+    public void printThroughStream(PrintStream stream) {
+        members().forEach(member -> {
+            stream.print(member.queryString());
+        });
+    }
+
+    @Override
+    public Persistable loadSchema(Scanner lineScanner) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String fullName = lineScanner.next();
         String id = lineScanner.next();
         LocalDate birthday = LocalDate.parse(lineScanner.next(), formatter);
         LocalDate enrollmentDate = LocalDate.parse(lineScanner.next(), formatter);
-        return _createMember.loadMember(fullName, id, birthday, enrollmentDate);
+        return (Persistable) _createMember.loadMember(fullName, id, birthday, enrollmentDate);
     }
+
 
 
 
