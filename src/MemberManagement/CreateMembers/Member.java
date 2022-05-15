@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class Member implements IMember{
     private String _name;
-    private int _id;
+    private int _id; //subscriberID
     private LocalDate _birthDate;
     private SubscriptionType _subscriptionType;
     private MemberStatus _memberStatus;
