@@ -58,4 +58,16 @@ public class CreateDolphinMember implements CreateMember {
         member.setSubscriptionID(createID());
         return member;
     }
+
+    @Override
+    public Member loadMember(String fullName, String id, LocalDate birthday, LocalDate enrollmentDate) {
+        DolphinMember member = new DolphinMember();
+        setNameDetails(member, fullName);
+        member.setBirthDate(birthday);
+        member.setDateEnrolled(enrollmentDate);
+        member.setSubscriptionID(id);
+        return member;
+    }
+
+
 }

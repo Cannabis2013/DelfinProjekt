@@ -24,6 +24,6 @@ public class DolphinMembers implements Entities<Member> {
 
     @Override
     public List<Member> entities() {
-        return null;
+        return _members;
     }
 }
