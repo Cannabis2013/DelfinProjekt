@@ -1,9 +1,11 @@
 package MemberManagement.MemberManager;
 
-import MemberManagement.CreateMembers.CreateDolphinMember;
-import MemberManagement.CreateMembers.CreateMember;
-import MemberManagement.CreateMembers.Member;
+import MemberManagement.MemberManager.CreateMembers.CreateDolphinMember;
+import MemberManagement.MemberManager.CreateMembers.CreateMember;
+import MemberManagement.MemberManager.CreateMembers.Member;
 import MemberManagement.Discipline;
+import MemberManagement.MemberManager.ExpectedIncome.DolphinExpectedEarnings;
+import MemberManagement.MemberManager.ExpectedIncome.ExpectedEarnings;
 import MemberManagement.Persistence.IPersistence;
 import MemberManagement.Persistence.Persistence;
 import java.io.FileNotFoundException;
@@ -14,9 +16,7 @@ public class MemberManager implements MemberContext {
     private CreateMember _createMember = new CreateDolphinMember();
     private List<Member> _members;
     private IPersistence _persistMembers = new Persistence();
-
-
-
+    private ExpectedEarnings _expectedEarnings = new DolphinExpectedEarnings();
 
     public MemberManager(){
         List<Member> members;
@@ -29,8 +29,8 @@ public class MemberManager implements MemberContext {
     }
 
     @Override
-    public void add(String name, LocalDate birthDay, boolean hasPaid, List<Discipline> disciplines) {
-        var member = _createMember.create(name,birthDay, hasPaid, disciplines);
+    public void add(String name, LocalDate birthDay, boolean hasPaid, boolean active, List<Discipline> disciplines) {
+        var member = _createMember.create(name,birthDay, hasPaid,active, disciplines);
         _members.add(member);
     }
 
@@ -46,6 +46,17 @@ public class MemberManager implements MemberContext {
     @Override
     public List<Member> members() {
         return _members;
+    }
+
+    @Override
+    public int calculateExpectedEarnings() {
+        return _expectedEarnings.expected(_members);
+    }
+
+    @Override
+    public List<Member> membersInArrears() {
+        var list = _members.stream().filter(Member::hasPaid).toList();
+        return list;
     }
 
 

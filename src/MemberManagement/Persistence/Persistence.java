@@ -1,14 +1,13 @@
 package MemberManagement.Persistence;
 
-import MemberManagement.CreateMembers.CreateDolphinMember;
-import MemberManagement.CreateMembers.Member;
+import MemberManagement.MemberManager.CreateMembers.CreateDolphinMember;
+import MemberManagement.MemberManager.CreateMembers.Member;
 import MemberManagement.Discipline;
 
 import java.io.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,8 +15,13 @@ public class Persistence implements IPersistence {
 
 
     @Override
-    public void save(List<Member> members) throws FileNotFoundException {
-        PrintStream stream = new PrintStream("resources/members.csv");
+    public void save(List<Member> members) {
+        PrintStream stream = null;
+        try {
+            stream = new PrintStream("resources/members.csv");
+        } catch (FileNotFoundException e) {
+            return;
+        }
         for (Member member : members) {
             String fullName = member.name();
             String id = member.subscriptionID();
@@ -42,11 +46,16 @@ public class Persistence implements IPersistence {
     //
 
     @Override
-    public List<Member> load() throws FileNotFoundException {
+    public List<Member> load() {
         File file = new File("resources/members.csv");
         CreateDolphinMember creater = new CreateDolphinMember();
         List<Member> loadedMembers = new ArrayList<>();
-        Scanner scanner = new Scanner(file);
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(file);
+        } catch (FileNotFoundException e) {
+            return new ArrayList<>();
+        }
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             Scanner lineScanner = new Scanner(line).useDelimiter(";");

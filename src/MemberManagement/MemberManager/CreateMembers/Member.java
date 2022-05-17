@@ -1,4 +1,4 @@
-package MemberManagement.CreateMembers;
+package MemberManagement.MemberManager.CreateMembers;
 
 import MemberManagement.Discipline;
 
@@ -12,4 +12,6 @@ public interface Member{
     LocalDate dateEnrolled();
     boolean hasPaid();
     List<Discipline> disciplines();
+    SubscriptionMode subscriptionMode();
+    SubscriptionStatus status();
 }

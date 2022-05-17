@@ -2,7 +2,7 @@ package MemberManagement.Persistence;
 
 
 
-import MemberManagement.CreateMembers.Member;
+import MemberManagement.MemberManager.CreateMembers.Member;
 
 import java.io.FileNotFoundException;
 import java.util.List;
