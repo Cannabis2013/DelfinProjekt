@@ -55,7 +55,7 @@ public class MemberManager implements MemberContext {
 
     @Override
     public List<Member> membersInArrears() {
-        var list = _members.stream().filter(Member::hasPaid).toList();
+        var list = _members.stream().filter(Member::hasNotPaid).toList();
         return list;
     }
 

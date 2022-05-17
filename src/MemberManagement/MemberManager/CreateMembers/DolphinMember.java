@@ -41,8 +41,8 @@ public class DolphinMember implements Member {
     public LocalDate dateEnrolled() {return _dateEnrolled;}
 
     @Override
-    public boolean hasPaid() {
-        return hasPaid;
+    public boolean hasNotPaid() {
+        return !hasPaid;
     }
 
     @Override

@@ -10,7 +10,7 @@ public interface Member{
     String subscriptionID();
     LocalDate birthDate();
     LocalDate dateEnrolled();
-    boolean hasPaid();
+    boolean hasNotPaid();
     List<Discipline> disciplines();
     SubscriptionMode subscriptionMode();
     SubscriptionStatus status();

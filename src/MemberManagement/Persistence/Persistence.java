@@ -27,7 +27,7 @@ public class Persistence implements IPersistence {
             String id = member.subscriptionID();
             String birthDate = member.birthDate().toString();
             String enrollment = member.dateEnrolled().toString();
-            boolean hasPaid = member.hasPaid();
+            boolean hasPaid = member.hasNotPaid();
             List<Discipline> disciplines = member.disciplines();
             stream.print(String.format("%s;%s;%s;%s;%s;%s;\n", fullName, id, birthDate, enrollment, hasPaid, disciplines.toString()));
         }
