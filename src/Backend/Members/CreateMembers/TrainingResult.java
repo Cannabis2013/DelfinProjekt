@@ -1,4 +1,4 @@
-package Backend.SortCompetitors.CreateTrainingResults;
+package Backend.Members.CreateMembers;
 
 import Backend.Members.CreateMembers.Discipline;
 

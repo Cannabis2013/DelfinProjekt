@@ -2,8 +2,8 @@ package Backend.Members.CreateTrainingResults;
 
 import Backend.Members.CreateMembers.Discipline;
 import Backend.Members.CreateMembers.Member;
-import Backend.SortCompetitors.CreateTrainingResults.TrainingResult;
-import java.time.LocalTime;
+import Backend.Members.CreateMembers.TrainingResult;
+
 import java.util.List;
 
 public interface CreateTrainingResult {

@@ -1,9 +1,6 @@
 package Backend.Members.CreateMembers;
 
-import Backend.SortCompetitors.CreateTrainingResults.TrainingResult;
-
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 public class DolphinMember implements Member {
@@ -64,6 +61,10 @@ public class DolphinMember implements Member {
     @Override
     public SubscriptionMode subscriptionMode() {
         return _mode;
+    }
+
+    public void setSubscriptionMode(SubscriptionMode mode){
+        _mode = mode;
     }
 
     @Override

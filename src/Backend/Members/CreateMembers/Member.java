@@ -1,9 +1,6 @@
 package Backend.Members.CreateMembers;
 
-import Backend.SortCompetitors.CreateTrainingResults.TrainingResult;
-
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 public interface Member{

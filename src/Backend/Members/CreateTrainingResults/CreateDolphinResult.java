@@ -2,7 +2,7 @@ package Backend.Members.CreateTrainingResults;
 
 import Backend.Members.CreateMembers.Discipline;
 import Backend.Members.CreateMembers.Member;
-import Backend.SortCompetitors.CreateTrainingResults.TrainingResult;
+import Backend.Members.CreateMembers.TrainingResult;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;

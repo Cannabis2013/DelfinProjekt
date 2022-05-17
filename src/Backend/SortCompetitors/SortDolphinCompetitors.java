@@ -1,18 +1,14 @@
 package Backend.SortCompetitors;
 
 import Backend.Members.CreateMembers.Member;
-import Backend.Members.CreateMembers.SubscriptionMode;
-import Backend.SortCompetitors.CreateTrainingResults.CreateTrainingResults;
+import Backend.Members.CreateMembers.TrainingResult;
 import Backend.SortCompetitors.Predicates.SortByAgeAndResults;
 import Backend.SortCompetitors.TrimSortedSwimmers.TrimDolphinTrainingResults;
 import Backend.SortCompetitors.TrimSortedSwimmers.TrimTrainingResults;
-import Backend.SortCompetitors.CreateTrainingResults.CreateDolphinResults;
-import Backend.SortCompetitors.CreateTrainingResults.TrainingResult;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class SortDolphinCompetitors implements SortCompetitors {
-    CreateTrainingResults _createResults = new CreateDolphinResults();
     TrimTrainingResults _trimResults = new TrimDolphinTrainingResults();
 
     private List<Member> toMembers(List<TrainingResult> results, List<Member> members){
@@ -26,14 +22,22 @@ public class SortDolphinCompetitors implements SortCompetitors {
         return resultingList;
     }
 
+    private List<TrainingResult> getResults(List<Member> competitors){
+        var results = new ArrayList<TrainingResult>();
+        competitors.stream()
+                .forEach(m -> {
+                    var l = m.results();
+                    results.addAll(l);
+                });
+        return results;
+    }
+
     @Override
-    public List<Member> sort(List<Member> members) {
-        var competitors = members.stream()
-                .filter(m -> m.subscriptionMode() == SubscriptionMode.COMPETITOR).toList();
-        var results = _createResults.create(competitors);
+    public List<Member> sort(List<Member> competitors) {
+        var results = getResults(competitors);
         var sorted = results.stream().sorted(new SortByAgeAndResults());
         var trimmed = _trimResults.trim(sorted.toList());
-        var resultingList = toMembers(trimmed,members);
+        var resultingList = toMembers(trimmed,competitors);
         return resultingList;
     }
 }

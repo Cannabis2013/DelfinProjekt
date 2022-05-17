@@ -58,15 +58,11 @@ public class SaveMembersAsCSV implements Persistence {
             String line = scanner.nextLine();
             Scanner lineScanner = new Scanner(line).useDelimiter(";");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
             String fullName = lineScanner.next();
             String id = lineScanner.next();
             LocalDate birthday = LocalDate.parse(lineScanner.next(), formatter);
             LocalDate enrollmentDate = LocalDate.parse(lineScanner.next(), formatter);
-            boolean hasPaid = Boolean.getBoolean(lineScanner.next());
-            List<Discipline> disciplines = handleDisciplineLoading(lineScanner.next());
-
-            Member loadedMember = creater.loadMember(fullName, id, birthday, enrollmentDate, hasPaid, disciplines);
+            Member loadedMember = creater.create(fullName, id, birthday, enrollmentDate);
             loadedMembers.add(loadedMember);
         }
         return loadedMembers;

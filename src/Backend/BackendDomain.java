@@ -10,6 +10,6 @@ public interface BackendDomain {
     String registerMember(String name, LocalDate birthDay, boolean active, List<Discipline> disciplines);
     void registerResult(String id, LocalTime result, Discipline discipline);
     List<Member> topFiveBestSwimmers();
-    List<Member> membersToBeKilled();
+    List<Member> membersInArrears();
     int expectedEarnings();
 }

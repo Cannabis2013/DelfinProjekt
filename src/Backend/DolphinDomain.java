@@ -33,9 +33,8 @@ public class DolphinDomain implements BackendDomain{
     }
 
     @Override
-    public List<Member> membersToBeKilled() {
-        var membersInDeepTrouble = _members.membersInArrears();
-        return membersInDeepTrouble;
+    public List<Member> membersInArrears() {
+        return  _members.membersInArrears();
     }
 
     @Override

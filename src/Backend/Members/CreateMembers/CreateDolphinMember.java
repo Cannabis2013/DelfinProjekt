@@ -27,13 +27,12 @@ public class CreateDolphinMember implements CreateMember {
     }
 
     @Override
-    public Member loadMember(String name, String id, LocalDate birthday, LocalDate enrollmentDate, boolean hasPaid, List<Discipline> disciplines) {
+    public Member create(String name, String id, LocalDate birthday, LocalDate enrollmentDate) {
         DolphinMember member = new DolphinMember();
         member.setName(name);
         member.setBirthDate(birthday);
         member.setDateEnrolled(enrollmentDate);
         member.setSubscriptionID(id);
-        member.setPaidStatus(hasPaid);
         return member;
     }
 
