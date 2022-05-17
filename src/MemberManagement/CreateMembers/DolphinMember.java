@@ -1,12 +1,11 @@
 package MemberManagement.CreateMembers;
 
 import MemberManagement.Discipline;
-import MemberManagement.Persistence.Persistable;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class DolphinMember implements Member, Persistable {
+public class DolphinMember implements Member {
     private String _foreName;
     private String _id;
     private LocalDate _birthDate;
@@ -47,14 +46,6 @@ public class DolphinMember implements Member, Persistable {
 
     public void setDateEnrolled(LocalDate date){_dateEnrolled = date;}
 
-    @Override
-    public String queryString() {
-        String fullName = String.format("%s %s %s", _foreName, _middleName, _lastName);
-        String id = _id;
-        String birthDate = _birthDate.toString();
-        String enrollment = _dateEnrolled.toString();
-        return String.format("%s;%s;%s;%s;\n", fullName, id, birthDate, enrollment);
-    }
 
 
 

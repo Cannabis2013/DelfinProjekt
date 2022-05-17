@@ -3,21 +3,16 @@ package MemberManagement.MemberManager;
 import MemberManagement.CreateMembers.CreateDolphinMember;
 import MemberManagement.CreateMembers.CreateMember;
 import MemberManagement.CreateMembers.Member;
-import MemberManagement.Persistence.Persistable;
-import MemberManagement.Persistence.Manager;
-import MemberManagement.Persistence.iCSVPersistence;
-import MemberManagement.Persistence.CSVPersistence;
+import MemberManagement.Persistence.IPersistence;
+import MemberManagement.Persistence.Persistence;
 import java.io.FileNotFoundException;
-import java.io.PrintStream;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Scanner;
 
-public class MemberManager implements MemberContext, Manager {
+public class MemberManager implements MemberContext {
     private CreateMember _createMember = new CreateDolphinMember();
-    private Entities<Member> _members = new DolphinMembers();
-    private iCSVPersistence _persistMembers = new CSVPersistence();
+    private List<Member> _members;
+    private IPersistence _persistMembers = new Persistence();
 
 
 
@@ -25,11 +20,11 @@ public class MemberManager implements MemberContext, Manager {
     public MemberManager(){
         List<Member> members;
         try {
-            members = _persistMembers.load(this);
+            members = _persistMembers.load();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        _members.set(members);
+        _members = members;
     }
 
     @Override
@@ -40,8 +35,7 @@ public class MemberManager implements MemberContext, Manager {
 
     @Override
     public Member member(String id) {
-        var members = _members.entities();
-        var memberOptional = members.stream()
+        var memberOptional = _members.stream()
                 .filter(m -> m.subscriptionID().equals(id)).findFirst();
         if(!memberOptional.isPresent())
             return null;
@@ -50,21 +44,14 @@ public class MemberManager implements MemberContext, Manager {
 
     @Override
     public List<Member> members() {
-        return _members.entities();
+        return _members;
     }
 
-
-
-    /// Persistence (Manager interface) section
-    @Override
-    public String file_path() {
-        return "resources/members.csv";
-    }
 
     @Override
     public void csvSave() {
         try {
-            _persistMembers.save(this);
+            _persistMembers.save(_members);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -74,30 +61,12 @@ public class MemberManager implements MemberContext, Manager {
     public void csvLoad() {
         List<Member> fetched;
         try {
-            fetched = _persistMembers.load(this);
+            fetched = _persistMembers.load();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        _members.set(fetched);
+        _members = fetched;
     }
-
-    @Override
-    public void printThroughStream(PrintStream stream) {
-        members().forEach(member -> {
-            stream.print(member.queryString());
-        });
-    }
-
-    @Override
-    public Persistable loadSchema(Scanner lineScanner) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String fullName = lineScanner.next();
-        String id = lineScanner.next();
-        LocalDate birthday = LocalDate.parse(lineScanner.next(), formatter);
-        LocalDate enrollmentDate = LocalDate.parse(lineScanner.next(), formatter);
-        return (Persistable) _createMember.loadMember(fullName, id, birthday, enrollmentDate);
-    }
-
 
 
 

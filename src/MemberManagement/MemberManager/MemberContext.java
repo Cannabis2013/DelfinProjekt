@@ -9,4 +9,6 @@ public interface MemberContext {
     void add(String name, LocalDate birthDay);
     Member member(String id);
     List<Member> members();
+    void csvSave();
+    void csvLoad();
 }
