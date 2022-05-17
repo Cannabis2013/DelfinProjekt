@@ -1,11 +1,10 @@
-package MemberManagement.CreateMembers;
+package MemberManagement.MemberManager.CreateMembers;
 
 import MemberManagement.Discipline;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
-import java.util.regex.Pattern;
 
 public class CreateDolphinMember implements CreateMember {
 
@@ -17,8 +16,10 @@ public class CreateDolphinMember implements CreateMember {
     }
 
     @Override
-    public Member create(String name, LocalDate birthDate, boolean hasPaid, List<Discipline> disciplines) {
+    public Member create(String name, LocalDate birthDate, boolean hasPaid, boolean active, List<Discipline> disciplines) {
         var member = new DolphinMember();
+        var status = active ? SubscriptionStatus.ACTIVE : SubscriptionStatus.PASSIVE;
+        member.setStatus(status);
         member.setName(name);
         member.setDateEnrolled(LocalDate.now());
         member.setBirthDate(birthDate);

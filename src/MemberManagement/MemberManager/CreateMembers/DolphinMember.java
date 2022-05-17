@@ -1,4 +1,4 @@
-package MemberManagement.CreateMembers;
+package MemberManagement.MemberManager.CreateMembers;
 
 import MemberManagement.Discipline;
 
@@ -12,6 +12,12 @@ public class DolphinMember implements Member {
     private LocalDate _dateEnrolled;
     private List<Discipline> _disciplines;
     private boolean hasPaid;
+    private SubscriptionMode _mode;
+    private SubscriptionStatus _status;
+
+    public void setStatus(SubscriptionStatus status){
+        _status = status;
+    }
 
 
     public DolphinMember(){}
@@ -44,6 +50,16 @@ public class DolphinMember implements Member {
         return _disciplines;
     }
 
+    @Override
+    public SubscriptionMode subscriptionMode() {
+        return _mode;
+    }
+
+    @Override
+    public SubscriptionStatus status() {
+        return _status;
+    }
+
     public void setDisciplines(List<Discipline> disciplines) {
         _disciplines = disciplines;
     }
@@ -53,8 +69,4 @@ public class DolphinMember implements Member {
     }
 
     public void setDateEnrolled(LocalDate date){_dateEnrolled = date;}
-
-
-
-
 }

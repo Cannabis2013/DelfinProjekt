@@ -17,7 +17,7 @@ public class GenerateRandomData {
             List<Discipline> disciplines = new ArrayList<>();
             disciplines.add(Discipline.BACKSTROKE);
             disciplines.add(Discipline.BREAST);
-            manager.add("RandomName", LocalDate.of(randomYear, randomMonth, randomDay), hasPaid, disciplines);
+            manager.add("RandomName", LocalDate.of(randomYear, randomMonth, randomDay), hasPaid,true, disciplines);
         }
         manager.csvSave();
     }
