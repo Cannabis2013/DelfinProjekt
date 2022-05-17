@@ -6,30 +6,20 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class DolphinMember implements Member {
-    private String _foreName;
+    private String _name;
     private String _id;
     private LocalDate _birthDate;
     private LocalDate _dateEnrolled;
     private List<Discipline> _disciplines;
-    private String _middleName;
-    private String _lastName;
+    private boolean hasPaid;
+
 
     public DolphinMember(){}
 
     @Override
-    public String foreName() {return _foreName;}
+    public String name() {return _name;}
 
-    public void setForeName(String foreName){_foreName = foreName;}
-
-    @Override
-    public String middleName() { return _middleName;}
-
-    public void setMiddleName(String middleName){_middleName = middleName;}
-
-    @Override
-    public String lastName() {return _lastName;}
-
-    public void setLastName(String lastName){_lastName = lastName;}
+    public void setName(String name){_name = name;}
 
     @Override
     public String subscriptionID() {return _id;}
@@ -43,6 +33,24 @@ public class DolphinMember implements Member {
 
     @Override
     public LocalDate dateEnrolled() {return _dateEnrolled;}
+
+    @Override
+    public boolean hasPaid() {
+        return hasPaid;
+    }
+
+    @Override
+    public List<Discipline> disciplines() {
+        return _disciplines;
+    }
+
+    public void setDisciplines(List<Discipline> disciplines) {
+        _disciplines = disciplines;
+    }
+
+    public void setPaidStatus(boolean bool) {
+        hasPaid = bool;
+    }
 
     public void setDateEnrolled(LocalDate date){_dateEnrolled = date;}
 

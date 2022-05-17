@@ -3,6 +3,7 @@ package MemberManagement.MemberManager;
 import MemberManagement.CreateMembers.CreateDolphinMember;
 import MemberManagement.CreateMembers.CreateMember;
 import MemberManagement.CreateMembers.Member;
+import MemberManagement.Discipline;
 import MemberManagement.Persistence.IPersistence;
 import MemberManagement.Persistence.Persistence;
 import java.io.FileNotFoundException;
@@ -28,8 +29,8 @@ public class MemberManager implements MemberContext {
     }
 
     @Override
-    public void add(String name, LocalDate birthDay) {
-        var member = _createMember.create(name,birthDay);
+    public void add(String name, LocalDate birthDay, boolean hasPaid, List<Discipline> disciplines) {
+        var member = _createMember.create(name,birthDay, hasPaid, disciplines);
         _members.add(member);
     }
 

@@ -1,19 +1,13 @@
 package MemberManagement.CreateMembers;
 
+import MemberManagement.Discipline;
+
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class CreateDolphinMember implements CreateMember {
-    private String matchByRegex(String str, String regex){
-        var pattern = Pattern.compile(regex);
-        var matcher = pattern.matcher(str);
-        if(!matcher.find())
-            return "";
-        var result = matcher.toMatchResult();
-        var match = result.group(0);
-        return match;
-    }
 
     private String createID(){
         var full = UUID.randomUUID();
@@ -22,50 +16,27 @@ public class CreateDolphinMember implements CreateMember {
         return firstFourCharacters;
     }
 
-    private String getForeName(String fullName){
-        var match = matchByRegex(fullName,"^[A-z]*\\s");
-        var foreName = match.substring(0,match.lastIndexOf(" "));
-        return foreName;
-    }
-
-    private String getMiddleNameIfAny(String fullName){
-        var match = matchByRegex(fullName,"\\s[A-z ]*\\s");
-        var middleName = match.substring(match.indexOf(" ") + 1,match.lastIndexOf(" "));
-        return middleName;
-    }
-
-    private String getLastName(String fullName){
-        var match = matchByRegex(fullName,"\\s[A-z]*$");
-        var lastName = match.substring(1);
-        return lastName;
-    }
-
-    protected void setNameDetails(DolphinMember member, String fullName){
-        var foreName = getForeName(fullName);
-        var middleName = getMiddleNameIfAny(fullName);
-        var lastName = getLastName(fullName);
-        member.setForeName(foreName);
-        member.setMiddleName(middleName);
-        member.setLastName(lastName);
-    }
-
     @Override
-    public Member create(String fullName, LocalDate birthDate) {
+    public Member create(String name, LocalDate birthDate, boolean hasPaid, List<Discipline> disciplines) {
         var member = new DolphinMember();
-        setNameDetails(member,fullName);
+        member.setName(name);
         member.setDateEnrolled(LocalDate.now());
         member.setBirthDate(birthDate);
         member.setSubscriptionID(createID());
+        member.setPaidStatus(hasPaid);
+        member.setDisciplines(disciplines);
         return member;
     }
 
     @Override
-    public Member loadMember(String fullName, String id, LocalDate birthday, LocalDate enrollmentDate) {
+    public Member loadMember(String name, String id, LocalDate birthday, LocalDate enrollmentDate, boolean hasPaid, List<Discipline> disciplines) {
         DolphinMember member = new DolphinMember();
-        setNameDetails(member, fullName);
+        member.setName(name);
         member.setBirthDate(birthday);
         member.setDateEnrolled(enrollmentDate);
         member.setSubscriptionID(id);
+        member.setPaidStatus(hasPaid);
+        member.setDisciplines(disciplines);
         return member;
     }
 
