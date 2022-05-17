@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface BackendDomain {
     String registerMember(String name, LocalDate birthDay, boolean active, List<Discipline> disciplines);
-    String registerResult(String id, LocalTime result, Discipline discipline);
+    void registerResult(String id, LocalTime result, Discipline discipline);
     List<Member> topFiveBestSwimmers();
     List<Member> membersToBeKilled();
     int expectedEarnings();

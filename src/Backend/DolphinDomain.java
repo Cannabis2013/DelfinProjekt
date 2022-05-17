@@ -21,7 +21,7 @@ public class DolphinDomain implements BackendDomain{
     }
 
     @Override
-    public String registerResult(String id, LocalTime result, Discipline discipline) {
+    public void registerResult(String id, LocalTime result, Discipline discipline) {
         _members.setResult(id,result,discipline);
     }
 
