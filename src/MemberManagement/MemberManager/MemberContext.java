@@ -11,6 +11,7 @@ public interface MemberContext {
     Member member(String id);
     List<Member> members();
     int calculateExpectedEarnings();
+    List<Member> membersInArrears();
     void csvSave();
     void csvLoad();
 }

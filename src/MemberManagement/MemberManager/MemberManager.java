@@ -53,6 +53,12 @@ public class MemberManager implements MemberContext {
         return _expectedEarnings.expected(_members);
     }
 
+    @Override
+    public List<Member> membersInArrears() {
+        var list = _members.stream().filter(Member::hasPaid).toList();
+        return list;
+    }
+
 
     @Override
     public void csvSave() {
