@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 
-public class DolphinExpectedEarnings implements ExpectedEarnings{
+public class DolphinExpectedEarnings implements ExpectedEarnings {
     private final int DISCOUNT_THRESHOLD_AGE = 60;
     private final int SENIOR_THRESHOLD_AGE = 18;
     private final int PASSIVE_RATE = 500;

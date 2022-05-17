@@ -6,8 +6,8 @@ import MemberManagement.MemberManager.CreateMembers.Member;
 import MemberManagement.Discipline;
 import MemberManagement.MemberManager.ExpectedIncome.DolphinExpectedEarnings;
 import MemberManagement.MemberManager.ExpectedIncome.ExpectedEarnings;
-import MemberManagement.Persistence.IPersistence;
 import MemberManagement.Persistence.Persistence;
+import MemberManagement.Persistence.SaveMembersAsCSV;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
 public class MemberManager implements MemberContext {
     private CreateMember _createMember = new CreateDolphinMember();
     private List<Member> _members;
-    private IPersistence _persistMembers = new Persistence();
+    private Persistence _persistMembers = new SaveMembersAsCSV();
     private ExpectedEarnings _expectedEarnings = new DolphinExpectedEarnings();
 
     public MemberManager(){
@@ -61,7 +61,7 @@ public class MemberManager implements MemberContext {
 
 
     @Override
-    public void csvSave() {
+    public void save() {
         try {
             _persistMembers.save(_members);
         } catch (FileNotFoundException e) {
@@ -70,7 +70,7 @@ public class MemberManager implements MemberContext {
     }
 
     @Override
-    public void csvLoad() {
+    public void fetch() {
         List<Member> fetched;
         try {
             fetched = _persistMembers.load();
@@ -79,7 +79,4 @@ public class MemberManager implements MemberContext {
         }
         _members = fetched;
     }
-
-
-
 }

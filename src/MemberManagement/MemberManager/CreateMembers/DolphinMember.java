@@ -3,6 +3,7 @@ package MemberManagement.MemberManager.CreateMembers;
 import MemberManagement.Discipline;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class DolphinMember implements Member {
@@ -14,6 +15,7 @@ public class DolphinMember implements Member {
     private boolean hasPaid;
     private SubscriptionMode _mode;
     private SubscriptionStatus _status;
+    private List<LocalTime> _results;
 
     public void setStatus(SubscriptionStatus status){
         _status = status;
@@ -48,6 +50,11 @@ public class DolphinMember implements Member {
     @Override
     public List<Discipline> disciplines() {
         return _disciplines;
+    }
+
+    @Override
+    public List<LocalTime> results() {
+        return _results;
     }
 
     @Override

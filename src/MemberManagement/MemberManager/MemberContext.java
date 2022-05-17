@@ -1,7 +1,7 @@
 package MemberManagement.MemberManager;
 
-import MemberManagement.MemberManager.CreateMembers.Member;
 import MemberManagement.Discipline;
+import MemberManagement.MemberManager.CreateMembers.Member;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,6 +12,6 @@ public interface MemberContext {
     List<Member> members();
     int calculateExpectedEarnings();
     List<Member> membersInArrears();
-    void csvSave();
-    void csvLoad();
+    void save();
+    void fetch();
 }

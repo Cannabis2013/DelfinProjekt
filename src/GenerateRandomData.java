@@ -19,7 +19,7 @@ public class GenerateRandomData {
             disciplines.add(Discipline.BREAST);
             manager.add("RandomName", LocalDate.of(randomYear, randomMonth, randomDay), hasPaid,true, disciplines);
         }
-        manager.csvSave();
+        manager.save();
     }
 
 
