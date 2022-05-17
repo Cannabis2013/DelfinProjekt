@@ -1,11 +1,11 @@
-import MemberManagement.MemberManager.MemberManager;
+import Backend.Members.DolphinMembers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
 public class CalculateExpectedEarnings {
-    private MemberManager _memberMng = new MemberManager();
+    private DolphinMembers _memberMng = new DolphinMembers();
     @Test
     public void testResult(){
         /*
@@ -18,12 +18,12 @@ public class CalculateExpectedEarnings {
 
                 Exp: 1000 + 500 + 1600 + 500 + 1200 = 4800
          */
-        _memberMng.add("A",LocalDate.of(2006,1,20),true,true,null);
-        _memberMng.add("B",LocalDate.of(1985,6,3),true,false,null);
-        _memberMng.add("C",LocalDate.of(1986,7,4),true,true,null);
-        _memberMng.add("D",LocalDate.of(2018,1,20),true,false,null);
-        _memberMng.add("E",LocalDate.of(1950,1,20),true,true,null);
-        var act = _memberMng.calculateExpectedEarnings();
+        _memberMng.add("A",LocalDate.of(2006,1,20),true,null);
+        _memberMng.add("B",LocalDate.of(1985,6,3),false,null);
+        _memberMng.add("C",LocalDate.of(1986,7,4),true,null);
+        _memberMng.add("D",LocalDate.of(2018,1,20),false,null);
+        _memberMng.add("E",LocalDate.of(1950,1,20),true,null);
+        var act = _memberMng.annualEarnings();
         var exp = 4800;
         Assertions.assertTrue(exp == act);
     }

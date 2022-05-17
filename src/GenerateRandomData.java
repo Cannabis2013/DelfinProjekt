@@ -1,5 +1,5 @@
-import MemberManagement.Discipline;
-import MemberManagement.MemberManager.MemberManager;
+import Backend.Members.CreateMembers.Discipline;
+import Backend.Members.DolphinMembers;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class GenerateRandomData {
 
-    public void generateRandomUsers(int amount, MemberManager manager) {
+    public void generateRandomUsers(int amount, DolphinMembers manager) {
         for (int i = 0; i < amount; i++) {
             int randomYear = getRandomValue(1950, 2019);
             int randomMonth = getRandomValue(1, 13);
@@ -17,7 +17,7 @@ public class GenerateRandomData {
             List<Discipline> disciplines = new ArrayList<>();
             disciplines.add(Discipline.BACKSTROKE);
             disciplines.add(Discipline.BREAST);
-            manager.add("RandomName", LocalDate.of(randomYear, randomMonth, randomDay), hasPaid,true, disciplines);
+            manager.add("RandomName", LocalDate.of(randomYear, randomMonth, randomDay), true, disciplines);
         }
         manager.save();
     }
