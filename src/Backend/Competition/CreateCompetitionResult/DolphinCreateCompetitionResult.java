@@ -1,10 +1,12 @@
 package Backend.Competition.CreateCompetitionResult;
 
+import Backend.Contracts.Competition.CreateCompetitionResult;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class DolphinCreateCompetitionResult implements CreateCompetitionResult{
+public class DolphinCreateCompetitionResult implements CreateCompetitionResult {
     @Override
     public CompetitionResult create(String id, String convention, int rank, String date, String result) {
         var compResult = new CompetitionResult();

@@ -1,6 +1,4 @@
-package Backend.Members.MemberManager;
-
-import Backend.Members.CreateMembers.Member;
+package Backend.Contracts.Members;
 
 import java.util.List;
 

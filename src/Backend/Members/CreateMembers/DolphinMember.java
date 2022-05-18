@@ -1,5 +1,7 @@
 package Backend.Members.CreateMembers;
 
+import Backend.Contracts.Members.Member;
+
 import java.time.LocalDate;
 
 public class DolphinMember implements Member {

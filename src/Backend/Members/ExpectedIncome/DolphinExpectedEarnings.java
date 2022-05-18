@@ -1,6 +1,7 @@
 package Backend.Members.ExpectedIncome;
 
-import Backend.Members.CreateMembers.Member;
+import Backend.Contracts.Members.ExpectedEarnings;
+import Backend.Contracts.Members.Member;
 import Backend.Members.CreateMembers.SubscriptionStatus;
 
 import java.time.LocalDate;

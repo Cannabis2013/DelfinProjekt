@@ -1,10 +1,11 @@
 package Backend.Competition.SortCompetitors;
 
-import Backend.Members.CreateMembers.Member;
+import Backend.Contracts.Competition.SortCompetitors;
+import Backend.Contracts.Members.Member;
 import Backend.Competition.CreateTrainingResults.TrainingResult;
 import Backend.Competition.SortCompetitors.Predicates.SortByAgeAndResults;
 import Backend.Competition.SortCompetitors.TrimSortedSwimmers.TrimDolphinTrainingResults;
-import Backend.Competition.SortCompetitors.TrimSortedSwimmers.TrimTrainingResults;
+import Backend.Contracts.Competition.TrimTrainingResults;
 
 import java.time.LocalDate;
 import java.time.Period;

@@ -1,6 +1,6 @@
 package UI;
 
-import Backend.BackendDomain;
+import Backend.Contracts.BackendDomain;
 import Backend.DolphinDomain;
 
 import java.util.Locale;

@@ -2,10 +2,12 @@ package Backend.Competition.SortCompetitors.TrimSortedSwimmers;
 
 import Backend.Competition.CreateTrainingResults.Discipline;
 import Backend.Competition.CreateTrainingResults.TrainingResult;
+import Backend.Contracts.Competition.TrimTrainingResults;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrimDolphinTrainingResults implements TrimTrainingResults{
+public class TrimDolphinTrainingResults implements TrimTrainingResults {
     @Override
     public List<TrainingResult> trim(List<TrainingResult> results) {
         var resultingList = new ArrayList<TrainingResult>();

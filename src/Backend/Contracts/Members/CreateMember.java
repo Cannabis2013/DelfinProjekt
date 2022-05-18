@@ -1,4 +1,4 @@
-package Backend.Members.CreateMembers;
+package Backend.Contracts.Members;
 
 import java.time.LocalDate;
 

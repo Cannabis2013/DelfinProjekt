@@ -1,12 +1,13 @@
 package Backend.Competition.CreateDisciplines;
 
 import Backend.Competition.CreateTrainingResults.Discipline;
+import Backend.Contracts.Competition.StringToDiscipline;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class DolphinStringToDisciplines implements StringToDiscipline{
+public class DolphinStringToDisciplines implements StringToDiscipline {
     @Override
     public List<Discipline> convert(String disciplines) {
         var resultingList = new ArrayList<Discipline>();

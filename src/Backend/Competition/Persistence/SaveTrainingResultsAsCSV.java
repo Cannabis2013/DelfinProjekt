@@ -3,7 +3,7 @@ package Backend.Competition.Persistence;
 
 import Backend.Competition.CreateTrainingResults.Discipline;
 import Backend.Competition.CreateTrainingResults.TrainingResult;
-import Backend.Contracts.Persistence;
+import Backend.Contracts.Persistence.Persistence;
 
 import java.io.File;
 import java.io.FileNotFoundException;

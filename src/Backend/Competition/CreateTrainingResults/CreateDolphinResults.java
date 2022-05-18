@@ -1,9 +1,11 @@
 package Backend.Competition.CreateTrainingResults;
 
+import Backend.Contracts.Competition.CreateTrainingResult;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateDolphinResults implements CreateTrainingResult{
+public class CreateDolphinResults implements CreateTrainingResult {
     private final int SENIOR_THRESHOLD = 18;
 
     private TrainingResult createResult(String id, Discipline discipline){

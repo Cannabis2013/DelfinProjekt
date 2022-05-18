@@ -1,10 +1,7 @@
-package Backend.Contracts;
+package Backend.Contracts.Persistence;
 
 
 
-import Backend.Members.CreateMembers.Member;
-
-import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface Persistence<T> {

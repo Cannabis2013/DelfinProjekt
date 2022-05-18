@@ -1,7 +1,7 @@
-package Backend;
+package Backend.Contracts;
 
 import Backend.Competition.CreateTrainingResults.Discipline;
-import Backend.Members.CreateMembers.Member;
+import Backend.Contracts.Members.Member;
 
 import java.util.List;
 

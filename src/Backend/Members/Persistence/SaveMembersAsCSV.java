@@ -1,8 +1,8 @@
 package Backend.Members.Persistence;
 
-import Backend.Contracts.Persistence;
+import Backend.Contracts.Persistence.Persistence;
 import Backend.Members.CreateMembers.CreateDolphinMember;
-import Backend.Members.CreateMembers.Member;
+import Backend.Contracts.Members.Member;
 
 import java.io.*;
 import java.time.LocalDate;

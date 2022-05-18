@@ -1,4 +1,4 @@
-package Backend.Competition.CreateDisciplines;
+package Backend.Contracts.Competition;
 
 import Backend.Competition.CreateTrainingResults.Discipline;
 

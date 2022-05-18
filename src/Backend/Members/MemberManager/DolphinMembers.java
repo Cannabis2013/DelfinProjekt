@@ -1,11 +1,12 @@
 package Backend.Members.MemberManager;
 
+import Backend.Contracts.Members.Members;
 import Backend.Members.CreateMembers.CreateDolphinMember;
-import Backend.Members.CreateMembers.CreateMember;
-import Backend.Members.CreateMembers.Member;
+import Backend.Contracts.Members.CreateMember;
+import Backend.Contracts.Members.Member;
 import Backend.Members.ExpectedIncome.DolphinExpectedEarnings;
-import Backend.Members.ExpectedIncome.ExpectedEarnings;
-import Backend.Contracts.Persistence;
+import Backend.Contracts.Members.ExpectedEarnings;
+import Backend.Contracts.Persistence.Persistence;
 import Backend.Members.Persistence.SaveMembersAsCSV;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

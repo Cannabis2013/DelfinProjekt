@@ -1,4 +1,6 @@
-package Backend.Competition.CreateCompetitionResult;
+package Backend.Contracts.Competition;
+
+import Backend.Competition.CreateCompetitionResult.CompetitionResult;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

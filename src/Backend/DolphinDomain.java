@@ -1,15 +1,16 @@
 package Backend;
 
-import Backend.Competition.Manager.Competition;
+import Backend.Contracts.Competition.Competition;
 import Backend.Competition.Manager.DolphinCompetition;
 import Backend.Competition.CreateTrainingResults.Discipline;
-import Backend.Members.CreateMembers.Member;
+import Backend.Contracts.BackendDomain;
+import Backend.Contracts.Members.Member;
 import Backend.Members.MemberManager.DolphinMembers;
-import Backend.Members.MemberManager.Members;
+import Backend.Contracts.Members.Members;
 
 import java.util.List;
 
-public class DolphinDomain implements BackendDomain{
+public class DolphinDomain implements BackendDomain {
     Members _members = new DolphinMembers();
     Competition _competition = new DolphinCompetition();
 

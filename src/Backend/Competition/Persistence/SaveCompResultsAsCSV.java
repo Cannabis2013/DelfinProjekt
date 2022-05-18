@@ -1,9 +1,9 @@
 package Backend.Competition.Persistence;
 
 import Backend.Competition.CreateCompetitionResult.CompetitionResult;
-import Backend.Competition.CreateCompetitionResult.CreateCompetitionResult;
+import Backend.Contracts.Competition.CreateCompetitionResult;
 import Backend.Competition.CreateCompetitionResult.DolphinCreateCompetitionResult;
-import Backend.Contracts.Persistence;
+import Backend.Contracts.Persistence.Persistence;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;

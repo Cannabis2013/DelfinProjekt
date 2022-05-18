@@ -1,8 +1,9 @@
 package Backend.Members.CreateMembers;
 
+import Backend.Contracts.Members.CreateMember;
+import Backend.Contracts.Members.Member;
+
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class CreateDolphinMember implements CreateMember {

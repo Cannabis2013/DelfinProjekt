@@ -1,6 +1,6 @@
-package Backend.Competition.SortCompetitors;
+package Backend.Contracts.Competition;
 
-import Backend.Members.CreateMembers.Member;
+import Backend.Contracts.Members.Member;
 import Backend.Competition.CreateTrainingResults.TrainingResult;
 
 import java.util.List;
