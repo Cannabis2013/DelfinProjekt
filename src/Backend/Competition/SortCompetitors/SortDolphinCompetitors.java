@@ -1,10 +1,10 @@
-package Backend.SortCompetitors;
+package Backend.Competition.SortCompetitors;
 
 import Backend.Members.CreateMembers.Member;
 import Backend.Members.CreateMembers.TrainingResult;
-import Backend.SortCompetitors.Predicates.SortByAgeAndResults;
-import Backend.SortCompetitors.TrimSortedSwimmers.TrimDolphinTrainingResults;
-import Backend.SortCompetitors.TrimSortedSwimmers.TrimTrainingResults;
+import Backend.Competition.SortCompetitors.Predicates.SortByAgeAndResults;
+import Backend.Competition.SortCompetitors.TrimSortedSwimmers.TrimDolphinTrainingResults;
+import Backend.Competition.SortCompetitors.TrimSortedSwimmers.TrimTrainingResults;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class SortDolphinCompetitors implements SortCompetitors {
         var results = new ArrayList<TrainingResult>();
         competitors.stream()
                 .forEach(m -> {
-                    var l = m.results();
+                    var l = m.trainingResults();
                     results.addAll(l);
                 });
         return results;

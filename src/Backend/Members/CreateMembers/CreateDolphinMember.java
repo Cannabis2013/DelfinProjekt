@@ -14,7 +14,7 @@ public class CreateDolphinMember implements CreateMember {
     }
 
     @Override
-    public Member create(String name, LocalDate birthDate, boolean active) {
+    public Member create(String name, LocalDate birthDate, boolean active, boolean competitor) {
         var member = new DolphinMember();
         var status = active ? SubscriptionStatus.ACTIVE : SubscriptionStatus.PASSIVE;
         member.setStatus(status);
@@ -23,6 +23,8 @@ public class CreateDolphinMember implements CreateMember {
         member.setBirthDate(birthDate);
         member.setSubscriptionID(createID());
         member.setPaidStatus(Math.random() < 0.75);
+        if(competitor)
+            member.setSubscriptionMode(SubscriptionMode.COMPETITOR);
         return member;
     }
 

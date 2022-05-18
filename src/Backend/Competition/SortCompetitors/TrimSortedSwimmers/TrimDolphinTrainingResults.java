@@ -1,4 +1,4 @@
-package Backend.SortCompetitors.TrimSortedSwimmers;
+package Backend.Competition.SortCompetitors.TrimSortedSwimmers;
 
 import Backend.Members.CreateMembers.Discipline;
 import Backend.Members.CreateMembers.TrainingResult;

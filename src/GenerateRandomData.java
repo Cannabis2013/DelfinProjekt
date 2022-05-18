@@ -1,5 +1,5 @@
 import Backend.Members.CreateMembers.Discipline;
-import Backend.Members.DolphinMembers;
+import Backend.Members.MemberManager.DolphinMembers;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

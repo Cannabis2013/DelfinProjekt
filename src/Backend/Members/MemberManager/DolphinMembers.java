@@ -1,5 +1,6 @@
-package Backend.Members;
+package Backend.Members.MemberManager;
 
+import Backend.Competition.CreateCompetitionResult.CompetitionResult;
 import Backend.Members.CreateMembers.*;
 import Backend.Members.CreateTrainingResults.CreateDolphinResult;
 import Backend.Members.CreateTrainingResults.CreateTrainingResult;
@@ -10,7 +11,6 @@ import Backend.Members.ExpectedIncome.ExpectedEarnings;
 import Backend.Members.Persistence.SaveMembersAsCSV;
 import Backend.Members.UpdateTrainingResult.UpdateDolphinTrainingResult;
 import Backend.Members.UpdateTrainingResult.UpdateResult;
-
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -27,6 +27,13 @@ public class DolphinMembers implements Members {
 
     private StringToDiscipline _convertToDisciplines;
 
+    private Member findByID(String id){
+        var member = _members.stream()
+                .filter(m -> m.subscriptionID().equals(id))
+                .findFirst().orElseThrow(MemberNotFoundException::new);
+        return member;
+    }
+
     public DolphinMembers(){
         List<Member> members;
         try {
@@ -40,7 +47,7 @@ public class DolphinMembers implements Members {
     @Override
     public String add(String name, LocalDate birthDay, boolean active, String disciplines) {
         var d = _convertToDisciplines.convert(disciplines);
-        var member = _createMember.create(name,birthDay, active);
+        var member = _createMember.create(name,birthDay, active,d.isEmpty());
         var results = _createResult.create(member,d);
         member.setResults(results);
         _members.add(member);
@@ -49,17 +56,32 @@ public class DolphinMembers implements Members {
 
     @Override
     public void setResult(String id, LocalTime result, Discipline discipline) {
-        var member = _members.stream()
-                .filter(m -> m.subscriptionID().equals(id)).findFirst()
-                .orElseThrow(MemberNotFoundException::new);
+        var member = findByID(id);
         _updateResult.update(member,result,discipline);
     }
 
     @Override
+    public void setConventionResult(CompetitionResult result) {
+        var member = findByID(result.subscriberID);
+        var compResult = member.conventionResults()
+                .stream().filter(c -> c.convention.equals(result.convention))
+                .findFirst().orElse(null);
+        if(compResult == null) {
+            member.conventionResults().add(result);
+        }
+        else
+        {
+            var indexOf = member.conventionResults().indexOf(compResult);
+            member.conventionResults().set(indexOf,result);
+        }
+
+    }
+
+    @Override
     public Member member(String id) {
-        var memberOptional = _members.stream()
+        var member = _members.stream()
                 .filter(m -> m.subscriptionID().equals(id)).findFirst().orElse(null);
-        return memberOptional;
+        return member;
     }
 
     @Override

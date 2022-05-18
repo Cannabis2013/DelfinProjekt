@@ -43,7 +43,7 @@ public class UpdateDolphinTrainingResult implements UpdateResult{
 
     @Override
     public void update(Member member, LocalTime result, Discipline discipline) {
-        var results = member.results();
+        var results = member.trainingResults();
         var trainingResult = findByDiscipline(results,discipline);
         updateResult(member,trainingResult,result);
         var i = results.indexOf(trainingResult);

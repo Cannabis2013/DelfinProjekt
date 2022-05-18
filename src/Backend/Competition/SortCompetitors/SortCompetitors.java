@@ -1,4 +1,4 @@
-package Backend.SortCompetitors;
+package Backend.Competition.SortCompetitors;
 
 import Backend.Members.CreateMembers.Member;
 

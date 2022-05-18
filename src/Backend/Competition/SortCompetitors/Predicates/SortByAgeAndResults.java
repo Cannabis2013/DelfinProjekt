@@ -1,4 +1,4 @@
-package Backend.SortCompetitors.Predicates;
+package Backend.Competition.SortCompetitors.Predicates;
 
 import Backend.Members.CreateMembers.TrainingResult;
 import java.util.Comparator;

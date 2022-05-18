@@ -1,11 +1,12 @@
 package Backend;
 
+import Backend.Competition.CreateCompetitionResult.ICreateCompetitionResult;
 import Backend.Members.CreateMembers.Discipline;
 import Backend.Members.CreateMembers.Member;
-import Backend.Members.DolphinMembers;
-import Backend.Members.Members;
-import Backend.SortCompetitors.SortDolphinCompetitors;
-import Backend.SortCompetitors.SortCompetitors;
+import Backend.Members.MemberManager.DolphinMembers;
+import Backend.Members.MemberManager.Members;
+import Backend.Competition.SortCompetitors.SortDolphinCompetitors;
+import Backend.Competition.SortCompetitors.SortCompetitors;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -14,6 +15,7 @@ import java.util.List;
 public class DolphinDomain implements BackendDomain{
     Members _members = new DolphinMembers();
     SortCompetitors _sortCompetitors = new SortDolphinCompetitors();
+    ICreateCompetitionResult _createCompetitionResult;
 
     @Override
     public String registerMember(String name, String birthDayAsString, boolean active, String disciplines) {
@@ -24,8 +26,15 @@ public class DolphinDomain implements BackendDomain{
     }
 
     @Override
-    public void registerResult(String id, LocalTime result, Discipline discipline) {
-        _members.setResult(id,result,discipline);
+    public void registerResult(String id, String result, Discipline discipline) {
+        var time = LocalTime.parse(result);
+        _members.setResult(id,time,discipline);
+    }
+
+    @Override
+    public void registerConventionResult(String id, String convention, String date, int rank, String result) {
+        var r = _createCompetitionResult.create(id,convention, rank,LocalDate.parse(date), LocalTime.parse(result));
+
     }
 
     @Override
