@@ -1,6 +1,7 @@
 package Backend.Members.CreateMembers;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DolphinMember implements Member {
@@ -8,11 +9,10 @@ public class DolphinMember implements Member {
     private String _id;
     private LocalDate _birthDate;
     private LocalDate _dateEnrolled;
-    private List<Discipline> _disciplines;
     private boolean hasPaid;
     private SubscriptionMode _mode;
     private SubscriptionStatus _status;
-    private List<TrainingResult> _results;
+    private List<TrainingResult> _results = new ArrayList<>();
 
     public void setStatus(SubscriptionStatus status){
         _status = status;
@@ -43,10 +43,6 @@ public class DolphinMember implements Member {
         return !hasPaid;
     }
 
-    @Override
-    public List<Discipline> disciplines() {
-        return _disciplines;
-    }
 
     @Override
     public List<TrainingResult> results() {

@@ -26,8 +26,7 @@ public class SaveMembersAsCSV implements Persistence {
             String birthDate = member.birthDate().toString();
             String enrollment = member.dateEnrolled().toString();
             boolean hasPaid = member.hasNotPaid();
-            List<Discipline> disciplines = member.disciplines();
-            stream.print(String.format("%s;%s;%s;%s;%s;%s;\n", fullName, id, birthDate, enrollment, hasPaid, disciplines.toString()));
+            stream.print(String.format("%s;%s;%s;%s;%s;\n", fullName, id, birthDate, enrollment, hasPaid));
         }
         stream.close();
     }
@@ -66,38 +65,5 @@ public class SaveMembersAsCSV implements Persistence {
             loadedMembers.add(loadedMember);
         }
         return loadedMembers;
-    }
-
-    private List<Discipline> handleDisciplineLoading(String loadedString) {
-        List<Discipline> disciplines = new ArrayList<>();
-        String unArrayedString = loadedString.substring(1, loadedString.length()-1);
-        if (unArrayedString.length() > 1) {
-            String commaLess = unArrayedString.replace(",", "");
-            String[] strDisciplineArray = commaLess.split(" ");
-            for (String strDiscipline : strDisciplineArray) {
-                disciplines.add(stringToEnum(strDiscipline));
-            }
-        }
-        return disciplines;
-    }
-
-    private Discipline stringToEnum(String stringEnum) {
-        switch (stringEnum) {
-            case "BREAST" -> {
-                return Discipline.BREAST;
-            }
-            case "CRAWL" -> {
-                return Discipline.CRAWL;
-            }
-            case "BACKSTROKE" -> {
-                return Discipline.BACKSTROKE;
-            }
-            case "BUTTERFLY" -> {
-                return Discipline.BUTTERFLY;
-            }
-            default -> {
-                return null;
-            }
-        }
     }
 }

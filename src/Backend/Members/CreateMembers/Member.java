@@ -9,7 +9,6 @@ public interface Member{
     LocalDate birthDate();
     LocalDate dateEnrolled();
     boolean hasNotPaid();
-    List<Discipline> disciplines();
     List<TrainingResult> results();
     void setResults(List<TrainingResult> results);
     SubscriptionMode subscriptionMode();
