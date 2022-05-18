@@ -1,5 +1,7 @@
 package UI;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -7,15 +9,44 @@ public class FormandUI extends UI {
 
     Scanner keyboard = new Scanner(System.in);
 
-    private void addMember() {
+    private void registerMember() throws InterruptedException {
+
+        System.out.print("""
+            
+            Enter Name: """);
+        String nameEntered = keyboard.nextLine();
 
         System.out.println("""
-                Type the full Name:
-                """);
-        System.out.print("Type here:");
+            (Enter like this = year-month-day)
+            Enter Date of Birth: """);
+        String birthdayEntered = keyboard.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate birthday = LocalDate.parse(birthdayEntered, formatter);
 
-        int enterMemberID = keyboard.nextInt();
+        System.out.print("""
+            
+            Enter Subscription Status -- Active or Passive: """);
+        Boolean subStatusEntered = Boolean.valueOf(keyboard.nextLine().toLowerCase(Locale.ROOT));
+        if (subStatusEntered.equals("active")) {
+            subStatusEntered = true;
 
+        } else if (subStatusEntered.equals("passive")) {
+            subStatusEntered = false;
+        }
+
+        System.out.print("""
+            ( Enter like this = BREAST / CRAWL )
+            Enter Disciplines: """);
+
+        String disciplinesEntered = keyboard.nextLine();
+        disciplinesEntered.split(" |,|, ");
+
+        _backend.registerMember(nameEntered, birthdayEntered, subStatusEntered, disciplinesEntered);
+
+        displayUI_formand();
+    }
+
+    private void overviewMembers(){
 
 
     }
@@ -30,8 +61,6 @@ public class FormandUI extends UI {
         System.out.println("---------------------");
         System.out.println("");
 
-        Thread.sleep(2000);
-
         System.out.println("""                                      
                 -----------------
                 Chairman - System:
@@ -39,20 +68,20 @@ public class FormandUI extends UI {
                                     
                 1). Create New Member:
                                     
-                2). Overview Regitered Members:
+                2). Overview Registered Members:
                                     
                 3). Register - Modify / Delete Member:
-                
+                                
                 ---------------------------------------
                                     
-                4). Load Members from Database:       ( From a CSV file )
-                
+                4). Load Members from Database:      ( From a CSV file )
+                                
                 5). Save Members from Database:      ( From the loaded CSV file )
                                     
                 ---------------------------------------
-                
+                                
                 6). Back to Main Menu:
-                
+                                
                 7). Exit - System:
                 """);
 
@@ -70,75 +99,35 @@ public class FormandUI extends UI {
             switch (commandFormand) {
 
 
-                case 1:
+                case 1 -> registerMember();
 
+                case 2 -> System.out.println("Test 2_Formand");
 
+                case 3 -> System.out.println("Test 3_Formand");
 
+                case 4 -> System.out.println("Test 4_Formand");
 
-                    break;
+                case 5 -> System.out.println("Test 5_Formand");
 
+                case 6 -> displayUI_delfin();
 
-
-                case 2:
-                    System.out.println("Test 2_Formand");
-
-
-                    break;
-
-
-
-                case 3:
-                    System.out.println("Test 3_Formand");
-
-
-                    break;
-
-
-
-
-                case 4:
-                    System.out.println("Test 4_Formand");
-
-
-                    break;
-
-
-
-                case 5:
-                    System.out.println("Test 5_Formand");
-
-
-                    break;
-
-
-
-                case 6:
-
-                    displayUI_delfin();
-
-
-                    break;
-
-
-
-                case 7:
+                case 7 -> {
                     Scanner keyboardEnd = new Scanner(System.in);
 
                     System.out.println("""
-                            
+                                                        
                             ----------------------------------------------
                             Are you sure that you want to exit? Yes/No?
                             ---------------------------------------------- """);
+
                     System.out.print("[Enter here]: ");
 
-
                     String commandEnd = keyboardEnd.nextLine().toLowerCase(Locale.ROOT);
-
 
                     if (commandEnd.equals("yes") || commandEnd.equals("y")) {
 
                         System.out.println("""
-                                
+                                                                
                                 ------------------
                                 Exiting Program...
                                 ------------------
@@ -146,12 +135,10 @@ public class FormandUI extends UI {
                                 ----------------
                                 Have a good day.
                                 ----------------
-                                
+                                                                
                                 """);
-                        Thread.sleep(1500);
 
                         System.exit(0);
-
 
 
                     } else if (commandEnd.equals("no") || commandEnd.equals("n")) {
@@ -159,37 +146,26 @@ public class FormandUI extends UI {
                         displayUI_formand();
 
 
-
                     } else {
 
                         System.out.println("""
-                            
-                            -----------------------------
-                            Invalid Command - Try again.
-                            -----------------------------
-                            
-                            """);
+                                                            
+                                -----------------------------
+                                Invalid Command - Try again.
+                                -----------------------------
+                                                            
+                                """);
 
                         Thread.sleep(1500);
 
-
                     }
 
+                } // End of formand switch
 
+            } // End of formand while loop
 
-                    break;
+        } // End of formand displayUI_Formand
 
+    } // End of formand FormandUI
 
-
-
-
-
-            } // End of formand switch
-
-        } // End of formand while loop
-
-
-    } // End of formand displayUI_Formand
-
-
-} // End of formand FormandUI
+}
