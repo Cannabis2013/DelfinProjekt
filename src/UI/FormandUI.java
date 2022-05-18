@@ -1,16 +1,18 @@
 package UI;
 
+import UI.Contracts.ReadUserInput;
+import UI.ReadUserInput.ReadMainMenuOption;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class FormandUI extends UI {
-
-    Scanner keyboard = new Scanner(System.in);
+    private ReadUserInput<Integer> _readMainMenuOption = new ReadMainMenuOption();
 
     private void registerMember() throws InterruptedException {
-
+        var keyboard = new Scanner(System.in);
         System.out.print("""
             
             Enter Name: """);
@@ -52,9 +54,6 @@ public class FormandUI extends UI {
     }
 
     public void displayUI_formand() throws InterruptedException {
-
-        Scanner keyboard = new Scanner(System.in);
-
         System.out.println("");
         System.out.println("---------------------");
         System.out.println("[ DELFIN - DATABASE ]");
@@ -84,16 +83,7 @@ public class FormandUI extends UI {
                                 
                 7). Exit - System:
                 """);
-
-        System.out.println("--------------------------------------");
-        System.out.println("Choose a Number & Press Enter. ");
-        System.out.println("--------------------------------------");
-        System.out.print("[Enter her]: ");
-
-
-        int commandFormand = keyboard.nextInt();
-
-
+        int commandFormand = _readMainMenuOption.read();
         while (running) {
 
             switch (commandFormand) {

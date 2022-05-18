@@ -2,55 +2,27 @@ package UI;
 
 import Backend.Contracts.BackendDomain;
 import Backend.DolphinDomain;
+import UI.Contracts.PrintScreen;
+import UI.Contracts.ReadUserInput;
+import UI.PrintScreen.PrintDolphinWelcomeScreen;
+import UI.PrintScreen.PrintMainMenu;
+import UI.ReadUserInput.ReadMainMenuOption;
 
 import java.util.Locale;
 import java.util.Scanner;
 
-
-
 public class UI {
-
     protected BackendDomain _backend = new DolphinDomain();
-
-    Scanner keyboard = new Scanner(System.in);
-
     boolean running = true;
+    private PrintScreen _printWelcomeScreen = new PrintDolphinWelcomeScreen();
+    private PrintScreen _printMainMenu = new PrintMainMenu();
+    private ReadUserInput<Integer> _readMainMenuOption = new ReadMainMenuOption();
 
     public void displayUI_delfin() throws InterruptedException {
-
-        System.out.println("");
-        System.out.println("---------------------");
-        System.out.println("[ DELFIN - DATABASE ]");
-        System.out.println("---------------------");
-        System.out.println("");
-
-        System.out.println("""
-                    ----------
-                    Main Menu:
-                    ----------
-                    
-                    1). Chairman - System:
-                    
-                    2). Cashier - System:
-                    
-                    3). Trainer - System:
-                    
-                    4). Exit - System:
-                    
-                    """);
-
-        System.out.print("""
-                            -----------------------------
-                            Choose a Number & Press Enter
-                            -----------------------------
-                            
-                            [Enter here]: """);
-
-        int commandMenu = keyboard.nextInt();
-
-
+        _printWelcomeScreen.print();
+        _printMainMenu.print();
         while(running) {
-
+            int commandMenu = _readMainMenuOption.read();
             switch (commandMenu) {
                 case 1 -> new FormandUI().displayUI_formand();
                 case 2 -> System.out.println("Test 2");
