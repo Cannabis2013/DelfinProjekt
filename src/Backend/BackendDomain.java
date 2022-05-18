@@ -7,7 +7,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 public interface BackendDomain {
-    String registerMember(String name, LocalDate birthDay, boolean active, List<Discipline> disciplines);
+    String registerMember(String name, String birthDay, boolean active, List<Discipline> disciplines);
     void registerResult(String id, LocalTime result, Discipline discipline);
     List<Member> topFiveBestSwimmers();
     List<Member> membersInArrears();

@@ -8,6 +8,7 @@ import Backend.SortCompetitors.SortDolphinCompetitors;
 import Backend.SortCompetitors.SortCompetitors;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class DolphinDomain implements BackendDomain{
@@ -15,7 +16,9 @@ public class DolphinDomain implements BackendDomain{
     SortCompetitors _sortCompetitors = new SortDolphinCompetitors();
 
     @Override
-    public String registerMember(String name, LocalDate birthDay, boolean active, List<Discipline> disciplines) {
+    public String registerMember(String name, String birthDayAsString, boolean active, List<Discipline> disciplines) {
+        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        var birthDay = LocalDate.parse(birthDayAsString,formatter);
         var id = _members.add(name,birthDay,active,disciplines);
         return id;
     }
