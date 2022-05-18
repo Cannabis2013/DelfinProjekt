@@ -50,5 +50,6 @@ public class ReadMainMenuOption implements ReadUserInput<Integer> {
                 _scrollUp.clear(4);
             }
         }
+
     }
 }
