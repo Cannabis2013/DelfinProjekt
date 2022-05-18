@@ -4,6 +4,7 @@ import UI.Contracts.PrintScreen;
 import UI.Contracts.ReadUserInput;
 import UI.MemberDetails;
 import UI.PrintScreen.PrintChairmanOptions;
+import UI.PrintScreen.PrintRegisterMemberScreen;
 import UI.ReadUserInput.ReadMainMenuOption;
 import UI.ReadUserInput.ReadMemberDetails;
 
@@ -16,8 +17,10 @@ public class ChairmanUI extends MainUI {
     private ReadUserInput<Integer> _readMainMenuOption = new ReadMainMenuOption();
     private PrintScreen _printMenu = new PrintChairmanOptions();
     private ReadUserInput<MemberDetails> _readMemberDetails = new ReadMemberDetails();
+    PrintScreen _printRegistrationScreen = new PrintRegisterMemberScreen();
 
     private void registerMember() {
+        _printRegistrationScreen.print();
         var details = _readMemberDetails.read();
         _backend.registerMember(details.name(), details.birthDate(), details.active(), details.disciplines());
     }

@@ -16,7 +16,7 @@ public class PrintMainOptions implements PrintScreen {
                     
                     3). Trainer
                     
-                    4). Exit
+                    *). Exit
                     
                     """);
     }

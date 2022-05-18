@@ -26,9 +26,7 @@ public class MainUI {
             int commandMenu = _readMainMenuOption.read();
             switch (commandMenu) {
                 case 1 -> new ChairmanUI().displayUI_formand();
-                case 2 -> System.out.println("Test 2");
-                case 3 -> System.out.println("Test 3");
-                case 4 -> running = _readExitOption.read();
+                default -> running = _readExitOption.read();
             }
         }
         _printExitScreen.print();

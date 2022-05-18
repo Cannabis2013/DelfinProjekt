@@ -9,7 +9,7 @@ public class PrintDolphinWelcomeScreen implements PrintScreen {
     private final String showCursor = "\33[?25h";
     private final String greenFont = "\33[32m";
     private final String reset = "\33[m";
-    private final int LOAD_LIMIT = 10;
+    private final int LOAD_LIMIT = 3;
     private final int SLEEP_DURATION = 400;
 
     private void printLogo(){
@@ -21,18 +21,20 @@ public class PrintDolphinWelcomeScreen implements PrintScreen {
         System.out.println(greenFont + logo + reset);
     }
 
+    private void eraseDots(){
+        System.out.print("\33[3D");
+        System.out.print("\33[K");
+    }
+
     private void printLoading(){
         System.out.print("\33[?25l");
         var i = 0;
         System.out.print("Loading");
         while (i++ < LOAD_LIMIT){
-            if(i % 4 == 0){
-                System.out.print("\33[3D");
-                System.out.print("\33[K");
-            }
-            else{
+            if(i % 4 == 0)
+                eraseDots();
+            else
                 System.out.print(".");
-            }
             try {
                 Thread.sleep(SLEEP_DURATION);
             } catch (InterruptedException e) {
