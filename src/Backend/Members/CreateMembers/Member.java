@@ -11,9 +11,5 @@ public interface Member{
     LocalDate birthDate();
     LocalDate dateEnrolled();
     boolean hasNotPaid();
-    List<TrainingResult> trainingResults();
-    List<CompetitionResult> conventionResults();
-    void setResults(List<TrainingResult> results);
-    SubscriptionMode subscriptionMode();
     SubscriptionStatus status();
 }

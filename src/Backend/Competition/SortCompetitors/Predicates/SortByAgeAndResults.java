@@ -1,6 +1,6 @@
 package Backend.Competition.SortCompetitors.Predicates;
 
-import Backend.Members.CreateMembers.TrainingResult;
+import Backend.Competition.CreateTrainingResults.TrainingResult;
 import java.util.Comparator;
 
 public class SortByAgeAndResults implements Comparator<TrainingResult> {

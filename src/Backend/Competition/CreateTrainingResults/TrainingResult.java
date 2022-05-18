@@ -1,6 +1,6 @@
-package Backend.Members.CreateMembers;
+package Backend.Competition.CreateTrainingResults;
 
-import Backend.Members.CreateMembers.Discipline;
+import Backend.Competition.CreateTrainingResults.Discipline;
 
 import java.time.LocalTime;
 

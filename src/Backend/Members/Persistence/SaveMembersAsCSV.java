@@ -1,6 +1,6 @@
 package Backend.Members.Persistence;
 
-import Backend.Members.CreateMembers.Discipline;
+import Backend.Contracts.Persistence;
 import Backend.Members.CreateMembers.CreateDolphinMember;
 import Backend.Members.CreateMembers.Member;
 
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class SaveMembersAsCSV implements Persistence {
+public class SaveMembersAsCSV implements Persistence<Member> {
     @Override
     public void save(List<Member> members) {
         PrintStream stream = null;

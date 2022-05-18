@@ -1,6 +1,6 @@
-package Backend.Members.Disciplines;
+package Backend.Competition.CreateDisciplines;
 
-import Backend.Members.CreateMembers.Discipline;
+import Backend.Competition.CreateTrainingResults.Discipline;
 
 import java.util.List;
 

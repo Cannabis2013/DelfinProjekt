@@ -18,11 +18,11 @@ public class CalculateExpectedEarnings {
 
                 Exp: 1000 + 500 + 1600 + 500 + 1200 = 4800
          */
-        _memberMng.add("A",LocalDate.of(2006,1,20),true,null);
-        _memberMng.add("B",LocalDate.of(1985,6,3),false,null);
-        _memberMng.add("C",LocalDate.of(1986,7,4),true,null);
-        _memberMng.add("D",LocalDate.of(2018,1,20),false,null);
-        _memberMng.add("E",LocalDate.of(1950,1,20),true,null);
+        _memberMng.add("A","2006-01-20",true);
+        _memberMng.add("B","1985-06-03",false);
+        _memberMng.add("C","1986-07-04",true);
+        _memberMng.add("D","2018-01-20",false);
+        _memberMng.add("E","1950-01-20",true);
         var act = _memberMng.annualEarnings();
         var exp = 4800;
         Assertions.assertTrue(exp == act);

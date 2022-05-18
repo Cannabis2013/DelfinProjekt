@@ -1,9 +1,8 @@
 package Backend;
 
-import Backend.Members.CreateMembers.Discipline;
+import Backend.Competition.CreateTrainingResults.Discipline;
 import Backend.Members.CreateMembers.Member;
-import java.time.LocalDate;
-import java.time.LocalTime;
+
 import java.util.List;
 
 public interface BackendDomain {

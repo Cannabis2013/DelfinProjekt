@@ -1,10 +1,6 @@
 package Backend.Members.CreateMembers;
 
-import Backend.Competition.CreateCompetitionResult.CompetitionResult;
-
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class DolphinMember implements Member {
     private String _name;
@@ -12,10 +8,7 @@ public class DolphinMember implements Member {
     private LocalDate _birthDate;
     private LocalDate _dateEnrolled;
     private boolean hasPaid;
-    private SubscriptionMode _mode = SubscriptionMode.EXERCISER;
     private SubscriptionStatus _status;
-    private List<TrainingResult> _results = new ArrayList<>();
-    private List<CompetitionResult> _competitionResults = new ArrayList<>();
 
     public void setStatus(SubscriptionStatus status){
         _status = status;
@@ -44,29 +37,6 @@ public class DolphinMember implements Member {
     @Override
     public boolean hasNotPaid() {
         return !hasPaid;
-    }
-
-    @Override
-    public List<TrainingResult> trainingResults() {
-        return _results;
-    }
-    @Override
-    public List<CompetitionResult> conventionResults() {
-        return _competitionResults;
-    }
-
-    @Override
-    public void setResults(List<TrainingResult> results) {
-        _results = results;
-    }
-
-    @Override
-    public SubscriptionMode subscriptionMode() {
-        return _mode;
-    }
-
-    public void setSubscriptionMode(SubscriptionMode mode){
-        _mode = mode;
     }
 
     @Override
