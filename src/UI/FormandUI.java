@@ -1,8 +1,24 @@
 package UI;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class FormandUI extends UI {
+
+    Scanner keyboard = new Scanner(System.in);
+
+    private void addMember() {
+
+        System.out.println("""
+                Type the full Name:
+                """);
+        System.out.print("Type here:");
+
+        int enterMemberID = keyboard.nextInt();
+
+
+
+    }
 
     public void displayUI_formand() throws InterruptedException {
 
@@ -18,32 +34,32 @@ public class FormandUI extends UI {
 
         System.out.println("""                                      
                 -----------------
-                Formand - System:
+                Chairman - System:
                 -----------------
                                     
-                1). Indmeld nye medlemmer:
+                1). Create New Member:
                                     
-                2). Oversigt af registeret medlemmer:
+                2). Overview Regitered Members:
                                     
-                3). Registere - Ændre / Fjern medlemmer:
+                3). Register - Modify / Delete Member:
                 
                 ---------------------------------------
                                     
-                4). Hent medlemmer til databasen:       ( Fra en vilkårlig CSV fil )
+                4). Load Members from Database:       ( From a CSV file )
                 
-                5). Gemme medlemmer til databasen:      ( Fra den hentet CSV fil )
+                5). Save Members from Database:      ( From the loaded CSV file )
                                     
                 ---------------------------------------
                 
-                6). Tilbage til Hovedmenu:
+                6). Back to Main Menu:
                 
-                7). Sluk - System:
+                7). Exit - System:
                 """);
 
         System.out.println("--------------------------------------");
-        System.out.println("Vælg et af følgende tal - Tryk Enter. ");
+        System.out.println("Choose a Number & Press Enter. ");
         System.out.println("--------------------------------------");
-        System.out.print("[Indtast her]: ");
+        System.out.print("[Enter her]: ");
 
 
         int commandFormand = keyboard.nextInt();
@@ -55,6 +71,8 @@ public class FormandUI extends UI {
 
 
                 case 1:
+
+
 
 
                     break;
@@ -109,25 +127,25 @@ public class FormandUI extends UI {
                     System.out.println("""
                             
                             ----------------------------------------------
-                            Er du sikker på at slukke systemet - ja/nej ??
+                            Are you sure that you want to exit? Yes/No?
                             ---------------------------------------------- """);
-                    System.out.print("[Indtast her]: ");
+                    System.out.print("[Enter here]: ");
 
 
-                    String commandEnd = keyboardEnd.nextLine();
+                    String commandEnd = keyboardEnd.nextLine().toLowerCase(Locale.ROOT);
 
 
-                    if (commandEnd.equals("ja") || commandEnd.equals("Ja") || commandEnd.equals("j") || commandEnd.equals("J")) {
+                    if (commandEnd.equals("yes") || commandEnd.equals("y")) {
 
                         System.out.println("""
                                 
-                                
-                                Sluk systemet:
-                                -------------
-                                
-                                ----------------------------------------
-                                Systemet slukkes - Har en god svømmedag.
-                                -----------------------------------------
+                                ------------------
+                                Exiting Program...
+                                ------------------
+                                                                
+                                ----------------
+                                Have a good day.
+                                ----------------
                                 
                                 """);
                         Thread.sleep(1500);
@@ -136,7 +154,7 @@ public class FormandUI extends UI {
 
 
 
-                    } else if (commandEnd.equals("nej") || commandEnd.equals("Nej") || commandEnd.equals("n") || commandEnd.equals("N")) {
+                    } else if (commandEnd.equals("no") || commandEnd.equals("n")) {
 
                         displayUI_formand();
 
@@ -146,9 +164,9 @@ public class FormandUI extends UI {
 
                         System.out.println("""
                             
-                            ------------------------------
-                            Du tastet forkert - Prøv igen.
-                            ------------------------------
+                            -----------------------------
+                            Invalid Command - Try again.
+                            -----------------------------
                             
                             """);
 

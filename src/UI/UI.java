@@ -2,34 +2,17 @@ package UI;
 
 import Backend.BackendDomain;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 
 
 public class UI {
 
-    private BackendDomain _backend;
+    protected BackendDomain _backend;
     Scanner keyboard = new Scanner(System.in);
 
     boolean running = true;
-
-    // Variabler:
-
-/*
-    public void displayUI_intro() throws InterruptedException {
-
-        System.out.println("");
-        System.out.println("---------------------");
-        System.out.println("[ DELFIN - DATABASE ]");
-        System.out.println("---------------------");
-        System.out.println("");
-
-
-        Thread.sleep(3000);
-
-
-    }
-*/
 
     public void displayUI_delfin() throws InterruptedException {
 
@@ -43,25 +26,26 @@ public class UI {
 
         System.out.println("""
                     ----------
-                    Hovedmenu:
+                    Main Menu:
                     ----------
                     
-                    1). Formand - System:
+                    1). Chairman - System:
                     
-                    2). Kasserer - System:
+                    2). Cashier - System:
                     
-                    3). Træner - System:
+                    3). Trainer - System:
                     
-                    4). Sluk - System:
+                    4). Exit - System:
                     
-                    ---------------------
-                    5). Sprog / Language:
                     """);
 
-        System.out.println("--------------------------------------");
-        System.out.println("Vælg et af følgende tal - Tryk Enter. ");
-        System.out.println("--------------------------------------");
-        System.out.print("[Indtast her]: ");
+        System.out.println("""
+                            ------------------------------
+                            Choose a Number & Press Enter.
+                            ------------------------------
+                            
+                            [Enter here]: 
+                            """);
 
 
         int commandMenu = keyboard.nextInt();
@@ -78,21 +62,21 @@ public class UI {
                     System.out.println("""
                                                         
                             ----------------------------------------------
-                            Er du sikker på at slukke systemet - ja/nej ??
+                            Are you sure, you want to exit - Yes/No?
                             ---------------------------------------------- """);
-                    System.out.print("[Indtast her]: ");
-                    String commandEnd = keyboardEnd.nextLine();
-                    if (commandEnd.equals("ja") || commandEnd.equals("Ja") || commandEnd.equals("j") || commandEnd.equals("J")) {
+                    System.out.print("[Enter here]: ");
+                    String commandEnd = keyboardEnd.nextLine().toLowerCase(Locale.ROOT);
+                    if (commandEnd.equals("yes") || commandEnd.equals("y") ) {
 
                         System.out.println("""
                                                                 
+                                ------------------                                
+                                Exiting Program...
+                                ------------------
                                                                 
-                                Sluk systemet:
-                                -------------
-                                                                
-                                ----------------------------------------
-                                Systemet slukkes - Har en god svømmedag.
-                                -----------------------------------------
+                                ----------------
+                                Have a good day.
+                                ----------------
                                                                 
                                 """);
                         Thread.sleep(1500);
@@ -100,7 +84,7 @@ public class UI {
                         System.exit(0);
 
 
-                    } else if (commandEnd.equals("nej") || commandEnd.equals("Nej") || commandEnd.equals("n") || commandEnd.equals("N")) {
+                    } else if (commandEnd.equals("nej") || commandEnd.equals("n")) {
 
                         displayUI_delfin();
 
@@ -109,9 +93,9 @@ public class UI {
 
                         System.out.println("""
                                                             
-                                ------------------------------
-                                Du tastet forkert - Prøv igen.
-                                ------------------------------
+                                -----------------------------
+                                Invalid Command - Try again.
+                                -----------------------------
                                                             
                                 """);
 
@@ -132,9 +116,9 @@ public class UI {
                 default -> {
                     System.out.println("""
                                                         
-                            ------------------------------
-                            Du tastet forkert - Prøv igen.
-                            ------------------------------
+                            -----------------------------
+                            Invalid Command - Try again.
+                            -----------------------------
                                                         
                             """);
                     Thread.sleep(1500);
