@@ -22,12 +22,12 @@ public class SortTrainingResults {
         return member;
     }
 
-    private List<Member> inputSet(){
+    /*private List<Member> inputSet(){
         var m1 = genCompetitor(12, true);
         var m2 = genCompetitor(34, true);
         var m3 = genCompetitor(32,false);
         var m4 = genCompetitor(16,true);
-    }
+    }*/
 
     @Test
     void sortAndGroup(){

@@ -1,4 +1,4 @@
-import Backend.Members.DolphinMembers;
+import Backend.Members.MemberManager.DolphinMembers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

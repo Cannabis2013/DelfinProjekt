@@ -11,11 +11,10 @@ public class DolphinMember implements Member {
     private String _id;
     private LocalDate _birthDate;
     private LocalDate _dateEnrolled;
-    private List<Discipline> _disciplines;
     private boolean hasPaid;
     private SubscriptionMode _mode = SubscriptionMode.EXERCISER;
     private SubscriptionStatus _status;
-    private List<TrainingResult> _results;
+    private List<TrainingResult> _results = new ArrayList<>();
     private List<CompetitionResult> _competitionResults = new ArrayList<>();
 
     public void setStatus(SubscriptionStatus status){
@@ -51,7 +50,6 @@ public class DolphinMember implements Member {
     public List<TrainingResult> trainingResults() {
         return _results;
     }
-
     @Override
     public List<CompetitionResult> conventionResults() {
         return _competitionResults;

@@ -9,6 +9,8 @@ import Backend.Members.Persistence.Persistence;
 import Backend.Members.ExpectedIncome.DolphinExpectedEarnings;
 import Backend.Members.ExpectedIncome.ExpectedEarnings;
 import Backend.Members.Persistence.SaveMembersAsCSV;
+import Backend.Members.Persistence.SaveTrainingResultsAsCSV;
+import Backend.Members.Persistence.TrainingPersistence;
 import Backend.Members.UpdateTrainingResult.UpdateDolphinTrainingResult;
 import Backend.Members.UpdateTrainingResult.UpdateResult;
 import java.io.FileNotFoundException;
@@ -20,6 +22,7 @@ public class DolphinMembers implements Members {
     private CreateMember _createMember = new CreateDolphinMember();
     private List<Member> _members;
     private Persistence _persistMembers = new SaveMembersAsCSV();
+    private TrainingPersistence _persistTraining = new SaveTrainingResultsAsCSV();
     private ExpectedEarnings _expectedEarnings = new DolphinExpectedEarnings();
     private CreateTrainingResult _createResult = new CreateDolphinResult();
 
@@ -42,6 +45,11 @@ public class DolphinMembers implements Members {
             throw new RuntimeException(e);
         }
         _members = members;
+        try {
+            _persistTraining.load(_members);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -112,6 +120,7 @@ public class DolphinMembers implements Members {
     public void save() {
         try {
             _persistMembers.save(_members);
+            _persistTraining.save(_members);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -126,5 +135,10 @@ public class DolphinMembers implements Members {
             throw new RuntimeException(e);
         }
         _members = fetched;
+        try {
+            _persistTraining.load(_members);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

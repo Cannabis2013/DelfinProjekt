@@ -66,37 +66,4 @@ public class SaveMembersAsCSV implements Persistence {
         }
         return loadedMembers;
     }
-
-    private List<Discipline> handleDisciplineLoading(String loadedString) {
-        List<Discipline> disciplines = new ArrayList<>();
-        String unArrayedString = loadedString.substring(1, loadedString.length()-1);
-        if (unArrayedString.length() > 1) {
-            String commaLess = unArrayedString.replace(",", "");
-            String[] strDisciplineArray = commaLess.split(" ");
-            for (String strDiscipline : strDisciplineArray) {
-                disciplines.add(stringToEnum(strDiscipline));
-            }
-        }
-        return disciplines;
-    }
-
-    private Discipline stringToEnum(String stringEnum) {
-        switch (stringEnum) {
-            case "BREAST" -> {
-                return Discipline.BREAST;
-            }
-            case "CRAWL" -> {
-                return Discipline.CRAWL;
-            }
-            case "BACKSTROKE" -> {
-                return Discipline.BACKSTROKE;
-            }
-            case "BUTTERFLY" -> {
-                return Discipline.BUTTERFLY;
-            }
-            default -> {
-                return null;
-            }
-        }
-    }
 }

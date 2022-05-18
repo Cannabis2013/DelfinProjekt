@@ -4,6 +4,7 @@ import Backend.Members.CreateMembers.Discipline;
 import Backend.Members.CreateMembers.Member;
 import Backend.Members.CreateMembers.TrainingResult;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,7 @@ public class CreateDolphinResult implements CreateTrainingResult{
         trainingResult.discipline = discipline;
         return trainingResult;
     }
+
 
     @Override
     public List<TrainingResult> create(Member member, List<Discipline> disciplines) {
