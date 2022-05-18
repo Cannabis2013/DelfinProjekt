@@ -3,6 +3,7 @@ package Backend.Members;
 import Backend.Members.CreateMembers.*;
 import Backend.Members.CreateTrainingResults.CreateDolphinResult;
 import Backend.Members.CreateTrainingResults.CreateTrainingResult;
+import Backend.Members.Disciplines.StringToDiscipline;
 import Backend.Members.Persistence.Persistence;
 import Backend.Members.ExpectedIncome.DolphinExpectedEarnings;
 import Backend.Members.ExpectedIncome.ExpectedEarnings;
@@ -24,6 +25,8 @@ public class DolphinMembers implements Members {
 
     private UpdateResult _updateResult = new UpdateDolphinTrainingResult();
 
+    private StringToDiscipline _convertToDisciplines;
+
     public DolphinMembers(){
         List<Member> members;
         try {
@@ -35,9 +38,10 @@ public class DolphinMembers implements Members {
     }
 
     @Override
-    public String add(String name, LocalDate birthDay, boolean active, List<Discipline> disciplines) {
+    public String add(String name, LocalDate birthDay, boolean active, String disciplines) {
+        var d = _convertToDisciplines.convert(disciplines);
         var member = _createMember.create(name,birthDay, active);
-        var results = _createResult.create(member,disciplines);
+        var results = _createResult.create(member,d);
         member.setResults(results);
         _members.add(member);
         return member.subscriptionID();

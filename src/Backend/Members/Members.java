@@ -8,7 +8,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 public interface Members {
-    String add(String name, LocalDate birthDay, boolean active, List<Discipline> disciplines);
+    String add(String name, LocalDate birthDay, boolean active, String disciplines);
     void setResult(String id, LocalTime result, Discipline discipline);
     Member member(String id);
     List<Member> members();

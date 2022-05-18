@@ -39,7 +39,7 @@ public class GenerateRandomData {
             int randomMonth = getRandomValue(1, 13);
             int randomDay = getRandomValue(1, 29);
             List<Discipline> disciplines = getRandomDisciplines();
-            manager.add("RandomName", LocalDate.of(randomYear, randomMonth, randomDay), true, disciplines);
+            manager.add("RandomName", LocalDate.of(randomYear, randomMonth, randomDay), true, "");
         }
         manager.save();
     }

@@ -16,7 +16,7 @@ public class DolphinDomain implements BackendDomain{
     SortCompetitors _sortCompetitors = new SortDolphinCompetitors();
 
     @Override
-    public String registerMember(String name, String birthDayAsString, boolean active, List<Discipline> disciplines) {
+    public String registerMember(String name, String birthDayAsString, boolean active, String disciplines) {
         var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         var birthDay = LocalDate.parse(birthDayAsString,formatter);
         var id = _members.add(name,birthDay,active,disciplines);
