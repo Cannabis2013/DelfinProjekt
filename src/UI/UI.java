@@ -1,6 +1,7 @@
 package UI;
 
 import Backend.BackendDomain;
+import Backend.DolphinDomain;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -9,7 +10,8 @@ import java.util.Scanner;
 
 public class UI {
 
-    protected BackendDomain _backend;
+    protected BackendDomain _backend = new DolphinDomain();
+
     Scanner keyboard = new Scanner(System.in);
 
     boolean running = true;
@@ -21,8 +23,6 @@ public class UI {
         System.out.println("[ DELFIN - DATABASE ]");
         System.out.println("---------------------");
         System.out.println("");
-        
-        Thread.sleep(2000);
 
         System.out.println("""
                     ----------
@@ -39,14 +39,12 @@ public class UI {
                     
                     """);
 
-        System.out.println("""
-                            ------------------------------
-                            Choose a Number & Press Enter.
-                            ------------------------------
+        System.out.print("""
+                            -----------------------------
+                            Choose a Number & Press Enter
+                            -----------------------------
                             
-                            [Enter here]: 
-                            """);
-
+                            [Enter here]: """);
 
         int commandMenu = keyboard.nextInt();
 
@@ -59,19 +57,19 @@ public class UI {
                 case 3 -> System.out.println("Test 3");
                 case 4 -> {
                     Scanner keyboardEnd = new Scanner(System.in);
-                    System.out.println("""
+                    System.out.print("""
                                                         
-                            ----------------------------------------------
+                            ----------------------------------------
                             Are you sure, you want to exit - Yes/No?
-                            ---------------------------------------------- """);
-                    System.out.print("[Enter here]: ");
+                            ---------------------------------------- """);
+                    System.out.println("[Enter here]: ");
                     String commandEnd = keyboardEnd.nextLine().toLowerCase(Locale.ROOT);
                     if (commandEnd.equals("yes") || commandEnd.equals("y") ) {
 
                         System.out.println("""
                                                                 
                                 ------------------                                
-                                Exiting Program...
+                                Exiting Program.
                                 ------------------
                                                                 
                                 ----------------
@@ -98,7 +96,6 @@ public class UI {
                                 -----------------------------
                                                             
                                 """);
-
                         Thread.sleep(1500);
 
 
@@ -107,7 +104,7 @@ public class UI {
                 case 5 -> {
                     System.out.println("");
                     System.out.println("----------------------");
-                    System.out.println("Kommer en anden dag...");
+                    System.out.println("Implement - Kommer en anden dag...");
                     System.out.println("----------------------");
                     System.out.println("");
                     Thread.sleep(1500);
