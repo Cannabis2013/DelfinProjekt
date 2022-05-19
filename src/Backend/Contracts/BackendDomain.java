@@ -12,4 +12,5 @@ public interface BackendDomain {
     List<Member> topFiveBestSwimmers();
     List<Member> membersInArrears();
     int expectedEarnings();
+    void save();
 }

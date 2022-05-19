@@ -47,4 +47,9 @@ public class DolphinDomain implements BackendDomain {
     public int expectedEarnings() {
         return _members.annualEarnings();
     }
+
+    @Override
+    public void save() {
+        _members.save();
+    }
 }

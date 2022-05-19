@@ -9,7 +9,7 @@ public class DolphinMember implements Member {
     private String _id;
     private LocalDate _birthDate;
     private LocalDate _dateEnrolled;
-    private boolean hasPaid;
+    private boolean hasPaid = false;
     private SubscriptionStatus _status;
 
     public void setStatus(SubscriptionStatus status){
