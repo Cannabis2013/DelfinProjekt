@@ -9,6 +9,7 @@ import Backend.Members.MemberManager.DolphinMembers;
 import Backend.Contracts.Members.Members;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 public class DolphinDomain implements BackendDomain {
@@ -16,14 +17,14 @@ public class DolphinDomain implements BackendDomain {
     Competition _competition = new DolphinCompetition();
 
     @Override
-    public String registerMember(String name, String birthDay, boolean active, String disciplines) {
+    public String registerMember(String name, LocalDate birthDay, boolean active, String disciplines) {
         var id = _members.add(name,birthDay,active);
         _competition.registerToDisciplines(id,disciplines);
         return id;
     }
 
     @Override
-    public void registerResult(String id, String result, Discipline discipline, LocalDate date) {
+    public void registerResult(String id, LocalTime result, Discipline discipline, LocalDate date) {
         _competition.registerTrainingResult(id,result,discipline,date);
     }
 

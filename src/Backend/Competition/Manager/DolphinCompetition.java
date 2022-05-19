@@ -50,11 +50,11 @@ public class DolphinCompetition implements Competition {
     }
 
     @Override
-    public void registerTrainingResult(String id, String resultAsString, Discipline discipline, LocalDate date) {
+    public void registerTrainingResult(String id, LocalTime result, Discipline discipline, LocalDate date) {
         var trainingResult = _trainingResults.stream()
                 .filter(r -> r.subscriberID.equals(id) && r.discipline.equals(discipline))
                 .findFirst().orElseThrow(NoResultMatchCriteriasException::new);
-        trainingResult.result = LocalTime.parse(resultAsString);
+        trainingResult.result = result;
         trainingResult.date = date;
     }
 

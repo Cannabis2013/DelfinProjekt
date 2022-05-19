@@ -2,6 +2,9 @@ package UI.ReadUserInput;
 
 import UI.Contracts.ReadUserInput;
 import UI.MemberDetails;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -18,7 +21,8 @@ public class ReadMemberDetails implements ReadUserInput<MemberDetails> {
         String name = keyboard.nextLine();
         clearLine();
         System.out.print("Enter birthday:");
-        String birthday = keyboard.nextLine();
+        String birthDayAsString = keyboard.nextLine();
+        var birthDay = LocalDate.parse(birthDayAsString, DateTimeFormatter.ofPattern("YYYY-mm-dd"));
         clearLine();
         System.out.print("Register as active or passive?");
         Boolean status = Boolean.valueOf(keyboard.nextLine().toLowerCase(Locale.ROOT));
@@ -32,7 +36,7 @@ public class ReadMemberDetails implements ReadUserInput<MemberDetails> {
 
         String disciplines = keyboard.nextLine();
         clearLine();
-        var details = new MemberDetails(name,birthday,status,disciplines);
+        var details = new MemberDetails(name,birthDay,status,disciplines);
         return details;
     }
 }

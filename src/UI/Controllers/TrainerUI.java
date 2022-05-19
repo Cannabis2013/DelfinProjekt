@@ -5,13 +5,14 @@ import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
 import UI.PrintScreen.PrintTrainerOptions;
+import UI.PrintScreen.RegisterTrainingResultScreen;
 import UI.ReadUserInput.DefaultReadUserOption;
 
 public class TrainerUI {
     private final BackendDomain _backend;
     private PrintScreen _printTrainerOptions = new PrintTrainerOptions();
     private ReadUserInput <Integer> _readTrainerOption = new DefaultReadUserOption();
-    private PrintScreenByDomain _registerTrainingResultScreen;
+    private PrintScreenByDomain _registerTrainingResultScreen = new RegisterTrainingResultScreen();
     private PrintScreenByDomain _registerCompetitionResultScreen;
     private PrintScreenByDomain _printTop5;
 

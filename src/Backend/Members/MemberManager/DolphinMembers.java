@@ -23,9 +23,7 @@ public class DolphinMembers implements Members {
     }
 
     @Override
-    public String add(String name, String birthDayAsString, boolean active) {
-        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        var birthDay = LocalDate.parse(birthDayAsString,formatter);
+    public String add(String name, LocalDate birthDay, boolean active) {
         var member = _createMember.create(name,birthDay, active);
         _members.add(member);
         return member.subscriptionID();
