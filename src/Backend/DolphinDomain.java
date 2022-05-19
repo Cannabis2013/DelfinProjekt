@@ -8,6 +8,7 @@ import Backend.Contracts.Members.Member;
 import Backend.Members.MemberManager.DolphinMembers;
 import Backend.Contracts.Members.Members;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class DolphinDomain implements BackendDomain {
@@ -22,8 +23,8 @@ public class DolphinDomain implements BackendDomain {
     }
 
     @Override
-    public void registerResult(String id, String result, Discipline discipline) {
-        _competition.registerTrainingResult(id,result,discipline);
+    public void registerResult(String id, String result, Discipline discipline, LocalDate date) {
+        _competition.registerTrainingResult(id,result,discipline,date);
     }
 
     @Override

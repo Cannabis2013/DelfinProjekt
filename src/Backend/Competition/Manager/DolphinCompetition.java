@@ -16,6 +16,8 @@ import Backend.Competition.CreateTrainingResults.Discipline;
 import Backend.Contracts.Members.Member;
 import Backend.Competition.CreateTrainingResults.TrainingResult;
 import Backend.Contracts.Persistence.Persistence;
+
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -48,11 +50,12 @@ public class DolphinCompetition implements Competition {
     }
 
     @Override
-    public void registerTrainingResult(String id, String resultAsString, Discipline discipline) {
+    public void registerTrainingResult(String id, String resultAsString, Discipline discipline, LocalDate date) {
         var trainingResult = _trainingResults.stream()
                 .filter(r -> r.subscriberID.equals(id) && r.discipline.equals(discipline))
                 .findFirst().orElseThrow(NoResultMatchCriteriasException::new);
         trainingResult.result = LocalTime.parse(resultAsString);
+        trainingResult.date = date;
     }
 
     @Override

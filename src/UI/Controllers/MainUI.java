@@ -30,6 +30,7 @@ public class MainUI {
             switch (commandMenu) {
                 case 1 -> new ChairmanUI(_backend).displayUI_formand();
                 case 2 -> _printMembersInArreas.print(_backend);
+                case 3 -> new TrainerUI(_backend).run();
                 default -> running = _readExitOption.read();
             }
         }
