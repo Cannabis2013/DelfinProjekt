@@ -6,12 +6,12 @@ import UI.Contracts.ReadUserInput;
 import UI.MemberDetails;
 import UI.PrintScreen.PrintChairmanOptions;
 import UI.PrintScreen.PrintRegisterMemberScreen;
-import UI.ReadUserInput.ReadMainMenuOption;
+import UI.ReadUserInput.DefaultReadUserOption;
 import UI.ReadUserInput.ReadMemberDetails;
 
 public class ChairmanUI {
     private final BackendDomain _backend;
-    private ReadUserInput<Integer> _readMainMenuOption = new ReadMainMenuOption();
+    private ReadUserInput<Integer> _readMainMenuOption = new DefaultReadUserOption();
     private PrintScreen _printMenu = new PrintChairmanOptions();
     private ReadUserInput<MemberDetails> _readMemberDetails = new ReadMemberDetails();
     PrintScreen _printRegistrationScreen = new PrintRegisterMemberScreen();

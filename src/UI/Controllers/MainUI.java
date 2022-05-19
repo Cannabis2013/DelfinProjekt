@@ -10,7 +10,7 @@ import UI.PrintScreen.PrintExitScreen;
 import UI.PrintScreen.PrintMainOptions;
 import UI.PrintScreen.PrintMembersInArrears;
 import UI.ReadUserInput.ReadExitOption;
-import UI.ReadUserInput.ReadMainMenuOption;
+import UI.ReadUserInput.DefaultReadUserOption;
 
 public class MainUI {
     protected BackendDomain _backend = new DolphinDomain();
@@ -18,7 +18,7 @@ public class MainUI {
     private PrintScreen _printWelcomeScreen = new PrintDolphinWelcomeScreen();
     private PrintScreen _printMainMenu = new PrintMainOptions();
     private PrintScreen _printExitScreen = new PrintExitScreen();
-    private ReadUserInput<Integer> _readMainMenuOption = new ReadMainMenuOption();
+    private ReadUserInput<Integer> _readMainMenuOption = new DefaultReadUserOption();
     private ReadUserInput<Boolean> _readExitOption = new ReadExitOption();
     private PrintScreenByDomain _printMembersInArreas = new PrintMembersInArrears();
 

@@ -9,7 +9,7 @@ import UI.PrintScreen.PrintBlankScreen;
 
 import java.util.Scanner;
 
-public class ReadMainMenuOption implements ReadUserInput<Integer> {
+public class DefaultReadUserOption implements ReadUserInput<Integer> {
     private final String greenFont = "\33[32m";
     private final String redFont = "\33[31m";
     private final String reset = "\33[m";
