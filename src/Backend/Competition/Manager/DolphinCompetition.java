@@ -1,6 +1,7 @@
 package Backend.Competition.Manager;
 
 import Backend.Competition.CreateCompetitionResult.CompetitionResult;
+import Backend.Competition.SortCompetitors.TopSwimmerResult;
 import Backend.Contracts.Competition.CreateCompetitionResult;
 import Backend.Competition.CreateCompetitionResult.DolphinCreateCompetitionResult;
 import Backend.Competition.CreateDisciplines.DolphinStringToDisciplines;
@@ -37,7 +38,7 @@ public class DolphinCompetition implements Competition {
     }
 
     @Override
-    public List<Member> sortedCompetitors(List<Member> members){
+    public List<TopSwimmerResult> sortedCompetitors(List<Member> members){
         var fastest = _sorter.sort(members,_trainingResults);
         return fastest;
     }

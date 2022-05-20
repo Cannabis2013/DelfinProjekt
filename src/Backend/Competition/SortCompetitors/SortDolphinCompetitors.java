@@ -1,5 +1,6 @@
 package Backend.Competition.SortCompetitors;
 
+import Backend.Competition.CreateTrainingResults.Team;
 import Backend.Contracts.Competition.SortCompetitors;
 import Backend.Contracts.Members.Member;
 import Backend.Competition.CreateTrainingResults.TrainingResult;
@@ -23,20 +24,24 @@ public class SortDolphinCompetitors implements SortCompetitors {
         return years;
     }
 
-    private TrainingResult.Team getTeamByAge(int age){
+    private Team getTeamByAge(int age){
         if(age < SENIOR_THRESHOLD)
-            return TrainingResult.Team.JUNIOR;
+            return Team.JUNIOR;
         else
-            return TrainingResult.Team.SENIOR;
+            return Team.SENIOR;
     }
 
-    private List<Member> toMembers(List<TrainingResult> results, List<Member> members){
+    private Member getMemberByID(String id, List<Member> members){
+        var member = members.stream()
+                .filter(m -> m.subscriptionID().equals(id)).findFirst().orElse(null);
+        return member;
+    }
+
+    private List<TopSwimmerResult> toCompModels(List<TrainingResult> results, List<Member> members){
         var resultingList = results.stream()
-                .map(t -> {
-                    var id = t.subscriberID;
-                    var f = members.stream()
-                            .filter(m -> m.subscriptionID().equals(id)).findFirst().orElse(null);
-                    return f;
+                .map(r -> {
+                    var m = getMemberByID(r.subscriberID,members);
+                    return new TopSwimmerResult(m.name(),m.subscriptionID(),r.discipline,r.team,r.result);
                 }).toList();
         return resultingList;
     }
@@ -58,11 +63,11 @@ public class SortDolphinCompetitors implements SortCompetitors {
     }
 
     @Override
-    public List<Member> sort(List<Member> members, List<TrainingResult> trainingResults) {
+    public List<TopSwimmerResult> sort(List<Member> members, List<TrainingResult> trainingResults) {
         var results = updateTeamInfo(members, trainingResults);
         var sorted = results.stream().sorted(new SortByAgeAndResults());
         var trimmed = _trimResults.trim(sorted.toList());
-        var resultingList = toMembers(trimmed,members);
+        var resultingList = toCompModels(trimmed,members);
         return resultingList;
     }
 }

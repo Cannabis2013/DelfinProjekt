@@ -1,5 +1,6 @@
 package Backend;
 
+import Backend.Competition.SortCompetitors.TopSwimmerResult;
 import Backend.Contracts.Competition.Competition;
 import Backend.Competition.Manager.DolphinCompetition;
 import Backend.Competition.CreateTrainingResults.Discipline;
@@ -34,7 +35,7 @@ public class DolphinDomain implements BackendDomain {
     }
 
     @Override
-    public List<Member> topFiveBestSwimmers() {
+    public List<TopSwimmerResult> topFiveBestSwimmers() {
         var competitors = _members.members();
         var sortedCompetitors = _competition.sortedCompetitors(competitors);
         return sortedCompetitors;

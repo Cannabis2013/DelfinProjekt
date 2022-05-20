@@ -2,6 +2,7 @@ package Backend.Competition.Persistence;
 
 
 import Backend.Competition.CreateTrainingResults.Discipline;
+import Backend.Competition.CreateTrainingResults.Team;
 import Backend.Competition.CreateTrainingResults.TrainingResult;
 import Backend.Contracts.Persistence.Persistence;
 
@@ -48,7 +49,7 @@ public class SaveTrainingResultsAsCSV implements Persistence<TrainingResult> {
             String line = scanner.nextLine();
             Scanner lineScanner = new Scanner(line).useDelimiter(";");
             String id = lineScanner.next();
-            TrainingResult.Team team = teamStringToEnum(lineScanner.next());
+            Team team = teamStringToEnum(lineScanner.next());
             Discipline discipline = Discipline.valueOf(lineScanner.next().toUpperCase());
             LocalTime time = LocalTime.parse(lineScanner.next());
             var fetchedResult = resultCreator(id, team, discipline, time);
@@ -58,7 +59,7 @@ public class SaveTrainingResultsAsCSV implements Persistence<TrainingResult> {
         return fetchedResults;
     }
 
-    private TrainingResult resultCreator(String id, TrainingResult.Team team, Discipline discipline, LocalTime time) {
+    private TrainingResult resultCreator(String id, Team team, Discipline discipline, LocalTime time) {
         TrainingResult newResult = new TrainingResult();
         newResult.subscriberID = id;
         newResult.discipline = discipline;
@@ -67,10 +68,10 @@ public class SaveTrainingResultsAsCSV implements Persistence<TrainingResult> {
         return newResult;
     }
 
-    private TrainingResult.Team teamStringToEnum(String stringified) {
+    private Team teamStringToEnum(String stringified) {
         switch (stringified) {
-            case "JUNIOR" -> {return TrainingResult.Team.JUNIOR;}
-            case "SENIOR" -> {return TrainingResult.Team.SENIOR;}
+            case "JUNIOR" -> {return Team.JUNIOR;}
+            case "SENIOR" -> {return Team.SENIOR;}
             default -> {return null;}
         }
     }
