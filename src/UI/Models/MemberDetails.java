@@ -1,4 +1,4 @@
-package UI;
+package UI.Models;
 
 import java.time.LocalDate;
 

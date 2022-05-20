@@ -1,30 +1,32 @@
 package UI.ReadUserInput;
 
-import Backend.Competition.CreateTrainingResults.TrainingResult;
-import Backend.Contracts.BackendDomain;
+import Backend.Competition.CreateTrainingResults.Discipline;
 import UI.Contracts.ReadUserInput;
-
+import UI.Models.TrainingDetails;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class ReadMemberTrainingDetails implements ReadUserInput<TrainingResult> {
+public class ReadMemberTrainingDetails implements ReadUserInput<TrainingDetails> {
     private void clearLine(){
         System.out.print("\33[A");
         System.out.print("\33[2K");
     }
+
+    private Discipline toDiscipline(String str){
+        var discipline = Discipline.valueOf(str.toUpperCase());
+        return discipline;
+    }
+
     @Override
-    public TrainingResult read() {
+    public TrainingDetails read() {
         var keyboard = new Scanner(System.in);
         System.out.print("Enter Member ID: ");
         String membershipID = keyboard.nextLine();
         clearLine();
-        System.out.print("Enter Team: ");
-        String team = keyboard.nextLine();
-        clearLine();
         System.out.print("Enter Discipline: ");
-        String discipline = keyboard.nextLine();
+        var discipline = toDiscipline(keyboard.nextLine());
         clearLine();
         System.out.print("Enter Date: ");
         String dateAsString = keyboard.nextLine();
@@ -32,23 +34,9 @@ public class ReadMemberTrainingDetails implements ReadUserInput<TrainingResult> 
         clearLine();
         System.out.print("Enter Time: ");
         String timeAsString = keyboard.nextLine();
-        var time = LocalTime.parse(timeAsString, DateTimeFormatter.ofPattern("MIN-SEC"));
+        var result = LocalTime.parse(timeAsString, DateTimeFormatter.ofPattern("MIN-SEC"));
         clearLine();
-
-         /*
-
-        System.out.print("Enter Member Name: ");
-        String competitorName = keyboard.nextLine();
-        clearLine();
-
-        System.out.print("Enter Birthday: ");
-        String birthDayAsString = keyboard.nextLine();
-        var birthDay = LocalDate.parse(birthDayAsString, DateTimeFormatter.ofPattern("YYYY-mm-dd"));
-        clearLine();
-
-         */
-
-        var trainingResult = new TrainingResult();
+        var trainingResult = new TrainingDetails(membershipID,result,discipline,date);
         return trainingResult;
 
     }

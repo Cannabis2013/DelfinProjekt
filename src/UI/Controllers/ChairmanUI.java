@@ -3,7 +3,7 @@ package UI.Controllers;
 import Backend.Contracts.BackendDomain;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.ReadUserInput;
-import UI.MemberDetails;
+import UI.Models.MemberDetails;
 import UI.PrintScreen.PrintChairmanOptions;
 import UI.PrintScreen.PrintRegisterMemberScreen;
 import UI.ReadUserInput.DefaultReadUserOption;
