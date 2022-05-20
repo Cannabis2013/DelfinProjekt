@@ -14,29 +14,49 @@ public class ReadMemberDetails implements ReadUserInput<MemberDetails> {
         System.out.print("\33[2K");
     }
 
-    @Override
-    public MemberDetails read() {
-        var keyboard = new Scanner(System.in);
+    private void printMessage(){
+        var msg = """
+                Dolphin user registration.
+                * Please use full name
+                * Please enter date in format YYYY-dd-mm (Ex. 1985-04-02)
+                * As a competitor, please type in desired disciplines separated by slash
+                """;
+        System.out.println(msg);
+    }
+
+    private boolean readMemberStatus(Scanner reader){
+        System.out.print("Register as active (1) or passive (*)?");
+        var input = reader.nextLine();
+        int option;
+        try {
+            option = Integer.parseInt(input);
+        } catch (NumberFormatException e){
+            return false;
+        }
+        return option == 1;
+    }
+
+    private MemberDetails readDetails(){
+        var reader = new Scanner(System.in);
         System.out.print("Enter Name: ");
-        String name = keyboard.nextLine();
+        String name = reader.nextLine();
         clearLine();
         System.out.print("Enter birthday:");
-        String birthDayAsString = keyboard.nextLine();
-        var birthDay = LocalDate.parse(birthDayAsString, DateTimeFormatter.ofPattern("YYYY-mm-dd"));
+        String birthDay = reader.nextLine();
         clearLine();
-        System.out.print("Register as active or passive?");
-        Boolean status = Boolean.valueOf(keyboard.nextLine().toLowerCase(Locale.ROOT));
+        var status = readMemberStatus(reader);
         clearLine();
-        if (status.equals("active")) {
-            status = true;
-        } else if (status.equals("passive")) {
-            status = false;
-        }
         System.out.print("Enter disciplines: ");
-
-        String disciplines = keyboard.nextLine();
+        String disciplines = reader.nextLine();
         clearLine();
         var details = new MemberDetails(name,birthDay,status,disciplines);
+        return details;
+    }
+
+    @Override
+    public MemberDetails read() {
+        printMessage();
+        var details = readDetails();
         return details;
     }
 }

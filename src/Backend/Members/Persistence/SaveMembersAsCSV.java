@@ -1,51 +1,62 @@
 package Backend.Members.Persistence;
 
+import Backend.Contracts.Members.Member;
 import Backend.Contracts.Persistence.Persistence;
 import Backend.Members.CreateMembers.CreateDolphinMember;
-import Backend.Contracts.Members.Member;
 
-import java.io.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class SaveMembersAsCSV implements Persistence<Member> {
-    @Override
-    public void save(List<Member> members) {
+    private final String FOLDER_NAME = "resources";
+    private final String FILE_NAME = "members.csv";
+
+    private PrintStream instantiateStream(){
+        var path = FOLDER_NAME + "/" + FILE_NAME;
         PrintStream stream = null;
         try {
             stream = new PrintStream("resources/members.csv");
         } catch (FileNotFoundException e) {
-            return;
+            return null;
         }
-        for (Member member : members) {
-            String fullName = member.name();
-            String id = member.subscriptionID();
-            String birthDate = member.birthDate().toString();
-            String enrollment = member.dateEnrolled().toString();
-            boolean hasPaid = member.hasNotPaid();
-            stream.print(String.format("%s;%s;%s;%s;%s;\n", fullName, id, birthDate, enrollment, hasPaid));
-        }
-        stream.close();
+        return stream;
     }
 
+    private String toCSVLine(Member member){
+        String fullName = member.name();
+        String id = member.subscriptionID();
+        String birthDate = member.birthDate().toString();
+        String enrollment = member.dateEnrolled().toString();
+        boolean hasPaid = member.hasNotPaid();
+        var csvLineAsString = String.format("%s;%s;%s;%s;%s;\n", fullName, id, birthDate, enrollment, hasPaid);
+        return csvLineAsString;
+    }
 
-    // Name - done
-    // id - done
-    // birthday - done
-    // enrollment - done
-    // hasPaid - done
-    // disciplines - done
-    // results
-    // team?
-    //
+    private void createFolderIfNotExist(){
+        var folder = new File(FOLDER_NAME);
+        if(!folder.isDirectory())
+            folder.mkdir();
+    }
+
+    @Override
+    public void save(List<Member> members) {
+        createFolderIfNotExist();
+        var fileOut = instantiateStream();
+        for (Member member : members) {
+            var csvLineAsString = toCSVLine(member);
+            fileOut.print(csvLineAsString);
+        }
+        fileOut.close();
+    }
 
     @Override
     public List<Member> load() {
         File file = new File("resources/members.csv");
-        CreateDolphinMember creater = new CreateDolphinMember();
+        CreateDolphinMember creator = new CreateDolphinMember();
         List<Member> loadedMembers = new ArrayList<>();
         Scanner scanner = null;
         try {
@@ -56,12 +67,11 @@ public class SaveMembersAsCSV implements Persistence<Member> {
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             Scanner lineScanner = new Scanner(line).useDelimiter(";");
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             String fullName = lineScanner.next();
             String id = lineScanner.next();
-            LocalDate birthday = LocalDate.parse(lineScanner.next(), formatter);
-            LocalDate enrollmentDate = LocalDate.parse(lineScanner.next(), formatter);
-            Member loadedMember = creater.create(fullName, id, birthday, enrollmentDate);
+            String birthday = lineScanner.next();
+            String enrollmentDate = lineScanner.next();
+            Member loadedMember = creator.create(fullName, id, birthday, enrollmentDate);
             loadedMembers.add(loadedMember);
         }
         return loadedMembers;

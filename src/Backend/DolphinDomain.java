@@ -17,7 +17,7 @@ public class DolphinDomain implements BackendDomain {
     Competition _competition = new DolphinCompetition();
 
     @Override
-    public String registerMember(String name, LocalDate birthDay, boolean active, String disciplines) {
+    public String registerMember(String name, String birthDay, boolean active, String disciplines) {
         var id = _members.add(name,birthDay,active);
         _competition.registerToDisciplines(id,disciplines);
         return id;

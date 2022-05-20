@@ -3,9 +3,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class CalculateExpectedEarnings {
     private DolphinMembers _memberMng = new DolphinMembers();
+
+    private LocalDate toDate(String str){
+        return LocalDate.parse(str, DateTimeFormatter.ofPattern("YYYY-mm-dd"));
+    }
+
     @Test
     public void testResult(){
         /*

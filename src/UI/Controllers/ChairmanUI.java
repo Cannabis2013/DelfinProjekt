@@ -5,7 +5,6 @@ import UI.Contracts.PrintScreen;
 import UI.Contracts.ReadUserInput;
 import UI.MemberDetails;
 import UI.PrintScreen.PrintChairmanOptions;
-import UI.PrintScreen.PrintRegisterMemberScreen;
 import UI.ReadUserInput.DefaultReadUserOption;
 import UI.ReadUserInput.ReadMemberDetails;
 
@@ -14,16 +13,14 @@ public class ChairmanUI {
     private ReadUserInput<Integer> _readMainMenuOption = new DefaultReadUserOption();
     private PrintScreen _printMenu = new PrintChairmanOptions();
     private ReadUserInput<MemberDetails> _readMemberDetails = new ReadMemberDetails();
-    PrintScreen _printRegistrationScreen = new PrintRegisterMemberScreen();
 
     public ChairmanUI(BackendDomain domain){
         _backend = domain;
     }
 
     private void registerMember() {
-        _printRegistrationScreen.print();
         var details = _readMemberDetails.read();
-        _backend.registerMember(details.name(), details.birthDate(), details.active(), details.disciplines());
+        _backend.registerMember(details.name(),details.birthDate(),details.active(),details.disciplines());
     }
 
     public void displayUI_formand(){

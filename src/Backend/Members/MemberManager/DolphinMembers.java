@@ -23,7 +23,7 @@ public class DolphinMembers implements Members {
     }
 
     @Override
-    public String add(String name, LocalDate birthDay, boolean active) {
+    public String add(String name, String birthDay, boolean active) {
         var member = _createMember.create(name,birthDay, active);
         _members.add(member);
         return member.subscriptionID();
