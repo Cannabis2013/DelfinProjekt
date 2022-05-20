@@ -21,7 +21,7 @@ public class PrintExitScreen implements PrintScreen {
                                 If you had any problems, please feel free to call our fantastic developer team:
                                 
                                 Stefan Jensen (Lead programming, organizing)
-                                Mail: stkea@kea.com
+                                Mail: stef240p@stud.kea.dk
                                 
                                 Martin Hansen (Software engineering)
                                 Mail: MH2012@outlook.dk
