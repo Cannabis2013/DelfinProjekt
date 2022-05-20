@@ -3,6 +3,7 @@ package Backend.Members.Persistence;
 import Backend.Contracts.Members.Member;
 import Backend.Contracts.Persistence.Persistence;
 import Backend.Members.CreateMembers.CreateDolphinMember;
+import Backend.Members.CreateMembers.SubscriptionStatus;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -71,7 +72,10 @@ public class SaveMembersAsCSV implements Persistence<Member> {
             String id = lineScanner.next();
             String birthday = lineScanner.next();
             String enrollmentDate = lineScanner.next();
-            Member loadedMember = creator.create(fullName, id, birthday, enrollmentDate);
+            String statusAsString = lineScanner.next();
+            var status = statusAsString.equalsIgnoreCase("true") ?
+                    SubscriptionStatus.ACTIVE : SubscriptionStatus.PASSIVE;
+            Member loadedMember = creator.create(fullName, id, birthday, enrollmentDate,status);
             loadedMembers.add(loadedMember);
         }
         return loadedMembers;

@@ -36,12 +36,13 @@ public class CreateDolphinMember implements CreateMember {
     }
 
     @Override
-    public Member create(String name, String id, String birthday, String enrollmentDate) {
+    public Member create(String name, String id, String birthday, String enrollmentDate, SubscriptionStatus status) {
         DolphinMember member = new DolphinMember();
         member.setName(name);
         member.setBirthDate(toDate(birthday));
         member.setDateEnrolled(toDate(enrollmentDate));
         member.setSubscriptionID(id);
+        member.setStatus(status);
         return member;
     }
 

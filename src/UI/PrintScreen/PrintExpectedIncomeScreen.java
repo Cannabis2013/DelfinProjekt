@@ -3,11 +3,14 @@ package UI.PrintScreen;
 import Backend.Contracts.BackendDomain;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
+import UI.Contracts.ReadUserInput;
+import UI.ReadUserInput.ConsoleHaltForInput;
 
 import java.util.Scanner;
 
 public class PrintExpectedIncomeScreen implements PrintScreenByDomain {
     private PrintScreen _printBlankScreen = new PrintBlankScreen();
+    private ReadUserInput<String> _haltScreen = new ConsoleHaltForInput();
     @Override
     public void print(BackendDomain domain) {
         var incomeInfo = domain.expectedEarnings();
@@ -20,7 +23,7 @@ public class PrintExpectedIncomeScreen implements PrintScreenByDomain {
 
         Scanner keyboard = new Scanner(System.in);
 
-        System.out.print("PRESS ANY KEY...");
+        _haltScreen.read();
         keyboard.nextLine();
 
         _printBlankScreen.print();
