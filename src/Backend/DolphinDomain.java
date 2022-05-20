@@ -54,5 +54,6 @@ public class DolphinDomain implements BackendDomain {
     @Override
     public void save() {
         _members.save();
+        _competition.save();
     }
 }
