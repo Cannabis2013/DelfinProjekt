@@ -22,10 +22,7 @@ public class PrintExpectedIncomeScreen implements PrintScreenByDomain {
                 """, incomeInfo));
 
         Scanner keyboard = new Scanner(System.in);
-
         _haltScreen.read();
-        keyboard.nextLine();
-
         _printBlankScreen.print();
     }
 }
