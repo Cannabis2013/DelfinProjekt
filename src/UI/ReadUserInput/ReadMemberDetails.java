@@ -1,7 +1,7 @@
 package UI.ReadUserInput;
 
 import UI.Contracts.ReadUserInput;
-import UI.MemberDetails;
+import UI.Models.MemberDetails;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

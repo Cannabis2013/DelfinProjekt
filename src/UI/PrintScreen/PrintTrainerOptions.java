@@ -9,7 +9,7 @@ public class PrintTrainerOptions implements PrintScreen {
                 1). Register training result
                 2). Register competition result
                 3). Print top five best swimmers
-                4). Back
+                4). Back to Main Menu
                 """;
         System.out.println(menu);
     }
