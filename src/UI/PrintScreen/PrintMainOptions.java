@@ -12,7 +12,7 @@ public class PrintMainOptions implements PrintScreen {
                     
                     1). Chairman
                     
-                    2). Print members in arrears
+                    2). Cashier
                     
                     3). Trainer
                     

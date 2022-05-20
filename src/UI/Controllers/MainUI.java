@@ -29,7 +29,7 @@ public class MainUI {
             int commandMenu = _readMainMenuOption.read();
             switch (commandMenu) {
                 case 1 -> new ChairmanUI(_backend).displayUI_formand();
-                case 2 -> _printMembersInArreas.print(_backend);
+                case 2 -> new CashierUI(_backend).displayUI_cashier();
                 case 3 -> new TrainerUI(_backend).run();
                 default -> running = _readExitOption.read();
             }
