@@ -34,7 +34,7 @@ public class ReadMemberTrainingDetails implements ReadUserInput<TrainingDetails>
         clearLine();
         System.out.print("Enter Time: ");
         String timeAsString = keyboard.nextLine();
-        var result = LocalTime.parse(timeAsString, DateTimeFormatter.ofPattern("MIN-SEC"));
+        var result = LocalTime.parse(timeAsString, DateTimeFormatter.ofPattern("mm:ss:SS"));
         clearLine();
         var trainingResult = new TrainingDetails(membershipID,result,discipline,date);
         return trainingResult;
