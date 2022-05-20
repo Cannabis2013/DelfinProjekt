@@ -12,7 +12,7 @@ public class DolphinCreateCompetitionResult implements CreateCompetitionResult {
         var compResult = new CompetitionResult();
         compResult.convention = convention;
         compResult.subscriberID = id;
-        compResult.date = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-mm-dd"));
+        compResult.date = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         compResult.rank = rank;
         compResult.result = LocalTime.parse(result);
         return compResult;
