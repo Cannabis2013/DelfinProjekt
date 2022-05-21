@@ -14,7 +14,6 @@ import java.util.List;
 
 public class SortDolphinCompetitors implements SortCompetitors {
     TrimTrainingResults _trimResults = new TrimDolphinTrainingResults();
-
     private final int SENIOR_THRESHOLD = 18;
 
     private int getAgeByBirthDate(LocalDate birthDate){
