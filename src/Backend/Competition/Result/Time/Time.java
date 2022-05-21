@@ -7,7 +7,6 @@ public class Time {
     public int minutes;
     public int seconds;
     public int centiSeconds;
-
     private Time(){
     };
 
@@ -32,18 +31,18 @@ public class Time {
         return time;
     }
 
+    private long toMilliseconds(){
+        var minutesInMilliseconds = minutes*60*1000;
+        var secondsInMilliseconds = seconds*1000;
+        var centisecondsInMilliseconds = centiSeconds*10;
+        var milliseconds = minutesInMilliseconds+secondsInMilliseconds+centisecondsInMilliseconds;
+        return milliseconds;
+    }
+
     public int compareTo(Time other){
-        if(minutes < other.minutes)
+        if(toMilliseconds() < other.toMilliseconds())
             return -1;
-        else if(minutes > other.minutes)
-            return 1;
-        else if(seconds < other.seconds)
-            return -1;
-        else if(seconds > other.seconds)
-            return 1;
-        else if(centiSeconds < other.centiSeconds)
-            return -1;
-        else if(centiSeconds > other.centiSeconds)
+        if(toMilliseconds() > other.toMilliseconds())
             return 1;
         return 0;
     }

@@ -8,11 +8,11 @@ import java.time.format.DateTimeFormatter;
 
 public class DolphinCreateCompetitionResult implements CreateCompetitionResult {
     @Override
-    public CompetitionResult create(String id, String convention, int rank, String date, Time result) {
+    public CompetitionResult create(String id, String convention, int rank, LocalDate date, Time result) {
         var compResult = new CompetitionResult();
         compResult.convention = convention;
         compResult.subscriberID = id;
-        compResult.date = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        compResult.date = date;
         compResult.rank = rank;
         compResult.result = result;
         return compResult;

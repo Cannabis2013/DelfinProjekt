@@ -6,6 +6,7 @@ import Backend.Competition.Result.Time.Time;
 import Backend.Contracts.Competition.CreateCompetitionResult;
 import Backend.Persistence.AbstractPersistence;
 import java.io.PrintStream;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -39,7 +40,7 @@ public class SaveCompResultsAsCSV extends AbstractPersistence<CompetitionResult>
         var wordReader = new Scanner(line).useDelimiter(";");
         var id = wordReader.next();
         var convention = wordReader.next();
-        var date = wordReader.next();
+        var date = LocalDate.parse(wordReader.next());
         var rank = wordReader.nextInt();
         var result = Time.fromString(wordReader.next());
         var compResult = builder.create(id,convention,rank,date,result);

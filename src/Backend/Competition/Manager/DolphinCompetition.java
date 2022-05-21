@@ -56,7 +56,7 @@ public class DolphinCompetition implements Competition {
     }
 
     @Override
-    public void registerCompetitionResult(String id, String competition, String date, int rank, Time result) {
+    public void registerCompetitionResult(String id, String competition, LocalDate date, int rank, Time result) {
         var compResult = _createCompetitionResult.create(id,competition,rank,date,result);
         _competitionResults.add(compResult);
     }

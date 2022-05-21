@@ -4,14 +4,22 @@ import UI.Contracts.ReadUserInput;
 import UI.Models.CompetitionDetails;
 
 import Backend.Competition.Result.Time.Time;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class ReadMemberCompetitionResultDetails implements ReadUserInput<CompetitionDetails> {
+public class ReadCompetitionDetails implements ReadUserInput<CompetitionDetails> {
     private void clearLine(){
         System.out.print("\33[A");
         System.out.print("\33[2K");
     }
 
+    private LocalDate toDate(String str){
+        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        var date = LocalDate.parse(str,formatter);
+        return date;
+    }
 
     @Override
     public CompetitionDetails read() {
@@ -23,7 +31,7 @@ public class ReadMemberCompetitionResultDetails implements ReadUserInput<Competi
         String conventionName = keyboard.nextLine();
         clearLine();
         System.out.print("Enter Date (yyyy-MM-dd): ");
-        String dateAsString = keyboard.nextLine();
+        LocalDate dateAsString = toDate(keyboard.nextLine());
         clearLine();
         System.out.print("Enter rank: ");
         int rank = Integer.parseInt(keyboard.nextLine());

@@ -2,9 +2,9 @@ package UI.ReadUserInput;
 
 import UI.Contracts.ReadUserInput;
 import UI.Models.MemberDetails;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class ReadMemberDetails implements ReadUserInput<MemberDetails> {
@@ -37,27 +37,32 @@ public class ReadMemberDetails implements ReadUserInput<MemberDetails> {
 
     LocalDate toDate(String str){
         var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        var date = LocalDate.parse(str,formatter);
-        return date;
+        LocalDate date;
+        try {
+            return LocalDate.parse(str,formatter);
+        }catch (DateTimeParseException e){
+            return LocalDate.of(2000,1,1);
+        }
+    }
+
+    private String readString(String text, Scanner reader){
+        System.out.print(text);
+        var line = reader.nextLine();
+        clearLine();
+        return line;
     }
 
     private MemberDetails readDetails(){
         var disciplines = "";
         var reader = new Scanner(System.in);
-        System.out.print("Enter Name: ");
-        String name = reader.nextLine();
-        clearLine();
-        System.out.print("Enter birthday:");
-        String birthDayAsString = reader.nextLine();
+        String name = readString("Enter Name: ",reader);
+        String birthDayAsString = readString("Enter birthday: ",reader);
         var birthDay = toDate(birthDayAsString);
         clearLine();
         var status = readMemberStatus(reader);
         clearLine();
-        if(status) {
-            System.out.print("Enter disciplines: ");
-            disciplines = reader.nextLine();
-            clearLine();
-        }
+        if(status)
+            disciplines = readString("Enter disciplines: ",reader);
         var details = new MemberDetails(name,birthDay,status,disciplines);
         return details;
     }

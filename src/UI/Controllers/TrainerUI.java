@@ -13,7 +13,7 @@ import UI.PrintScreen.PrintTop5;
 import UI.PrintScreen.PrintTrainerOptions;
 import UI.PrintScreen.RegisterCompetitionResultScreen;
 import UI.ReadUserInput.DefaultReadUserOption;
-import UI.ReadUserInput.ReadMemberCompetitionResultDetails;
+import UI.ReadUserInput.ReadCompetitionDetails;
 import UI.ReadUserInput.ReadMemberTrainingDetails;
 
 public class TrainerUI implements Controller {
@@ -25,7 +25,7 @@ public class TrainerUI implements Controller {
     private PrintScreen _memberNotFoundScreen = new PrintMemberNotFoundScreen();
     private PrintScreenByDomain _printTop5 = new PrintTop5();
     ReadUserInput<TrainingDetails> _readTrainingResult = new ReadMemberTrainingDetails();
-    ReadUserInput<CompetitionDetails> _readCompetitionResult = new ReadMemberCompetitionResultDetails();
+    ReadUserInput<CompetitionDetails> _readCompetitionResult = new ReadCompetitionDetails();
 
     public TrainerUI(BackendDomain backend) {
         _backend = backend;
@@ -34,7 +34,7 @@ public class TrainerUI implements Controller {
     private void registerTrainingResult(){
         var details = _readTrainingResult.read();
         try {
-            _backend.registerResult(details.id(),details.result(),details.discipline(),details.date());
+            _backend.registerTrainingResult(details.id(),details.result(),details.discipline(),details.date());
         } catch (MemberNotFoundException e){
             _memberNotFoundScreen.print();
         }
@@ -42,7 +42,7 @@ public class TrainerUI implements Controller {
 
     private void registerCompetitionResult() {
         CompetitionDetails compDetails = _readCompetitionResult.read();
-        _backend.registerConventionResult(compDetails.id(), compDetails.convention(), compDetails.date(), compDetails.rank(), compDetails.result());
+        _backend.registerCompetitionResult(compDetails.id(), compDetails.convention(), compDetails.date(), compDetails.rank(), compDetails.result());
         _registerCompetitionResultScreen.print();
     }
 

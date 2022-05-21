@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface BackendDomain {
     String registerMember(String name, LocalDate birthDay, boolean active, String disciplines);
-    void registerResult(String id, Time result, Discipline discipline, LocalDate date);
+    void registerTrainingResult(String id, Time result, Discipline discipline, LocalDate date);
     //Skal vi skifte navn for registerResult til registerTrainingResult?
-    void registerConventionResult(String id, String convention, String date, int rank, Time result);
+    void registerCompetitionResult(String id, String convention, LocalDate date, int rank, Time result);
     List<TopSwimmerResult> topFiveBestSwimmers();
     List<Member> membersInArrears();
     int expectedEarnings();
