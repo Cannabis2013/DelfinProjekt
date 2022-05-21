@@ -45,7 +45,7 @@ public class ReadMemberTrainingDetails implements ReadUserInput<TrainingDetails>
         clearLine();
         System.out.print("Enter Date: ");
         String dateAsString = reader.nextLine();
-        LocalDate date = LocalDate.parse(dateAsString, DateTimeFormatter.ofPattern("YYYY-MM-DD"));
+        LocalDate date = LocalDate.parse(dateAsString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         clearLine();
         System.out.print("Enter Time: ");
         var result = toTime(reader.nextLine());
