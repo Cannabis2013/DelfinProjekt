@@ -26,7 +26,8 @@ public class DolphinDomain implements BackendDomain {
 
     @Override
     public void registerResult(String id, Time result, Discipline discipline, LocalDate date) {
-        _competition.registerTrainingResult(id,result,discipline,date);
+        var member = _members.member(id);
+        _competition.registerTrainingResult(member.subscriptionID(),result,discipline,date);
     }
 
     @Override

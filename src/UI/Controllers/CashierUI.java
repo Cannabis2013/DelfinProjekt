@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Backend.Contracts.BackendDomain;
+import UI.Contracts.Controller;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
@@ -11,7 +12,7 @@ import UI.PrintScreen.PrintMembersInArrears;
 import UI.ReadUserInput.DefaultReadUserOption;
 
 
-public class CashierUI {
+public class CashierUI implements Controller {
     private final BackendDomain _backend;
     private PrintScreen _printMenu = new PrintCashierOptions();
     private ReadUserInput<Integer> _readMainMenuOption = new DefaultReadUserOption();
@@ -23,8 +24,8 @@ public class CashierUI {
         _backend = domain;
     }
 
-
-    public void displayUI_cashier(){
+    @Override
+    public void run(){
         var running = true;
         while (running) {
             _printMenu.print();
