@@ -1,6 +1,7 @@
 package UI.Controllers;
 
 import Backend.Contracts.BackendDomain;
+import UI.Contracts.Controller;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
@@ -13,7 +14,7 @@ import UI.ReadUserInput.DefaultReadUserOption;
 import UI.ReadUserInput.ReadMemberCompetitionResultDetails;
 import UI.ReadUserInput.ReadMemberTrainingDetails;
 
-public class TrainerUI {
+public class TrainerUI implements Controller {
     private final BackendDomain _backend;
     private PrintScreen _printTrainerOptions = new PrintTrainerOptions();
     private ReadUserInput <Integer> _readTrainerOption = new DefaultReadUserOption();
