@@ -2,7 +2,6 @@ package Backend.Members.CreateMembers;
 
 import Backend.Contracts.Members.CreateMember;
 import Backend.Contracts.Members.Member;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;

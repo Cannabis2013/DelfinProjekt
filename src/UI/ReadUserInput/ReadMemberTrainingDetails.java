@@ -3,6 +3,7 @@ package UI.ReadUserInput;
 import Backend.Competition.CreateTrainingResults.Discipline;
 import UI.Contracts.ReadUserInput;
 import UI.Models.TrainingDetails;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;

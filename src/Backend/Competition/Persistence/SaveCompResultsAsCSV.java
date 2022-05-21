@@ -1,17 +1,18 @@
 package Backend.Competition.Persistence;
 
 import Backend.Competition.CreateCompetitionResult.CompetitionResult;
-import Backend.Contracts.Competition.CreateCompetitionResult;
 import Backend.Competition.CreateCompetitionResult.DolphinCreateCompetitionResult;
-import Backend.Contracts.Persistence.Persistence;
-import java.io.File;
-import java.io.FileNotFoundException;
+import Backend.Contracts.Competition.CreateCompetitionResult;
+import Backend.Persistence.AbstractPersistence;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class SaveCompResultsAsCSV implements Persistence<CompetitionResult> {
+public class SaveCompResultsAsCSV extends AbstractPersistence<CompetitionResult> {
+    private final String FOLDER_NAME = "resources";
+    private final String FILE_NAME = "competitionResults.csv";
+
     private final CreateCompetitionResult builder = new DolphinCreateCompetitionResult();
 
     String toQueryString(CompetitionResult r){
@@ -24,15 +25,10 @@ public class SaveCompResultsAsCSV implements Persistence<CompetitionResult> {
         return queryString;
     }
 
-    private final String FILEPATH = "resources/competition_results.csv";
     @Override
     public void save(List<CompetitionResult> results) {
-        PrintStream stream = null;
-        try {
-            stream = new PrintStream(FILEPATH);
-        } catch (FileNotFoundException e) {
-            return;
-        }
+        createFolderIfNotExists(FOLDER_NAME);
+        PrintStream stream = instantiateStream(FOLDER_NAME,FILE_NAME);
         PrintStream finalStream = stream;
         results.forEach(r -> finalStream.print(toQueryString(r)));
         stream.close();
@@ -52,15 +48,9 @@ public class SaveCompResultsAsCSV implements Persistence<CompetitionResult> {
     @Override
     public List<CompetitionResult> load() {
         var fetchedResults = new ArrayList<CompetitionResult>();
-        File file = new File(FILEPATH);
-        Scanner lineReader = null;
-        try {
-            lineReader = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            return new ArrayList<>();
-        }
-        while (lineReader.hasNextLine()){
-            var line = lineReader.nextLine();
+        Scanner reader = instantiateScanner(FOLDER_NAME,FILE_NAME);
+        while (reader != null && reader.hasNextLine()){
+            var line = reader.nextLine();
             var compResult = toCompetitionResult(line);
             fetchedResults.add(compResult);
         }

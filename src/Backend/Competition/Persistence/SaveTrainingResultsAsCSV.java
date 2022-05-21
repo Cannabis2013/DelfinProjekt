@@ -1,10 +1,12 @@
 package Backend.Competition.Persistence;
 
 
+import Backend.Competition.CreateTrainingResults.CreateDolphinResults;
 import Backend.Competition.CreateTrainingResults.Discipline;
 import Backend.Competition.CreateTrainingResults.Team;
 import Backend.Competition.CreateTrainingResults.TrainingResult;
 import Backend.Contracts.Persistence.Persistence;
+import Backend.Persistence.AbstractPersistence;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,65 +16,48 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class SaveTrainingResultsAsCSV implements Persistence<TrainingResult> {
+public class SaveTrainingResultsAsCSV extends AbstractPersistence<TrainingResult> {
+    private final String FOLDER_NAME = "resources";
+    private final String FILE_NAME = "trainingResults.csv";
+
+    private String toQueryString(TrainingResult result){
+        String id = result.subscriberID;
+        String team = result.team.toString();
+        String discipline = result.discipline.toString();
+        String time = result.result.toString();
+        String queryString = String.format("%s;%s;%s;%s;\n", id, team, discipline, time);
+        return queryString;
+    }
+
     @Override
     public void save(List<TrainingResult> trainingResults) {
-        PrintStream stream = null;
-        try {
-            stream = new PrintStream("resources/training_results.csv");
-        } catch (FileNotFoundException e) {
-            return;
-        }
+        createFolderIfNotExists(FOLDER_NAME);
+        PrintStream stream = instantiateStream(FOLDER_NAME,FILE_NAME);
         PrintStream finalStream = stream;
-        trainingResults.forEach(result -> {
-            String id = result.subscriberID;
-            String team = result.team.toString();
-            String discipline = result.discipline.toString();
-            String time = result.result.toString();
-            String queryString = String.format("%s;%s;%s;%s;\n", id, team, discipline, time);
-            finalStream.print(queryString);
-        });
+        trainingResults.forEach(result -> finalStream.print(toQueryString(result)));
         stream.close();
+    }
+
+    private TrainingResult toTrainingResult(String line){
+        var creator = new CreateDolphinResults();
+        Scanner lineScanner = new Scanner(line).useDelimiter(";");
+        String id = lineScanner.next();
+        var teamAsString = lineScanner.next();
+        Discipline discipline = Discipline.valueOf(lineScanner.next().toUpperCase());
+        LocalTime time = LocalTime.parse(lineScanner.next());
+        var fetchedResult = creator.create(id, teamAsString, discipline, time);
+        return fetchedResult;
     }
 
     @Override
     public List<TrainingResult> load() {
         var fetchedResults = new ArrayList<TrainingResult>();
-        File file = new File("resources/training_results.csv");
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            return new ArrayList<>();
-        }
-        while(scanner.hasNextLine()) {
-            String line = scanner.nextLine();
-            Scanner lineScanner = new Scanner(line).useDelimiter(";");
-            String id = lineScanner.next();
-            Team team = teamStringToEnum(lineScanner.next());
-            Discipline discipline = Discipline.valueOf(lineScanner.next().toUpperCase());
-            LocalTime time = LocalTime.parse(lineScanner.next());
-            var fetchedResult = resultCreator(id, team, discipline, time);
+        Scanner reader = instantiateScanner(FOLDER_NAME,FILE_NAME);
+        while(reader != null && reader.hasNextLine()) {
+            String line = reader.nextLine();
+            var fetchedResult = toTrainingResult(line);
             fetchedResults.add(fetchedResult);
         }
-        scanner.close();
         return fetchedResults;
-    }
-
-    private TrainingResult resultCreator(String id, Team team, Discipline discipline, LocalTime time) {
-        TrainingResult newResult = new TrainingResult();
-        newResult.subscriberID = id;
-        newResult.discipline = discipline;
-        newResult.result = time;
-        newResult.team = team;
-        return newResult;
-    }
-
-    private Team teamStringToEnum(String stringified) {
-        switch (stringified) {
-            case "JUNIOR" -> {return Team.JUNIOR;}
-            case "SENIOR" -> {return Team.SENIOR;}
-            default -> {return null;}
-        }
     }
 }

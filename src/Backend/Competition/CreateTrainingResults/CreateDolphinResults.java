@@ -2,6 +2,7 @@ package Backend.Competition.CreateTrainingResults;
 
 import Backend.Contracts.Competition.CreateTrainingResult;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,5 +24,15 @@ public class CreateDolphinResults implements CreateTrainingResult {
             results.add(result);
         });
         return results;
+    }
+
+    @Override
+    public TrainingResult create(String id, String team, Discipline discipline, LocalTime result) {
+        TrainingResult newResult = new TrainingResult();
+        newResult.subscriberID = id;
+        newResult.discipline = discipline;
+        newResult.team = Team.valueOf(team.toUpperCase());
+        newResult.result = result;
+        return newResult;
     }
 }

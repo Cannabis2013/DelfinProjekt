@@ -1,13 +1,13 @@
 package Backend;
 
-import Backend.Competition.SortCompetitors.TopSwimmerResult;
-import Backend.Contracts.Competition.Competition;
-import Backend.Competition.Manager.DolphinCompetition;
 import Backend.Competition.CreateTrainingResults.Discipline;
+import Backend.Competition.Manager.DolphinCompetition;
+import Backend.Competition.SortCompetitors.TopSwimmerResult;
 import Backend.Contracts.BackendDomain;
+import Backend.Contracts.Competition.Competition;
 import Backend.Contracts.Members.Member;
-import Backend.Members.MemberManager.DolphinMembers;
 import Backend.Contracts.Members.Members;
+import Backend.Members.MemberManager.DolphinMembers;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

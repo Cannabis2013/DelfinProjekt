@@ -1,6 +1,5 @@
 package Backend.Contracts.Members;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface Members {

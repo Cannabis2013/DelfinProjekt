@@ -1,8 +1,8 @@
 package UI.ReadUserInput;
 
-import Backend.Competition.CreateTrainingResults.Discipline;
 import UI.Contracts.ReadUserInput;
 import UI.Models.CompetitionDetails;
+
 import java.util.Scanner;
 
 public class ReadMemberCompetitionResultDetails implements ReadUserInput<CompetitionDetails> {

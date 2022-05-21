@@ -9,8 +9,8 @@ import UI.PrintScreen.PrintDolphinWelcomeScreen;
 import UI.PrintScreen.PrintExitScreen;
 import UI.PrintScreen.PrintMainOptions;
 import UI.PrintScreen.PrintMembersInArrears;
-import UI.ReadUserInput.ReadExitOption;
 import UI.ReadUserInput.DefaultReadUserOption;
+import UI.ReadUserInput.ReadExitOption;
 
 public class MainUI {
     protected BackendDomain _backend = new DolphinDomain();

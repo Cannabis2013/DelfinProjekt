@@ -39,7 +39,6 @@ public class TrainerUI {
         _registerCompetitionResultScreen.print();
     }
 
-
     public void run (){
         var running = true;
         while (running) {
@@ -53,6 +52,4 @@ public class TrainerUI {
             }
         }
     }
-
-
 }

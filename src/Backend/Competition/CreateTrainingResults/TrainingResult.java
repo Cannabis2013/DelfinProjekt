@@ -1,7 +1,5 @@
 package Backend.Competition.CreateTrainingResults;
 
-import Backend.Competition.CreateTrainingResults.Discipline;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 

@@ -2,7 +2,6 @@ package UI.PrintScreen;
 
 import Backend.Competition.SortCompetitors.TopSwimmerResult;
 import Backend.Contracts.BackendDomain;
-import Backend.Contracts.Members.Member;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;

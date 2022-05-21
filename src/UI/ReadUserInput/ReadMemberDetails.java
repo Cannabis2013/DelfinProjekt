@@ -3,9 +3,6 @@ package UI.ReadUserInput;
 import UI.Contracts.ReadUserInput;
 import UI.Models.MemberDetails;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class ReadMemberDetails implements ReadUserInput<MemberDetails> {
@@ -37,6 +34,7 @@ public class ReadMemberDetails implements ReadUserInput<MemberDetails> {
     }
 
     private MemberDetails readDetails(){
+        var disciplines = "";
         var reader = new Scanner(System.in);
         System.out.print("Enter Name: ");
         String name = reader.nextLine();
@@ -46,9 +44,11 @@ public class ReadMemberDetails implements ReadUserInput<MemberDetails> {
         clearLine();
         var status = readMemberStatus(reader);
         clearLine();
-        System.out.print("Enter disciplines: ");
-        String disciplines = reader.nextLine();
-        clearLine();
+        if(status) {
+            System.out.print("Enter disciplines: ");
+            disciplines = reader.nextLine();
+            clearLine();
+        }
         var details = new MemberDetails(name,birthDay,status,disciplines);
         return details;
     }

@@ -1,31 +1,16 @@
 package Backend.Members.Persistence;
 
 import Backend.Contracts.Members.Member;
-import Backend.Contracts.Persistence.Persistence;
 import Backend.Members.CreateMembers.CreateDolphinMember;
 import Backend.Members.CreateMembers.SubscriptionStatus;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
+import Backend.Persistence.AbstractPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class SaveMembersAsCSV implements Persistence<Member> {
+public class SaveMembersAsCSV extends AbstractPersistence<Member> {
     private final String FOLDER_NAME = "resources";
     private final String FILE_NAME = "members.csv";
-
-    private PrintStream instantiateStream(){
-        var path = FOLDER_NAME + "/" + FILE_NAME;
-        PrintStream stream = null;
-        try {
-            stream = new PrintStream("resources/members.csv");
-        } catch (FileNotFoundException e) {
-            return null;
-        }
-        return stream;
-    }
 
     private String toCSVLine(Member member){
         String fullName = member.name();
@@ -37,16 +22,10 @@ public class SaveMembersAsCSV implements Persistence<Member> {
         return csvLineAsString;
     }
 
-    private void createFolderIfNotExist(){
-        var folder = new File(FOLDER_NAME);
-        if(!folder.isDirectory())
-            folder.mkdir();
-    }
-
     @Override
     public void save(List<Member> members) {
-        createFolderIfNotExist();
-        var fileOut = instantiateStream();
+        createFolderIfNotExists(FOLDER_NAME);
+        var fileOut = instantiateStream(FOLDER_NAME,FILE_NAME);
         for (Member member : members) {
             var csvLineAsString = toCSVLine(member);
             fileOut.print(csvLineAsString);
@@ -54,30 +33,29 @@ public class SaveMembersAsCSV implements Persistence<Member> {
         fileOut.close();
     }
 
+    private Member toMember(String line){
+        CreateDolphinMember creator = new CreateDolphinMember();
+        Scanner lineScanner = new Scanner(line).useDelimiter(";");
+        String fullName = lineScanner.next();
+        String id = lineScanner.next();
+        String birthday = lineScanner.next();
+        String enrollmentDate = lineScanner.next();
+        String statusAsString = lineScanner.next();
+        var status = statusAsString.equalsIgnoreCase("true") ?
+                SubscriptionStatus.ACTIVE : SubscriptionStatus.PASSIVE;
+        var member = creator.create(fullName, id, birthday, enrollmentDate,status);
+        return member;
+    }
+
     @Override
     public List<Member> load() {
-        File file = new File("resources/members.csv");
-        CreateDolphinMember creator = new CreateDolphinMember();
-        List<Member> loadedMembers = new ArrayList<>();
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(file);
-        } catch (FileNotFoundException e) {
-            return new ArrayList<>();
-        }
-        while (scanner.hasNextLine()) {
+        List<Member> fetchedMembers = new ArrayList<>();
+        var scanner = instantiateScanner(FOLDER_NAME,FILE_NAME);
+        while (scanner != null && scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            Scanner lineScanner = new Scanner(line).useDelimiter(";");
-            String fullName = lineScanner.next();
-            String id = lineScanner.next();
-            String birthday = lineScanner.next();
-            String enrollmentDate = lineScanner.next();
-            String statusAsString = lineScanner.next();
-            var status = statusAsString.equalsIgnoreCase("true") ?
-                    SubscriptionStatus.ACTIVE : SubscriptionStatus.PASSIVE;
-            Member loadedMember = creator.create(fullName, id, birthday, enrollmentDate,status);
-            loadedMembers.add(loadedMember);
+            var member = toMember(line);
+            fetchedMembers.add(member);
         }
-        return loadedMembers;
+        return fetchedMembers;
     }
 }

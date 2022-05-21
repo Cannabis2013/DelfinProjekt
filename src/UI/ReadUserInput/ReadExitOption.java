@@ -4,6 +4,7 @@ import UI.Contracts.PrintScreen;
 import UI.Contracts.ReadUserInput;
 import UI.PrintScreen.ClearScrollBuffer;
 import UI.PrintScreen.PrintBlankScreen;
+
 import java.util.Scanner;
 
 public class ReadExitOption implements ReadUserInput<Boolean> {

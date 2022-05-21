@@ -1,21 +1,17 @@
 package Backend.Competition.Manager;
 
 import Backend.Competition.CreateCompetitionResult.CompetitionResult;
-import Backend.Competition.SortCompetitors.TopSwimmerResult;
-import Backend.Contracts.Competition.CreateCompetitionResult;
 import Backend.Competition.CreateCompetitionResult.DolphinCreateCompetitionResult;
 import Backend.Competition.CreateDisciplines.DolphinStringToDisciplines;
 import Backend.Competition.CreateTrainingResults.CreateDolphinResults;
-import Backend.Contracts.Competition.CreateTrainingResult;
-import Backend.Contracts.Competition.StringToDiscipline;
+import Backend.Competition.CreateTrainingResults.Discipline;
+import Backend.Competition.CreateTrainingResults.TrainingResult;
 import Backend.Competition.Persistence.SaveCompResultsAsCSV;
 import Backend.Competition.Persistence.SaveTrainingResultsAsCSV;
-import Backend.Contracts.Competition.Competition;
-import Backend.Contracts.Competition.SortCompetitors;
 import Backend.Competition.SortCompetitors.SortDolphinCompetitors;
-import Backend.Competition.CreateTrainingResults.Discipline;
+import Backend.Competition.SortCompetitors.TopSwimmerResult;
+import Backend.Contracts.Competition.*;
 import Backend.Contracts.Members.Member;
-import Backend.Competition.CreateTrainingResults.TrainingResult;
 import Backend.Contracts.Persistence.Persistence;
 
 import java.time.LocalDate;
