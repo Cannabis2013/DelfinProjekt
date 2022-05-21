@@ -7,6 +7,7 @@ import UI.Models.TrainingDetails;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -21,19 +22,6 @@ public class ReadMemberTrainingDetails implements ReadUserInput<TrainingDetails>
         return discipline;
     }
 
-    private Time toTime(String str){
-        var pattern = Pattern.compile("\\d+:\\d+.\\d+");
-        var matchFormat = pattern.matcher(str);
-        if(!matchFormat.find())
-            return null;
-        var reader = new Scanner(str).useDelimiter("\\W");
-        var minutes = reader.nextInt();
-        var seconds = reader.nextInt();
-        var centiSeconds = reader.nextInt();
-        var time = Time.of(minutes,seconds,centiSeconds);
-        return time;
-    }
-
     @Override
     public TrainingDetails read() {
         var reader = new Scanner(System.in);
@@ -45,10 +33,15 @@ public class ReadMemberTrainingDetails implements ReadUserInput<TrainingDetails>
         clearLine();
         System.out.print("Enter Date: ");
         String dateAsString = reader.nextLine();
-        LocalDate date = LocalDate.parse(dateAsString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate date;
+        try{
+            date = LocalDate.parse(dateAsString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }catch (DateTimeParseException e){
+            date = LocalDate.now();
+        }
         clearLine();
         System.out.print("Enter Time: ");
-        var result = toTime(reader.nextLine());
+        var result = Time.fromString(reader.nextLine());
         clearLine();
         TrainingDetails details = new TrainingDetails(membershipID,result,discipline,date);
         return details;

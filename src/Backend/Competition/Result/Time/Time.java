@@ -23,7 +23,7 @@ public class Time {
         var pattern = Pattern.compile("\\d+:\\d+.\\d+");
         var matchFormat = pattern.matcher(str);
         if(!matchFormat.find())
-            return null;
+            throw new TimeParseFormatException();
         var reader = new Scanner(str).useDelimiter("\\W");
         var time = new Time();
         time.minutes = reader.nextInt();
