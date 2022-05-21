@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 public class TestExpectedIncomeCalculation {
 
     private LocalDate toDate(String str){
-        return LocalDate.parse(str, DateTimeFormatter.ofPattern("YYYY-mm-dd"));
+        return LocalDate.parse(str, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     @Test
@@ -26,11 +26,11 @@ public class TestExpectedIncomeCalculation {
                 Exp: 1000 + 500 + 1600 + 500 + 1200 = 4800
          */
         var mng = new DolphinMembers();
-        mng.add("A","2006-01-20",true);
-        mng.add("B","1985-06-03",false);
-        mng.add("C","1986-07-04",true);
-        mng.add("D","2018-01-20",false);
-        mng.add("E","1950-01-20",true);
+        mng.add("A",toDate("2006-01-20"),true);
+        mng.add("B",toDate("1985-06-03"),false);
+        mng.add("C",toDate("1986-07-04"),true);
+        mng.add("D",toDate("2018-01-20"),false);
+        mng.add("E",toDate("1950-01-20"),true);
         var act = mng.annualEarnings();
         var exp = 4800;
         Assertions.assertTrue(exp == act);

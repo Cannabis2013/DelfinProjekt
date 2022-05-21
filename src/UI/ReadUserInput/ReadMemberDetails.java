@@ -3,6 +3,8 @@ package UI.ReadUserInput;
 import UI.Contracts.ReadUserInput;
 import UI.Models.MemberDetails;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class ReadMemberDetails implements ReadUserInput<MemberDetails> {
@@ -33,6 +35,12 @@ public class ReadMemberDetails implements ReadUserInput<MemberDetails> {
         return option == 1;
     }
 
+    LocalDate toDate(String str){
+        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        var date = LocalDate.parse(str,formatter);
+        return date;
+    }
+
     private MemberDetails readDetails(){
         var disciplines = "";
         var reader = new Scanner(System.in);
@@ -40,7 +48,8 @@ public class ReadMemberDetails implements ReadUserInput<MemberDetails> {
         String name = reader.nextLine();
         clearLine();
         System.out.print("Enter birthday:");
-        String birthDay = reader.nextLine();
+        String birthDayAsString = reader.nextLine();
+        var birthDay = toDate(birthDayAsString);
         clearLine();
         var status = readMemberStatus(reader);
         clearLine();

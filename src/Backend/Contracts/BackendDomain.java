@@ -9,7 +9,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 public interface BackendDomain {
-    String registerMember(String name, String birthDay, boolean active, String disciplines);
+    String registerMember(String name, LocalDate birthDay, boolean active, String disciplines);
     void registerResult(String id, LocalTime result, Discipline discipline, LocalDate date);
     //Skal vi skifte navn for registerResult til registerTrainingResult?
     void registerConventionResult(String id, String convention, String date, int rank, String result);

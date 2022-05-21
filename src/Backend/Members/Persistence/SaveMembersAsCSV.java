@@ -4,6 +4,8 @@ import Backend.Contracts.Members.Member;
 import Backend.Members.CreateMembers.CreateDolphinMember;
 import Backend.Members.CreateMembers.SubscriptionStatus;
 import Backend.Persistence.AbstractPersistence;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -38,8 +40,8 @@ public class SaveMembersAsCSV extends AbstractPersistence<Member> {
         Scanner lineScanner = new Scanner(line).useDelimiter(";");
         String fullName = lineScanner.next();
         String id = lineScanner.next();
-        String birthday = lineScanner.next();
-        String enrollmentDate = lineScanner.next();
+        LocalDate birthday = LocalDate.parse(lineScanner.next());
+        LocalDate enrollmentDate = LocalDate.parse(lineScanner.next());
         String statusAsString = lineScanner.next();
         var status = statusAsString.equalsIgnoreCase("true") ?
                 SubscriptionStatus.ACTIVE : SubscriptionStatus.PASSIVE;

@@ -1,3 +1,5 @@
 package UI.Models;
 
-public record MemberDetails(String name, String birthDate, boolean active, String disciplines) { }
+import java.time.LocalDate;
+
+public record MemberDetails(String name, LocalDate birthDate, boolean active, String disciplines) { }

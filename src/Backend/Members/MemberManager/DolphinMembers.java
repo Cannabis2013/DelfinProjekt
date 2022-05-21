@@ -9,6 +9,7 @@ import Backend.Members.CreateMembers.CreateDolphinMember;
 import Backend.Members.ExpectedIncome.DolphinExpectedEarnings;
 import Backend.Members.Persistence.SaveMembersAsCSV;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class DolphinMembers implements Members {
@@ -22,7 +23,7 @@ public class DolphinMembers implements Members {
     }
 
     @Override
-    public String add(String name, String birthDay, boolean active) {
+    public String add(String name, LocalDate birthDay, boolean active) {
         var member = _createMember.create(name,birthDay, active);
         _members.add(member);
         return member.subscriptionID();
