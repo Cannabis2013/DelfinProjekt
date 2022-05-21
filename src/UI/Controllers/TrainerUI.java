@@ -34,8 +34,7 @@ public class TrainerUI {
 
     private void registerCompetitionResult() {
         CompetitionDetails compDetails = _readCompetitionResult.read();
-        _backend.registerConventionResult(
-                compDetails.id(), compDetails.convention(), compDetails.date(), compDetails.rank(), compDetails.result());
+        _backend.registerConventionResult(compDetails.id(), compDetails.convention(), compDetails.date(), compDetails.rank(), compDetails.result());
         _registerCompetitionResultScreen.print();
     }
 

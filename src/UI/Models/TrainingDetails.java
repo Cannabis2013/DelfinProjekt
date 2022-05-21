@@ -1,9 +1,8 @@
 package UI.Models;
 
-import Backend.Competition.CreateTrainingResults.Discipline;
-
+import Backend.Competition.Result.Time.Time;
+import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import java.time.LocalDate;
-import java.time.LocalTime;
 
-public record TrainingDetails(String id, LocalTime result, Discipline discipline, LocalDate date) {
+public record TrainingDetails(String id, Time result, Discipline discipline, LocalDate date) {
 }

@@ -1,11 +1,11 @@
 package Competition;
 
-import Backend.Competition.CreateTrainingResults.Discipline;
-import Backend.Competition.CreateTrainingResults.Team;
-import Backend.Competition.CreateTrainingResults.TrainingResult;
+import Backend.Competition.Result.Time.Time;
+import Backend.Competition.Result.CreateTrainingResults.Discipline;
+import Backend.Competition.Result.CreateTrainingResults.Team;
+import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -18,7 +18,7 @@ public class CreateBadgeOfResults {
         result.team = Team.JUNIOR;
         result.date = LocalDate.now();
         var rand = new Random();
-        result.result = LocalTime.parse(time);
+        result.result = Time.fromString(time);
         result.discipline = discipline;
         result.subscriberID = String.format("%d",_resultID++);
         return result;
@@ -29,7 +29,7 @@ public class CreateBadgeOfResults {
         result.team = Team.SENIOR;
         result.date = LocalDate.now();
         var rand = new Random();
-        result.result = LocalTime.parse(time);
+        result.result = Time.fromString(time);
         result.discipline = discipline;
         result.subscriberID = String.format("%d",_resultID++);
         return result;

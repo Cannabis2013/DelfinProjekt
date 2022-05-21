@@ -1,11 +1,12 @@
 package Backend.Competition.Manager;
 
-import Backend.Competition.CreateCompetitionResult.CompetitionResult;
-import Backend.Competition.CreateCompetitionResult.DolphinCreateCompetitionResult;
+import Backend.Competition.Result.CreateCompetitionResult.CompetitionResult;
+import Backend.Competition.Result.CreateCompetitionResult.DolphinCreateCompetitionResult;
 import Backend.Competition.CreateDisciplines.DolphinStringToDisciplines;
-import Backend.Competition.CreateTrainingResults.CreateDolphinResults;
-import Backend.Competition.CreateTrainingResults.Discipline;
-import Backend.Competition.CreateTrainingResults.TrainingResult;
+import Backend.Competition.Result.Time.Time;
+import Backend.Competition.Result.CreateTrainingResults.CreateDolphinResults;
+import Backend.Competition.Result.CreateTrainingResults.Discipline;
+import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
 import Backend.Competition.Persistence.SaveCompResultsAsCSV;
 import Backend.Competition.Persistence.SaveTrainingResultsAsCSV;
 import Backend.Competition.SortCompetitors.SortDolphinCompetitors;
@@ -15,7 +16,6 @@ import Backend.Contracts.Members.Member;
 import Backend.Contracts.Persistence.Persistence;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 public class DolphinCompetition implements Competition {
@@ -47,7 +47,7 @@ public class DolphinCompetition implements Competition {
     }
 
     @Override
-    public void registerTrainingResult(String id, LocalTime result, Discipline discipline, LocalDate date) {
+    public void registerTrainingResult(String id, Time result, Discipline discipline, LocalDate date) {
         var trainingResult = _trainingResults.stream()
                 .filter(r -> r.subscriberID.equals(id) && r.discipline.equals(discipline))
                 .findFirst().orElseThrow(NoResultMatchCriteriasException::new);
@@ -56,7 +56,7 @@ public class DolphinCompetition implements Competition {
     }
 
     @Override
-    public void registerCompetitionResult(String id, String competition, String date, int rank, String result) {
+    public void registerCompetitionResult(String id, String competition, String date, int rank, Time result) {
         var compResult = _createCompetitionResult.create(id,competition,rank,date,result);
         _competitionResults.add(compResult);
     }

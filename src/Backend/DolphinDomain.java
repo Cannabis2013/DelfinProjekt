@@ -1,6 +1,7 @@
 package Backend;
 
-import Backend.Competition.CreateTrainingResults.Discipline;
+import Backend.Competition.Result.Time.Time;
+import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.Manager.DolphinCompetition;
 import Backend.Competition.SortCompetitors.TopSwimmerResult;
 import Backend.Contracts.BackendDomain;
@@ -10,7 +11,6 @@ import Backend.Contracts.Members.Members;
 import Backend.Members.MemberManager.DolphinMembers;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 public class DolphinDomain implements BackendDomain {
@@ -25,12 +25,12 @@ public class DolphinDomain implements BackendDomain {
     }
 
     @Override
-    public void registerResult(String id, LocalTime result, Discipline discipline, LocalDate date) {
+    public void registerResult(String id, Time result, Discipline discipline, LocalDate date) {
         _competition.registerTrainingResult(id,result,discipline,date);
     }
 
     @Override
-    public void registerConventionResult(String id, String convention, String date, int rank, String result) {
+    public void registerConventionResult(String id, String convention, String date, int rank, Time result) {
         _competition.registerCompetitionResult(id,convention,date,rank,result);
     }
 

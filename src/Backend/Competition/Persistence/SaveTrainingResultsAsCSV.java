@@ -1,17 +1,13 @@
 package Backend.Competition.Persistence;
 
 
-import Backend.Competition.CreateTrainingResults.CreateDolphinResults;
-import Backend.Competition.CreateTrainingResults.Discipline;
-import Backend.Competition.CreateTrainingResults.Team;
-import Backend.Competition.CreateTrainingResults.TrainingResult;
-import Backend.Contracts.Persistence.Persistence;
+import Backend.Competition.Result.Time.Time;
+import Backend.Competition.Result.CreateTrainingResults.CreateDolphinResults;
+import Backend.Competition.Result.CreateTrainingResults.Discipline;
+import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
 import Backend.Persistence.AbstractPersistence;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -44,7 +40,7 @@ public class SaveTrainingResultsAsCSV extends AbstractPersistence<TrainingResult
         String id = lineScanner.next();
         var teamAsString = lineScanner.next();
         Discipline discipline = Discipline.valueOf(lineScanner.next().toUpperCase());
-        LocalTime time = LocalTime.parse(lineScanner.next());
+        Time time = Time.fromString(lineScanner.next());
         var fetchedResult = creator.create(id, teamAsString, discipline, time);
         return fetchedResult;
     }

@@ -1,6 +1,5 @@
 package Competition;
 
-import Backend.Competition.CreateTrainingResults.TrainingResult;
 import Backend.Competition.SortCompetitors.Predicates.SortByAgeAndResults;
 import Backend.Competition.SortCompetitors.TrimSortedSwimmers.TrimDolphinTrainingResults;
 import org.junit.jupiter.api.Assertions;

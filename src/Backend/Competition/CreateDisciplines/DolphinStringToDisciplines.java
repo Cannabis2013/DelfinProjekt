@@ -1,6 +1,6 @@
 package Backend.Competition.CreateDisciplines;
 
-import Backend.Competition.CreateTrainingResults.Discipline;
+import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Contracts.Competition.StringToDiscipline;
 
 import java.util.ArrayList;

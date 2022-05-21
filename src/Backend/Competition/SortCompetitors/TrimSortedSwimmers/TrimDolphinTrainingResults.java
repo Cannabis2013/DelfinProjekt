@@ -1,8 +1,8 @@
 package Backend.Competition.SortCompetitors.TrimSortedSwimmers;
 
-import Backend.Competition.CreateTrainingResults.Discipline;
-import Backend.Competition.CreateTrainingResults.Team;
-import Backend.Competition.CreateTrainingResults.TrainingResult;
+import Backend.Competition.Result.CreateTrainingResults.Discipline;
+import Backend.Competition.Result.CreateTrainingResults.Team;
+import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
 import Backend.Contracts.Competition.TrimTrainingResults;
 import java.util.ArrayList;
 import java.util.List;

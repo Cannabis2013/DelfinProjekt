@@ -1,5 +1,7 @@
 package UI.Models;
 
 
-public record CompetitionDetails(String id, String convention, String date, int rank, String result) {
+import Backend.Competition.Result.Time.Time;
+
+public record CompetitionDetails(String id, String convention, String date, int rank, Time result) {
 }

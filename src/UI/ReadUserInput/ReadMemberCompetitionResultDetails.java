@@ -3,6 +3,7 @@ package UI.ReadUserInput;
 import UI.Contracts.ReadUserInput;
 import UI.Models.CompetitionDetails;
 
+import Backend.Competition.Result.Time.Time;
 import java.util.Scanner;
 
 public class ReadMemberCompetitionResultDetails implements ReadUserInput<CompetitionDetails> {
@@ -27,8 +28,8 @@ public class ReadMemberCompetitionResultDetails implements ReadUserInput<Competi
         System.out.print("Enter rank: ");
         int rank = Integer.parseInt(keyboard.nextLine());
         clearLine();
-        System.out.print("Enter result (mm:ss): ");
-        String result = keyboard.nextLine();
+        System.out.print("Enter result (mm:ss.CC): ");
+        Time result = Time.fromString(keyboard.nextLine());
         var competitionResult = new CompetitionDetails(membershipID,conventionName, dateAsString, rank, result);
         return competitionResult;
 

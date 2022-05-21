@@ -1,6 +1,6 @@
 package Backend.Contracts.Competition;
 
-import Backend.Competition.CreateTrainingResults.TrainingResult;
+import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
 import Backend.Competition.SortCompetitors.TopSwimmerResult;
 import Backend.Contracts.Members.Member;
 

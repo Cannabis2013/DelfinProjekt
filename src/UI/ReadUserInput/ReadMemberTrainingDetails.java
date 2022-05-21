@@ -1,13 +1,14 @@
 package UI.ReadUserInput;
 
-import Backend.Competition.CreateTrainingResults.Discipline;
+import Backend.Competition.Result.Time.Time;
+import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import UI.Contracts.ReadUserInput;
 import UI.Models.TrainingDetails;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class ReadMemberTrainingDetails implements ReadUserInput<TrainingDetails> {
     private void clearLine(){
@@ -20,25 +21,37 @@ public class ReadMemberTrainingDetails implements ReadUserInput<TrainingDetails>
         return discipline;
     }
 
+    private Time toTime(String str){
+        var pattern = Pattern.compile("\\d+:\\d+.\\d+");
+        var matchFormat = pattern.matcher(str);
+        if(!matchFormat.find())
+            return null;
+        var reader = new Scanner(str).useDelimiter("\\W");
+        var minutes = reader.nextInt();
+        var seconds = reader.nextInt();
+        var centiSeconds = reader.nextInt();
+        var time = Time.of(minutes,seconds,centiSeconds);
+        return time;
+    }
+
     @Override
     public TrainingDetails read() {
-        var keyboard = new Scanner(System.in);
+        var reader = new Scanner(System.in);
         System.out.print("Enter Member ID: ");
-        String membershipID = keyboard.nextLine();
+        String membershipID = reader.nextLine();
         clearLine();
         System.out.print("Enter Discipline: ");
-        var discipline = toDiscipline(keyboard.nextLine());
+        var discipline = toDiscipline(reader.nextLine());
         clearLine();
         System.out.print("Enter Date: ");
-        String dateAsString = keyboard.nextLine();
-        var date = LocalDate.parse(dateAsString, DateTimeFormatter.ofPattern("YYYY-MM-DD"));
+        String dateAsString = reader.nextLine();
+        LocalDate date = LocalDate.parse(dateAsString, DateTimeFormatter.ofPattern("YYYY-MM-DD"));
         clearLine();
         System.out.print("Enter Time: ");
-        String timeAsString = keyboard.nextLine();
-        var result = LocalTime.parse(timeAsString, DateTimeFormatter.ofPattern("mm:ss:SS"));
+        var result = toTime(reader.nextLine());
         clearLine();
-        var trainingResult = new TrainingDetails(membershipID,result,discipline,date);
-        return trainingResult;
+        TrainingDetails details = new TrainingDetails(membershipID,result,discipline,date);
+        return details;
 
     }
 }

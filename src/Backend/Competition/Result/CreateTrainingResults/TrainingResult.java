@@ -1,12 +1,13 @@
-package Backend.Competition.CreateTrainingResults;
+package Backend.Competition.Result.CreateTrainingResults;
+
+import Backend.Competition.Result.Time.Time;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class TrainingResult {
     public Team team;
     public Discipline discipline;
     public LocalDate date;
-    public LocalTime result;
+    public Time result;
     public String subscriberID;
 }

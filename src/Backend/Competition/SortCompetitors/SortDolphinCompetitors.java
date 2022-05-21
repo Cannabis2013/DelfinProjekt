@@ -1,7 +1,7 @@
 package Backend.Competition.SortCompetitors;
 
-import Backend.Competition.CreateTrainingResults.Team;
-import Backend.Competition.CreateTrainingResults.TrainingResult;
+import Backend.Competition.Result.CreateTrainingResults.Team;
+import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
 import Backend.Competition.SortCompetitors.Predicates.SortByAgeAndResults;
 import Backend.Competition.SortCompetitors.TrimSortedSwimmers.TrimDolphinTrainingResults;
 import Backend.Contracts.Competition.SortCompetitors;
