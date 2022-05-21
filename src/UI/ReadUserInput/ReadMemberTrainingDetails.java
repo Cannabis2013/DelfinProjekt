@@ -20,6 +20,10 @@ public class ReadMemberTrainingDetails implements ReadUserInput<TrainingDetails>
         return discipline;
     }
 
+    private LocalTime toTime(String str){
+        ;
+    }
+
     @Override
     public TrainingDetails read() {
         var keyboard = new Scanner(System.in);
@@ -31,11 +35,11 @@ public class ReadMemberTrainingDetails implements ReadUserInput<TrainingDetails>
         clearLine();
         System.out.print("Enter Date: ");
         String dateAsString = keyboard.nextLine();
-        var date = LocalDate.parse(dateAsString, DateTimeFormatter.ofPattern("YYYY-MM-DD"));
+        var date = LocalDate.parse(dateAsString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         clearLine();
         System.out.print("Enter Time: ");
         String timeAsString = keyboard.nextLine();
-        var result = LocalTime.parse(timeAsString, DateTimeFormatter.ofPattern("mm:ss:SS"));
+        var result = LocalTime.parse(timeAsString);
         clearLine();
         var trainingResult = new TrainingDetails(membershipID,result,discipline,date);
         return trainingResult;
