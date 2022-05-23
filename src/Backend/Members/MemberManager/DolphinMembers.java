@@ -33,9 +33,18 @@ public class DolphinMembers implements Members {
     }
 
     @Override
-    public String add(String name, LocalDate birthDay, boolean active) {
+    public String addBasicMemberDetails(String name, LocalDate birthDay, boolean active) {
         var member = _createMember.create(name,birthDay,LocalDate.now(),active);
         _members.add(member);
+        return member.subscriptionID();
+    }
+
+    @Override
+    public String updateContactInformation(String id, String phone, String mail, String address) {
+        var member = findByID(id);
+        member.setPhone(phone);
+        member.setMail(id);
+        member.setAddress(address);
         return member.subscriptionID();
     }
 

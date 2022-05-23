@@ -2,7 +2,7 @@ package Backend.Competition.Manager;
 
 import Backend.Competition.Result.CreateCompetitionResult.CompetitionResult;
 import Backend.Competition.Result.CreateCompetitionResult.DolphinCreateCompetitionResult;
-import Backend.Competition.CreateDisciplines.DolphinStringToDisciplines;
+import UI.PrintScreen.RegisterBasicMemberDetails.DolphinStringToDisciplines;
 import Backend.Competition.Result.Time.Time;
 import Backend.Competition.Result.CreateTrainingResults.CreateDolphinResults;
 import Backend.Competition.Result.CreateTrainingResults.Discipline;
@@ -22,7 +22,6 @@ public class DolphinCompetition implements Competition {
     List<CompetitionResult> _competitionResults;
     List<TrainingResult> _trainingResults;
     SortCompetitors _sorter = new SortDolphinCompetitors();
-    StringToDiscipline _convertToDisciplines = new DolphinStringToDisciplines();
     CreateTrainingResult _createTrainingResults = new CreateDolphinResults();
     CreateCompetitionResult _createCompetitionResult = new DolphinCreateCompetitionResult();
     Persistence<TrainingResult> _persistTrainingResults = new SaveTrainingResultsAsCSV();
@@ -40,8 +39,7 @@ public class DolphinCompetition implements Competition {
     }
 
     @Override
-    public void registerToDisciplines(String id, String disciplinesAsString) {
-        var disciplines = _convertToDisciplines.convert(disciplinesAsString);
+    public void registerToDisciplines(String id, List<Discipline> disciplines) {
         var trainingResults = _createTrainingResults.create(id,disciplines);
         _trainingResults.addAll(trainingResults);
     }

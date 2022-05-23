@@ -18,10 +18,15 @@ public class DolphinDomain implements BackendDomain {
     Competition _competition = new DolphinCompetition();
 
     @Override
-    public String registerMember(String name, LocalDate birthDay, boolean active, String disciplines) {
-        var id = _members.add(name,birthDay,active);
+    public String registerMemberBasicDetails(String name, LocalDate birthDay, boolean active, List<Discipline> disciplines) {
+        var id = _members.addBasicMemberDetails(name,birthDay,active);
         _competition.registerToDisciplines(id,disciplines);
         return id;
+    }
+
+    @Override
+    public String registerMemberContactDetails(String id, String phone, String mail, String address) {
+        return _members.updateContactInformation(id,phone,mail,address);
     }
 
     @Override
@@ -38,7 +43,7 @@ public class DolphinDomain implements BackendDomain {
 
     @Override
     public void registerPayment(String id) {
-        // IMPLEMENT
+        _members.updatePaymentStatus(id);
     }
 
     @Override
