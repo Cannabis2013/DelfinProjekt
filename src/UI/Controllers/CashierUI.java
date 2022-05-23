@@ -19,6 +19,7 @@ public class CashierUI implements Controller {
     private PrintScreen _printBlankScreen = new PrintBlankScreen();
     private PrintScreenByDomain _PrintExpectedIncomeScreen = new PrintExpectedIncomeScreen();
     private PrintScreenByDomain _printMembersInArrears = new PrintMembersInArrears();
+    private PrintScreenByDomain _printRegisterPaymentScreen;
 
     public CashierUI(BackendDomain domain){
         _backend = domain;
@@ -33,7 +34,7 @@ public class CashierUI implements Controller {
             switch (command) {
                 case 1 -> _PrintExpectedIncomeScreen.print(_backend);
                 case 2 -> _printMembersInArrears.print(_backend);
-
+                case 3 -> _printRegisterPaymentScreen.print(_backend);
                 default -> running = false;
             }
         }

@@ -10,5 +10,7 @@ public interface Member{
     LocalDate birthDate();
     LocalDate dateEnrolled();
     boolean hasNotPaid();
+    LocalDate lastPaidDate();
+    void setPaymentDate(LocalDate date);
     SubscriptionStatus status();
 }

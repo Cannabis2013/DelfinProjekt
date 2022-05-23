@@ -13,6 +13,7 @@ public interface BackendDomain {
     void registerTrainingResult(String id, Time result, Discipline discipline, LocalDate date);
     //Skal vi skifte navn for registerResult til registerTrainingResult?
     void registerCompetitionResult(String id, String convention, LocalDate date, int rank, Time result);
+    void registerPayment(String id);
     List<TopSwimmerResult> topFiveBestSwimmers();
     List<Member> membersInArrears();
     int expectedEarnings();

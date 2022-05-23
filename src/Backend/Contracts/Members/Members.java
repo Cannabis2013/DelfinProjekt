@@ -9,5 +9,6 @@ public interface Members {
     List<Member> members();
     int annualEarnings();
     List<Member> membersInArrears();
+    void updatePaymentStatus(String id);
     void save();
 }

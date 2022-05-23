@@ -11,6 +11,7 @@ public class DolphinMember implements Member {
     private LocalDate _dateEnrolled;
     private boolean hasPaid = false;
     private SubscriptionStatus _status;
+    private LocalDate _lastPaidDate;
 
     public void setStatus(SubscriptionStatus status){
         _status = status;
@@ -39,6 +40,16 @@ public class DolphinMember implements Member {
     @Override
     public boolean hasNotPaid() {
         return !hasPaid;
+    }
+
+    @Override
+    public LocalDate lastPaidDate() {
+        return _lastPaidDate;
+    }
+
+    @Override
+    public void setPaymentDate(LocalDate date) {
+        _lastPaidDate = date;
     }
 
     @Override
