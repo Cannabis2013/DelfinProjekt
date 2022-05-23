@@ -24,7 +24,6 @@ public class CreateDolphinMember implements CreateMember {
         member.setDateEnrolled(LocalDate.now());
         member.setBirthDate(birthDate);
         member.setSubscriptionID(createID());
-        member.setPaidStatus(Math.random() < 0.75);
         return member;
     }
 

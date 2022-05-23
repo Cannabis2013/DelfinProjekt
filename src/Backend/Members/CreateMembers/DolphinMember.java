@@ -9,7 +9,6 @@ public class DolphinMember implements Member {
     private String _id;
     private LocalDate _birthDate;
     private LocalDate _dateEnrolled;
-    private boolean hasPaid = false;
     private SubscriptionStatus _status;
     private LocalDate _lastPaidDate;
 
@@ -38,11 +37,6 @@ public class DolphinMember implements Member {
     public LocalDate dateEnrolled() {return _dateEnrolled;}
 
     @Override
-    public boolean hasNotPaid() {
-        return !hasPaid;
-    }
-
-    @Override
     public LocalDate lastPaidDate() {
         return _lastPaidDate;
     }
@@ -55,10 +49,6 @@ public class DolphinMember implements Member {
     @Override
     public SubscriptionStatus status() {
         return _status;
-    }
-
-    public void setPaidStatus(boolean bool) {
-        hasPaid = bool;
     }
 
     public void setDateEnrolled(LocalDate date){_dateEnrolled = date;}
