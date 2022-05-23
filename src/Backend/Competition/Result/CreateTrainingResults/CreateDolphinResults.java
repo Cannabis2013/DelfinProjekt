@@ -27,11 +27,10 @@ public class CreateDolphinResults implements CreateTrainingResult {
     }
 
     @Override
-    public TrainingResult create(String id, String team, Discipline discipline, Time result) {
+    public TrainingResult create(String id, Discipline discipline, Time result) {
         TrainingResult newResult = new TrainingResult();
         newResult.subscriberID = id;
         newResult.discipline = discipline;
-        newResult.team = Team.valueOf(team.toUpperCase());
         newResult.result = result;
         return newResult;
     }

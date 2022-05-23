@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface CreateTrainingResult {
     List<TrainingResult> create(String id, List<Discipline> disciplines);
-    TrainingResult create(String id, String team, Discipline discipline, Time result);
+    TrainingResult create(String id, Discipline discipline, Time result);
 }

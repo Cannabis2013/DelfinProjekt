@@ -4,12 +4,11 @@ import Backend.Competition.Result.Time.Time;
 import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.Manager.DolphinCompetition;
 import Backend.Competition.SortCompetitors.TopSwimmerResult;
-import Backend.Contracts.BackendDomain;
+import Backend.Contracts.*;
 import Backend.Contracts.Competition.Competition;
 import Backend.Contracts.Members.Member;
 import Backend.Contracts.Members.Members;
 import Backend.Members.MemberManager.DolphinMembers;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -18,15 +17,20 @@ public class DolphinDomain implements BackendDomain {
     Competition _competition = new DolphinCompetition();
 
     @Override
-    public String registerMemberBasicDetails(String name, LocalDate birthDay, boolean active, List<Discipline> disciplines) {
+    public String registerBasicDetails(String name, LocalDate birthDay, boolean active, List<Discipline> disciplines) {
         var id = _members.addBasicMemberDetails(name,birthDay,active);
         _competition.registerToDisciplines(id,disciplines);
         return id;
     }
 
     @Override
-    public String registerMemberContactDetails(String id, String phone, String mail, String address) {
+    public String registerContactDetails(String id, String phone, String mail, String address) {
         return _members.updateContactInformation(id,phone,mail,address);
+    }
+
+    @Override
+    public Member member(String id) {
+        return _members.member(id);
     }
 
     @Override
@@ -49,13 +53,17 @@ public class DolphinDomain implements BackendDomain {
     @Override
     public List<TopSwimmerResult> topFiveBestSwimmers() {
         var competitors = _members.members();
-        var sortedCompetitors = _competition.sortedCompetitors(competitors);
-        return sortedCompetitors;
-    }
+        return _competition.sortedCompetitors(competitors);
+}
 
     @Override
     public List<Member> membersInArrears() {
         return  _members.membersInArrears();
+    }
+
+    @Override
+    public List<Discipline> registeredDisciplines(String id) {
+        return _competition.registeredDisciplines(id);
     }
 
     @Override

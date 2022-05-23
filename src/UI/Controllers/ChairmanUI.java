@@ -9,12 +9,13 @@ import UI.Models.MemberDetails;
 import UI.PrintScreen.PrintChairmanOptions;
 import UI.PrintScreen.PrintMemberCreatedScreen;
 import UI.ReadUserInput.DefaultReadUserOption;
+import UI.RegisterMemberDetails.PrintRegisterMemberDetailsScreen;
 
 public class ChairmanUI implements Controller {
     private final BackendDomain _backend;
     private ReadUserInput<Integer> _readMainMenuOption = new DefaultReadUserOption();
     private PrintScreen _printMenu = new PrintChairmanOptions();
-    private PrintScreenByDomain _registerMemberDetailsScreen;
+    private PrintScreenByDomain _registerMemberDetailsScreen = new PrintRegisterMemberDetailsScreen();
     private PrintScreen _printMemberCreated = new PrintMemberCreatedScreen();
 
     public ChairmanUI(BackendDomain domain){

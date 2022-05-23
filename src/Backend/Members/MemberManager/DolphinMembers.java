@@ -43,7 +43,7 @@ public class DolphinMembers implements Members {
     public String updateContactInformation(String id, String phone, String mail, String address) {
         var member = findByID(id);
         member.setPhone(phone);
-        member.setMail(id);
+        member.setMail(mail);
         member.setAddress(address);
         return member.subscriptionID();
     }

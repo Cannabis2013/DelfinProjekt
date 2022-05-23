@@ -13,5 +13,6 @@ public interface Competition {
     void registerToDisciplines(String id, List<Discipline> disciplines);
     void registerTrainingResult(String id, Time result, Discipline discipline, LocalDate date);
     void registerCompetitionResult(String id, String competition, LocalDate date, int rank, Time result);
+    List<Discipline> registeredDisciplines(String id);
     void save();
 }

@@ -2,7 +2,6 @@ package Backend.Competition.Manager;
 
 import Backend.Competition.Result.CreateCompetitionResult.CompetitionResult;
 import Backend.Competition.Result.CreateCompetitionResult.DolphinCreateCompetitionResult;
-import UI.PrintScreen.RegisterBasicMemberDetails.DolphinStringToDisciplines;
 import Backend.Competition.Result.Time.Time;
 import Backend.Competition.Result.CreateTrainingResults.CreateDolphinResults;
 import Backend.Competition.Result.CreateTrainingResults.Discipline;
@@ -57,6 +56,14 @@ public class DolphinCompetition implements Competition {
     public void registerCompetitionResult(String id, String competition, LocalDate date, int rank, Time result) {
         var compResult = _createCompetitionResult.create(id,competition,rank,date,result);
         _competitionResults.add(compResult);
+    }
+
+    @Override
+    public List<Discipline> registeredDisciplines(String id) {
+        var disciplines = _trainingResults.stream()
+                .filter(r -> r.subscriberID.equals(id))
+                .map(r -> r.discipline).distinct().toList();
+        return disciplines;
     }
 
     @Override

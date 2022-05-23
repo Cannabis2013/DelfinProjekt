@@ -5,6 +5,7 @@ import Backend.Competition.Result.Time.Time;
 import Backend.Competition.Result.CreateTrainingResults.CreateDolphinResults;
 import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
+import Backend.Competition.Result.Time.TimeParseFormatException;
 import Backend.Persistence.AbstractPersistence;
 
 import java.io.PrintStream;
@@ -18,10 +19,9 @@ public class SaveTrainingResultsAsCSV extends AbstractPersistence<TrainingResult
 
     private String toQueryString(TrainingResult result){
         String id = result.subscriberID;
-        String team = result.team.toString();
         String discipline = result.discipline.toString();
-        String time = result.result.toString();
-        String queryString = String.format("%s;%s;%s;%s;\n", id, team, discipline, time);
+        String time = result.result != null ? result.result.toString() : " ";
+        String queryString = String.format("%s;%s;%s;\n", id, discipline, time);
         return queryString;
     }
 
@@ -38,10 +38,14 @@ public class SaveTrainingResultsAsCSV extends AbstractPersistence<TrainingResult
         var creator = new CreateDolphinResults();
         Scanner lineScanner = new Scanner(line).useDelimiter(";");
         String id = lineScanner.next();
-        var teamAsString = lineScanner.next();
         Discipline discipline = Discipline.valueOf(lineScanner.next().toUpperCase());
-        Time time = Time.fromString(lineScanner.next());
-        var fetchedResult = creator.create(id, teamAsString, discipline, time);
+        Time time;
+        try {
+            time = Time.fromString(lineScanner.next());
+        }catch (TimeParseFormatException e){
+            time = null;
+        }
+        var fetchedResult = creator.create(id, discipline, time);
         return fetchedResult;
     }
 

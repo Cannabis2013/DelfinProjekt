@@ -17,7 +17,8 @@ public class PrintCashierOptions implements PrintScreen {
                 1). Expected Income
                                 
                 2). Overview Restance Members
-                                
+                
+                3). Register payment                
                 -------------------------------------
                   
                 3). Back to Main Menu

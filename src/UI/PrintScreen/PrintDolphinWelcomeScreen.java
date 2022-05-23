@@ -9,7 +9,7 @@ public class PrintDolphinWelcomeScreen implements PrintScreen {
     private final String showCursor = "\33[?25h";
     private final String greenFont = "\33[32m";
     private final String reset = "\33[m";
-    private final int LOAD_LIMIT = 4;
+    private final int LOAD_LIMIT = 3;
     private final int SLEEP_DURATION = 400;
 
     private void printLogo(){
