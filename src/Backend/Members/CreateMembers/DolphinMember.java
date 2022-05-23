@@ -11,6 +11,9 @@ public class DolphinMember implements Member {
     private LocalDate _dateEnrolled;
     private boolean hasPaid = false;
     private SubscriptionStatus _status;
+    private String _phone;
+    private String _address;
+    private String _mail;
 
     public void setStatus(SubscriptionStatus status){
         _status = status;
@@ -44,6 +47,35 @@ public class DolphinMember implements Member {
     @Override
     public SubscriptionStatus status() {
         return _status;
+    }
+
+    @Override
+    public String phone() {
+        return _phone;
+    }
+
+    @Override
+    public void setPhone(String phone) {
+        _phone = phone;
+    }
+    @Override
+    public String mail() {
+        return _mail;
+    }
+
+    @Override
+    public void setMail(String mail) {
+        _mail = mail;
+    }
+
+    @Override
+    public String address() {
+        return _address;
+    }
+
+    @Override
+    public void setAddress(String address) {
+        _address = address;
     }
 
     public void setPaidStatus(boolean bool) {

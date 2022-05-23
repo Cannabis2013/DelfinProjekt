@@ -11,4 +11,10 @@ public interface Member{
     LocalDate dateEnrolled();
     boolean hasNotPaid();
     SubscriptionStatus status();
+    String phone();
+    void setPhone(String phone);
+    String mail();
+    void setMail(String mail);
+    String address();
+    void setAddress(String address);
 }

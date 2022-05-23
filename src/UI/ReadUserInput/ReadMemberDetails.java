@@ -8,6 +8,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class ReadMemberDetails implements ReadUserInput<MemberDetails> {
+    private final LocalDate DEFAULT_DATE = LocalDate.of(2000,1,1);
     private void clearLine(){
         System.out.print("\33[A");
         System.out.print("\33[2K");
@@ -40,10 +41,9 @@ public class ReadMemberDetails implements ReadUserInput<MemberDetails> {
         var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate date;
         try {
-            if (str.isBlank()) return LocalDate.now();
             return LocalDate.parse(str,formatter);
         }catch (DateTimeParseException e){
-            return LocalDate.of(2000,1,1);
+            return DEFAULT_DATE;
         }
     }
 
