@@ -31,11 +31,12 @@ public class ReadMemberTrainingDetails implements ReadUserInput<TrainingDetails>
         System.out.print("Enter Discipline: ");
         var discipline = toDiscipline(reader.nextLine());
         clearLine();
+        System.out.println("Date format: dd-MM-yyyy (Ex. 02-04-1985)");
         System.out.print("Enter Date: ");
         String dateAsString = reader.nextLine();
         LocalDate date;
         try{
-            date = LocalDate.parse(dateAsString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            date = LocalDate.parse(dateAsString, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
         }catch (DateTimeParseException e){
             date = LocalDate.now();
         }

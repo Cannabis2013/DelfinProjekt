@@ -16,7 +16,7 @@ public class ReadCompetitionDetails implements ReadUserInput<CompetitionDetails>
     }
 
     private LocalDate toDate(String str){
-        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         var date = LocalDate.parse(str,formatter);
         return date;
     }
@@ -30,7 +30,7 @@ public class ReadCompetitionDetails implements ReadUserInput<CompetitionDetails>
         System.out.print("Enter convention name: ");
         String conventionName = keyboard.nextLine();
         clearLine();
-        System.out.print("Enter Date (yyyy-MM-dd): ");
+        System.out.print("Enter Date (dd-MM-yyyy): ");
         LocalDate dateAsString = toDate(keyboard.nextLine());
         clearLine();
         System.out.print("Enter rank: ");
