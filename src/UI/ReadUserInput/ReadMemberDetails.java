@@ -17,8 +17,9 @@ public class ReadMemberDetails implements ReadUserInput<MemberDetails> {
         var msg = """
                 Dolphin user registration.
                 * Please use full name
-                * Please enter date in format YYYY-dd-mm (Ex. 1985-04-02)
+                * Please enter date in format dd-MM-yyyy (Ex. 02-04-1985)
                 * As a competitor, please type in desired disciplines separated by slash
+                    * Disciplines: [CRAWL, BREAST, BUTTERFLY, BACKSTROKE]
                 """;
         System.out.println(msg);
     }
@@ -36,9 +37,10 @@ public class ReadMemberDetails implements ReadUserInput<MemberDetails> {
     }
 
     LocalDate toDate(String str){
-        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        var formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate date;
         try {
+            if (str.isBlank()) return LocalDate.now();
             return LocalDate.parse(str,formatter);
         }catch (DateTimeParseException e){
             return LocalDate.of(2000,1,1);
