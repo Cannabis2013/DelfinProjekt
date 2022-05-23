@@ -37,6 +37,11 @@ public class DolphinDomain implements BackendDomain {
     }
 
     @Override
+    public void registerPayment(String id) {
+        // IMPLEMENT
+    }
+
+    @Override
     public List<TopSwimmerResult> topFiveBestSwimmers() {
         var competitors = _members.members();
         var sortedCompetitors = _competition.sortedCompetitors(competitors);
