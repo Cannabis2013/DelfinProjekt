@@ -1,10 +1,11 @@
 package UI.Controllers.Main.Screen;
 
+import Backend.Contracts.BackendDomain;
 import UI.Contracts.PrintScreen;
 
 public class PrintMainOptions implements PrintScreen {
     @Override
-    public void print() {
+    public void print(BackendDomain domain) {
         System.out.println("""
                     ------------
                     Who are you?
@@ -18,7 +19,7 @@ public class PrintMainOptions implements PrintScreen {
                     
                     4). Print members
                     
-                    *). Exit
+                    q). Exit
                     
                     """);
     }

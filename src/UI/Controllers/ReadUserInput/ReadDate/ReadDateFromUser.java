@@ -5,7 +5,7 @@ import UI.Contracts.ReadUserInput;
 import java.time.LocalDate;
 
 public abstract class ReadDateFromUser implements ReadUserInput<LocalDate> {
-    private final LocalDate DEFAULT_DATE;
+    protected final LocalDate DEFAULT_DATE;
     private final String dateFormatA = "^\\d+ \\w+ \\d+$"; // 24 january 2009
     private final String dateFormatB = "^\\d+\\W\\d+\\W\\d+$"; // 24/03/2009;24-03-2009
 

@@ -5,17 +5,15 @@ import Backend.Competition.Result.Time.TimeResult;
 import Backend.Contracts.BackendDomain;
 import Backend.Members.MemberManager.MemberNotFoundException;
 import UI.Contracts.ReadUserInput;
-import UI.Controllers.ReadUserInput.ReadString.ReadStringMinimalConstraints;
 import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
+import UI.Controllers.ReadUserInput.ReadString.ReadStringMinimalConstraints;
 import UI.Controllers.ReadUserInput.ReadTimeResult.ReadDefaultFormattedDate;
 import UI.Controllers.Trainer.RegisterTrainingResult.Results.Discipline.ReadDiscipline;
 import UI.Controllers.Trainer.RegisterTrainingResult.Results.Time.InvalidResultFormatException;
 import UI.Controllers.Trainer.RegisterTrainingResult.Results.Time.ReadMemberResult;
-
 import java.time.LocalDate;
-import java.util.UUID;
 
-public class PrintReadResultDetails {
+public class ReadResultDetails {
     private ReadUserInput<String> _readMemberID = new ReadStringMinimalConstraints();
     private ReadUserInput<Discipline> _readDiscipline = new ReadDiscipline();
     private ReadUserInput<TimeResult> _readTime = new ReadMemberResult();
@@ -79,7 +77,7 @@ public class PrintReadResultDetails {
 
     private void printErrorScreen(){}
 
-    public UUID print(BackendDomain domain){
+    public TrainingDetails read(BackendDomain domain){
         var id = readMemberID(domain);
         if(id.isEmpty()){
             printErrorScreen();
@@ -92,7 +90,6 @@ public class PrintReadResultDetails {
             return null;
         }
         var date = readDate();
-        var resultID = domain.registerTrainingResult(id,time,discipline,date);
-        return resultID;
+        return new TrainingDetails(id,time,discipline,date);
     }
 }

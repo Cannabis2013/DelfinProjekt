@@ -1,18 +1,20 @@
 package UI.Controllers.Chairman.RegisterMemberDetails.BasicDetails;
 
 import Backend.Competition.Result.CreateTrainingResults.Discipline;
-import Backend.Contracts.BackendDomain;
 import UI.Contracts.ReadUserInput;
+import UI.Controllers.Chairman.RegisterMemberDetails.BasicDetails.BirthDate.InvalidBirthDateException;
 import UI.Controllers.Chairman.RegisterMemberDetails.BasicDetails.BirthDate.ReadBirthDay;
 import UI.Controllers.Chairman.RegisterMemberDetails.BasicDetails.Disciplines.ReadDisciplinesFromUser;
+import UI.Controllers.Chairman.RegisterMemberDetails.BasicDetails.Model.BasicDetails;
 import UI.Controllers.Chairman.RegisterMemberDetails.BasicDetails.Name.MemberNameNotValid;
 import UI.Controllers.Chairman.RegisterMemberDetails.BasicDetails.Name.ReadMemberFullName;
 import UI.Controllers.Chairman.RegisterMemberDetails.BasicDetails.Status.ReadMemberStatus;
+import UI.Controllers.ReadUserInput.ReadDate.InvalidDateException;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class RegisterBasicDetails {
+public class ReadBasicMemberDetails {
     private ReadUserInput<String> _readName = new ReadMemberFullName();
     private ReadUserInput<LocalDate> _readBirthDate = new ReadBirthDay();
     private ReadUserInput<Boolean> _readMemberStatus = new ReadMemberStatus();
@@ -38,11 +40,21 @@ public class RegisterBasicDetails {
         return name;
     }
 
-    private LocalDate readDate(String cmdLine){
-        System.out.print(cmdLine);
-        var birthDate = _readBirthDate.read();
-        clearLine();
-        return birthDate;
+    private LocalDate readBirthDate(){
+        var err = "";
+        while (true){
+            LocalDate birthDate;
+            try {
+                System.out.printf("Enter date of birth%s: ",err);
+                birthDate = _readBirthDate.read();
+                clearLine();
+                return birthDate;
+            }catch (InvalidBirthDateException e){
+                err = String.format("(Please enter a date before %s)",LocalDate.now().toString());
+                clearLine();
+            }
+
+        }
     }
 
     private boolean readMemberStatus(String cmdLine){
@@ -59,12 +71,11 @@ public class RegisterBasicDetails {
         return disciplines;
     }
 
-    public String register(BackendDomain domain){
+    public BasicDetails register(){
         var name = readName("Enter name: ");
-        var birthDate = readDate("Enter birthdate: ");
+        var birthDate = readBirthDate();
         var activeMember = readMemberStatus("Register as active (1) or passive (*)?");
         var disciplines = readDisciplines();
-        var id = domain.registerBasicDetails(name,birthDate,activeMember,disciplines);
-        return id;
+        return new BasicDetails(name,birthDate,activeMember,disciplines);
     }
 }

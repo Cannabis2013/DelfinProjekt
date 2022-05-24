@@ -1,6 +1,7 @@
 package UI.Controllers.Chairman.RegisterMemberDetails.BasicDetails.Status;
 
 import UI.Contracts.ReadUserInput;
+
 import java.util.Scanner;
 
 public class ReadMemberStatus implements ReadUserInput<Boolean> {

@@ -11,7 +11,9 @@ public class ReadDanishAddress implements ReadUserInput<String> {
     @Override
     public String read() {
         var address = new Scanner(System.in).nextLine();
-        if(address.matches(AddressFormatA) || address.matches(AddressFormatB))
+        if(address.isEmpty())
+            return "Probably homeless";
+        else if(address.matches(AddressFormatA) || address.matches(AddressFormatB))
             return address;
         throw new InvalidAddressFormatException();
     }

@@ -4,7 +4,6 @@ import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Contracts.BackendDomain;
 import Backend.Contracts.Members.Member;
 import UI.Contracts.PrintScreen;
-import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
 import UI.Controllers.ConsoleUtils.ClearScrollBuffer;
 import UI.Controllers.ConsoleUtils.PrintBlankScreen;
@@ -12,7 +11,7 @@ import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
 
 import java.util.List;
 
-public class PrintAllMembers implements PrintScreenByDomain {
+public class PrintAllMembers implements PrintScreen {
 
     private final String ROW_LAYOUT = "%-12s %-20s %s";
     PrintScreen _printBlank = new PrintBlankScreen();
@@ -51,9 +50,9 @@ public class PrintAllMembers implements PrintScreenByDomain {
     }
 
     private void haltScreen(){
-        _clearBuffer.print();
+        _clearBuffer.print(null);
         _halt.read();
-        _printBlank.print();
+        _printBlank.print(null);
     }
 
     private String createHeader(int longestDetail){
@@ -71,11 +70,9 @@ public class PrintAllMembers implements PrintScreenByDomain {
         return longest;
     }
 
-
-
     @Override
     public void print(BackendDomain domain) {
-        _printBlank.print();
+        _printBlank.print(null);
         List<Member> members = domain.members();
         var details = memberDetailsAsList(members, domain);
         int longestDetail = longestDetailString(details);

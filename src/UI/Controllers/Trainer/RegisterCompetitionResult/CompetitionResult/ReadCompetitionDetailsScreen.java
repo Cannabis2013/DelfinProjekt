@@ -7,6 +7,7 @@ import UI.Contracts.ReadUserInput;
 import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
 import UI.Controllers.ReadUserInput.ReadString.ReadStringMinimalConstraints;
 import UI.Controllers.ReadUserInput.ReadTimeResult.ReadDefaultFormattedDate;
+import UI.Controllers.Trainer.RegisterCompetitionResult.CompetitionResult.Model.CompDetails;
 import UI.Controllers.Trainer.RegisterCompetitionResult.CompetitionResult.Rank.ReadCompetitionRank;
 import UI.Controllers.Trainer.RegisterTrainingResult.Results.Time.InvalidResultFormatException;
 import UI.Controllers.Trainer.RegisterTrainingResult.Results.Time.ReadMemberResult;
@@ -79,13 +80,12 @@ public class ReadCompetitionDetailsScreen {
         return rank;
     }
 
-    public UUID print(BackendDomain domain){
+    public CompDetails print(BackendDomain domain){
         var memberID = readMemberID(domain);
         var competitionName = readCompetitionName();
         var date = readDate();
         var result = readTimeResult();
         var rank = readRank();
-        var id = domain.registerCompetitionResult(memberID,competitionName,date,rank,result);
-        return id;
+        return new CompDetails(memberID,competitionName,date,result,rank);
     }
 }

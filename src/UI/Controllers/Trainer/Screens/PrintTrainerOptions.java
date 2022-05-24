@@ -1,10 +1,11 @@
 package UI.Controllers.Trainer.Screens;
 
+import Backend.Contracts.BackendDomain;
 import UI.Contracts.PrintScreen;
 
 public class PrintTrainerOptions implements PrintScreen {
     @Override
-    public void print() {
+    public void print(BackendDomain domain) {
         var menu = """
                 1). Register training result
                 2). Register competition result

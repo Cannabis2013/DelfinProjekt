@@ -10,7 +10,9 @@ public class ReadMail implements ReadUserInput<String> {
     @Override
     public String read() {
         var mail = new Scanner(System.in).nextLine();
-        if(mail.matches(REGEX))
+        if(mail.isEmpty())
+            return "";
+        else if(mail.matches(REGEX))
             return mail;
         throw new InvalidMailFormatException();
     }

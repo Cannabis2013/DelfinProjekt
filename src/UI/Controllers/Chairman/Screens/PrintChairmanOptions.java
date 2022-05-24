@@ -1,10 +1,11 @@
 package UI.Controllers.Chairman.Screens;
 
+import Backend.Contracts.BackendDomain;
 import UI.Contracts.PrintScreen;
 
 public class PrintChairmanOptions implements PrintScreen {
     @Override
-    public void print() {
+    public void print(BackendDomain domain) {
         System.out.println("""                                      
                 -----------------
                 Chairman - System:

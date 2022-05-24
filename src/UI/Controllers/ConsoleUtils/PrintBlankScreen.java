@@ -1,5 +1,6 @@
 package UI.Controllers.ConsoleUtils;
 
+import Backend.Contracts.BackendDomain;
 import UI.Contracts.PrintScreen;
 
 import java.awt.*;
@@ -13,7 +14,7 @@ public class PrintBlankScreen implements PrintScreen {
     }
 
     @Override
-    public void print() {
+    public void print(BackendDomain domain) {
         System.out.print("\33[2J\33[2H");
         printBlank();
         System.out.flush();

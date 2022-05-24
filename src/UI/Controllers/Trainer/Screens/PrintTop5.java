@@ -3,7 +3,6 @@ package UI.Controllers.Trainer.Screens;
 import Backend.Competition.SortCompetitors.TopSwimmerResult;
 import Backend.Contracts.BackendDomain;
 import UI.Contracts.PrintScreen;
-import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
 import UI.Controllers.ConsoleUtils.ClearScrollBuffer;
 import UI.Controllers.ConsoleUtils.PrintBlankScreen;
@@ -12,7 +11,7 @@ import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrintTop5 implements PrintScreenByDomain {
+public class PrintTop5 implements PrintScreen {
 
     private final String ROW_LAYOUT = "%-15s %-4s %-5s %-4s %-5s";
     PrintScreen _printBlank = new PrintBlankScreen();

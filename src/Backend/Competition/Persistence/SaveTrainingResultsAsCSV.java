@@ -1,11 +1,11 @@
 package Backend.Competition.Persistence;
 
 
-import Backend.Competition.Result.Time.TimeResult;
 import Backend.Competition.Result.CreateTrainingResults.CreateDolphinResults;
 import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
 import Backend.Competition.Result.Time.TimeParseFormatException;
+import Backend.Competition.Result.Time.TimeResult;
 import Backend.Persistence.AbstractPersistence;
 
 import java.io.PrintStream;

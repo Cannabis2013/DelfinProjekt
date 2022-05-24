@@ -1,9 +1,9 @@
 package Backend.Contracts.Competition;
 
 import Backend.Competition.Result.CreateCompetitionResult.CompetitionResult;
+import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
 import Backend.Competition.Result.Time.TimeResult;
-import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.SortCompetitors.TopSwimmerResult;
 import Backend.Contracts.Members.Member;
 

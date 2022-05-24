@@ -3,7 +3,6 @@ package UI.Controllers.Cashier.Screens;
 import Backend.Contracts.BackendDomain;
 import Backend.Contracts.Members.Member;
 import UI.Contracts.PrintScreen;
-import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
 import UI.Controllers.ConsoleUtils.ClearScrollBuffer;
 import UI.Controllers.ConsoleUtils.PrintBlankScreen;
@@ -11,7 +10,7 @@ import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
 
 import java.util.List;
 
-public class PrintMembersInArrears implements PrintScreenByDomain {
+public class PrintMembersInArrears implements PrintScreen {
     private final String ROW_LAYOUT = "%-4s %-20s %-5s";
     PrintScreen _printBlank = new PrintBlankScreen();
     PrintScreen _clearBuffer = new ClearScrollBuffer();
@@ -32,9 +31,9 @@ public class PrintMembersInArrears implements PrintScreenByDomain {
     }
 
     private void haltScreen(){
-        _clearBuffer.print();
+        _clearBuffer.print(null);
         _halt.read();
-        _printBlank.print();
+        _printBlank.print(null);
     }
 
     private String createHeader(){
@@ -45,7 +44,7 @@ public class PrintMembersInArrears implements PrintScreenByDomain {
 
     @Override
     public void print(BackendDomain domain) {
-        _printBlank.print();
+        _printBlank.print(null);
         var members = domain.membersInArrears();
         var details = memberDetailsAsList(members);
         System.out.println(createHeader());
