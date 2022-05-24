@@ -12,7 +12,6 @@ import java.io.PrintStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,7 +22,7 @@ public class SaveTrainingResultsAsCSV extends AbstractPersistence<TrainingResult
     private String toQueryString(TrainingResult result){
         String id = result.subscriberID;
         String discipline = result.discipline.toString();
-        String date = result.date.toString();
+        String date = result.date != null ? result.date.toString() : "";
         String time = result.result != null ? result.result.toString() : " ";
         String queryString = String.format("%s;%s;%s;%s;\n", id,discipline,time,date);
         return queryString;

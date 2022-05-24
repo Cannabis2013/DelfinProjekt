@@ -13,7 +13,6 @@ import Backend.Competition.SortCompetitors.TopSwimmerResult;
 import Backend.Contracts.Competition.*;
 import Backend.Contracts.Members.Member;
 import Backend.Contracts.Persistence.Persistence;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -34,7 +33,9 @@ public class DolphinCompetition implements Competition {
 
     @Override
     public List<TopSwimmerResult> sortedCompetitors(List<Member> members){
-        var fastest = _sorter.sort(members,_trainingResults);
+        var filledResults = _trainingResults.stream()
+                .filter(r -> r.result != null).toList();
+        var fastest = _sorter.sort(members,filledResults);
         return fastest;
     }
 
