@@ -1,10 +1,12 @@
 package Backend.Competition.Result.CreateTrainingResults;
 
-import Backend.Competition.Result.Time.Time;
+import Backend.Competition.Result.Time.TimeResult;
 import Backend.Contracts.Competition.CreateTrainingResult;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class CreateDolphinResults implements CreateTrainingResult {
     private final int SENIOR_THRESHOLD = 18;
@@ -13,6 +15,7 @@ public class CreateDolphinResults implements CreateTrainingResult {
         var trainingResult = new TrainingResult();
         trainingResult.subscriberID = id;
         trainingResult.discipline = discipline;
+        trainingResult.id = UUID.randomUUID();
         return trainingResult;
     }
 
@@ -27,11 +30,10 @@ public class CreateDolphinResults implements CreateTrainingResult {
     }
 
     @Override
-    public TrainingResult create(String id, String team, Discipline discipline, Time result) {
+    public TrainingResult create(String id, Discipline discipline, TimeResult result, LocalDate date) {
         TrainingResult newResult = new TrainingResult();
         newResult.subscriberID = id;
         newResult.discipline = discipline;
-        newResult.team = Team.valueOf(team.toUpperCase());
         newResult.result = result;
         return newResult;
     }

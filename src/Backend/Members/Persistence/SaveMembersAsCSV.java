@@ -4,7 +4,6 @@ import Backend.Contracts.Members.Member;
 import Backend.Members.CreateMembers.CreateDolphinMember;
 import Backend.Members.CreateMembers.SubscriptionStatus;
 import Backend.Persistence.AbstractPersistence;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +18,13 @@ public class SaveMembersAsCSV extends AbstractPersistence<Member> {
         String id = member.subscriptionID();
         String birthDate = member.birthDate().toString();
         String enrollment = member.dateEnrolled().toString();
-        boolean hasPaid = member.hasNotPaid();
-        var csvLineAsString = String.format("%s;%s;%s;%s;%s;\n", fullName, id, birthDate, enrollment, hasPaid);
+        String lastPaidDate = member.lastPaidDate().toString();
+        String phone = member.phone();
+        String mail = member.mail();
+        String address = member.address();
+        String status = member.status().toString();
+        var csvLineAsString = String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;\n", fullName, id, birthDate,
+                enrollment, lastPaidDate, status,phone,mail,address);
         return csvLineAsString;
     }
 
@@ -42,10 +46,15 @@ public class SaveMembersAsCSV extends AbstractPersistence<Member> {
         String id = lineScanner.next();
         LocalDate birthday = LocalDate.parse(lineScanner.next());
         LocalDate enrollmentDate = LocalDate.parse(lineScanner.next());
-        String statusAsString = lineScanner.next();
-        var status = statusAsString.equalsIgnoreCase("true") ?
-                SubscriptionStatus.ACTIVE : SubscriptionStatus.PASSIVE;
-        var member = creator.create(fullName, id, birthday, enrollmentDate,status);
+        LocalDate lastPaymentDate = LocalDate.parse(lineScanner.next());
+        var status = SubscriptionStatus.valueOf(lineScanner.next());
+        String phone = lineScanner.next();
+        String mail = lineScanner.next();
+        String address = lineScanner.next();
+        var member = creator.create(fullName, id, birthday, enrollmentDate,lastPaymentDate,status);
+        member.setPhone(phone);
+        member.setMail(mail);
+        member.setAddress(address);
         return member;
     }
 

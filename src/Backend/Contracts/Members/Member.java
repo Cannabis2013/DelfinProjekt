@@ -9,6 +9,13 @@ public interface Member{
     String subscriptionID();
     LocalDate birthDate();
     LocalDate dateEnrolled();
-    boolean hasNotPaid();
+    LocalDate lastPaidDate();
+    void setPaymentDate(LocalDate date);
     SubscriptionStatus status();
+    String phone();
+    void setPhone(String phone);
+    String mail();
+    void setMail(String mail);
+    String address();
+    void setAddress(String address);
 }
