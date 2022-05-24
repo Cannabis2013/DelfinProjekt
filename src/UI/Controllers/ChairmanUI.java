@@ -5,11 +5,10 @@ import UI.Contracts.Controller;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
-import UI.Models.MemberDetails;
-import UI.PrintScreen.PrintChairmanOptions;
-import UI.PrintScreen.PrintMemberCreatedScreen;
+import UI.Controllers.PrintScreen.PrintChairmanOptions;
+import UI.Controllers.PrintScreen.PrintMemberCreatedScreen;
 import UI.ReadUserInput.DefaultReadUserOption;
-import UI.RegisterMemberDetails.PrintRegisterMemberDetailsScreen;
+import UI.Controllers.RegisterMemberDetails.PrintRegisterMemberDetailsScreen;
 
 public class ChairmanUI implements Controller {
     private final BackendDomain _backend;

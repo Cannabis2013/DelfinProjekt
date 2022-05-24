@@ -1,5 +1,6 @@
 package Backend;
 
+import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
 import Backend.Competition.Result.Time.Time;
 import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.Manager.DolphinCompetition;
@@ -11,6 +12,7 @@ import Backend.Contracts.Members.Members;
 import Backend.Members.MemberManager.DolphinMembers;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 public class DolphinDomain implements BackendDomain {
     Members _members = new DolphinMembers();
@@ -29,14 +31,15 @@ public class DolphinDomain implements BackendDomain {
     }
 
     @Override
-    public Member member(String id) {
-        return _members.member(id);
-    }
+    public Member member(String id) {return _members.member(id);}
 
     @Override
-    public void registerTrainingResult(String id, Time result, Discipline discipline, LocalDate date) {
+    public List<Member> members() {return _members.members();}
+
+    @Override
+    public UUID registerTrainingResult(String id, Time result, Discipline discipline, LocalDate date) {
         var member = _members.member(id);
-        _competition.registerTrainingResult(member.subscriptionID(),result,discipline,date);
+        return _competition.registerTrainingResult(member.subscriptionID(),result,discipline,date);
     }
 
     @Override
@@ -46,9 +49,10 @@ public class DolphinDomain implements BackendDomain {
     }
 
     @Override
-    public void registerPayment(String id) {
-        _members.updatePaymentStatus(id);
-    }
+    public TrainingResult trainingResult(UUID id) {return null;}
+
+    @Override
+    public void registerPayment(String id) {_members.updatePaymentStatus(id);}
 
     @Override
     public List<TopSwimmerResult> topFiveBestSwimmers() {
@@ -57,14 +61,10 @@ public class DolphinDomain implements BackendDomain {
 }
 
     @Override
-    public List<Member> membersInArrears() {
-        return  _members.membersInArrears();
-    }
+    public List<Member> membersInArrears() {return  _members.membersInArrears();}
 
     @Override
-    public List<Discipline> registeredDisciplines(String id) {
-        return _competition.registeredDisciplines(id);
-    }
+    public List<Discipline> registeredDisciplines(String id) {return _competition.registeredDisciplines(id);}
 
     @Override
     public int expectedEarnings() {

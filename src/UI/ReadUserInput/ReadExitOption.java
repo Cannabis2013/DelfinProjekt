@@ -2,8 +2,8 @@ package UI.ReadUserInput;
 
 import UI.Contracts.PrintScreen;
 import UI.Contracts.ReadUserInput;
-import UI.PrintScreen.ClearScrollBuffer;
-import UI.PrintScreen.PrintBlankScreen;
+import UI.Controllers.PrintScreen.ClearScrollBuffer;
+import UI.Controllers.PrintScreen.PrintBlankScreen;
 
 import java.util.Scanner;
 

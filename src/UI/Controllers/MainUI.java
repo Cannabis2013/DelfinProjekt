@@ -6,10 +6,10 @@ import UI.Contracts.Controller;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
-import UI.PrintScreen.PrintDolphinWelcomeScreen;
-import UI.PrintScreen.PrintExitScreen;
-import UI.PrintScreen.PrintMainOptions;
-import UI.PrintScreen.PrintMembersInArrears;
+import UI.Controllers.PrintScreen.PrintDolphinWelcomeScreen;
+import UI.Controllers.PrintScreen.PrintExitScreen;
+import UI.Controllers.PrintScreen.PrintMainOptions;
+import UI.Controllers.PrintScreen.PrintMembersInArrears;
 import UI.ReadUserInput.DefaultReadUserOption;
 import UI.ReadUserInput.ReadExitOption;
 
