@@ -20,9 +20,12 @@ public class SaveMembersAsCSV extends AbstractPersistence<Member> {
         String birthDate = member.birthDate().toString();
         String enrollment = member.dateEnrolled().toString();
         String lastPaidDate = member.lastPaidDate().toString();
+        String phone = member.phone();
+        String mail = member.mail();
+        String address = member.address();
         String status = member.status().toString();
-        var csvLineAsString = String.format("%s;%s;%s;%s;%s;%s;\n", fullName, id, birthDate,
-                enrollment, lastPaidDate, status);
+        var csvLineAsString = String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;\n", fullName, id, birthDate,
+                enrollment, lastPaidDate, status,phone,mail,address);
         return csvLineAsString;
     }
 
@@ -46,7 +49,13 @@ public class SaveMembersAsCSV extends AbstractPersistence<Member> {
         LocalDate enrollmentDate = LocalDate.parse(lineScanner.next());
         LocalDate lastPaymentDate = LocalDate.parse(lineScanner.next());
         var status = SubscriptionStatus.valueOf(lineScanner.next());
+        String phone = lineScanner.next();
+        String mail = lineScanner.next();
+        String address = lineScanner.next();
         var member = creator.create(fullName, id, birthday, enrollmentDate,lastPaymentDate,status);
+        member.setPhone(phone);
+        member.setMail(mail);
+        member.setAddress(address);
         return member;
     }
 

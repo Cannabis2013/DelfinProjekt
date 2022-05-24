@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class ReadDanishAddress implements ReadUserInput<String> {
     private final String AddressFormatA = "[A-zæøå ]+\\s*\\d+\\s*[\\d.A-z]*,\\s*\\d{4}\\w?\\s*\\w+";
-    private final String AddressFormatB = "^[A-zæøå 0-9]+,\\s*[A-z. 0-9]+,\\s*\\w+$";
+    private final String AddressFormatB = "^[A-zæøå \\d]+,\\s*[A-z. \\d]+,\\s*\\w+$";
 
     @Override
     public String read() {
