@@ -6,7 +6,7 @@ import UI.Controllers.RegisterMemberDetails.ContactInformation.Mail.InvalidMailF
 import UI.Controllers.RegisterMemberDetails.ContactInformation.Mail.ReadMail;
 import UI.Controllers.RegisterMemberDetails.ContactInformation.Phone.InvalidPhoneFormatException;
 import UI.Controllers.RegisterMemberDetails.ContactInformation.Phone.ReadDanishPhoneNumber;
-import UI.ReadUserInput.ConsoleHaltForInput;
+import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
 import UI.Controllers.RegisterMemberDetails.ContactInformation.Address.InvalidAddressFormatException;
 import UI.Controllers.RegisterMemberDetails.ContactInformation.Address.ReadDanishAddress;
 

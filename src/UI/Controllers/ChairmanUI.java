@@ -7,7 +7,7 @@ import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
 import UI.Controllers.PrintScreen.PrintChairmanOptions;
 import UI.Controllers.PrintScreen.PrintMemberCreatedScreen;
-import UI.ReadUserInput.DefaultReadUserOption;
+import UI.Controllers.ReadUserInput.DefaultReadUserOption;
 import UI.Controllers.RegisterMemberDetails.PrintRegisterMemberDetailsScreen;
 
 public class ChairmanUI implements Controller {

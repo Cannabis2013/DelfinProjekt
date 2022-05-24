@@ -2,7 +2,7 @@ package Backend.Competition.Manager;
 
 import Backend.Competition.Result.CreateCompetitionResult.CompetitionResult;
 import Backend.Competition.Result.CreateCompetitionResult.DolphinCreateCompetitionResult;
-import Backend.Competition.Result.Time.Time;
+import Backend.Competition.Result.Time.TimeResult;
 import Backend.Competition.Result.CreateTrainingResults.CreateDolphinResults;
 import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
@@ -45,7 +45,7 @@ public class DolphinCompetition implements Competition {
     }
 
     @Override
-    public UUID registerTrainingResult(String id, Time result, Discipline discipline, LocalDate date) {
+    public UUID registerTrainingResult(String id, TimeResult result, Discipline discipline, LocalDate date) {
         var trainingResult = _trainingResults.stream()
                 .filter(r -> r.subscriberID.equals(id) && r.discipline.equals(discipline))
                 .findFirst().orElseThrow(NoResultMatchCriteriasException::new);
@@ -55,9 +55,10 @@ public class DolphinCompetition implements Competition {
     }
 
     @Override
-    public void registerCompetitionResult(String id, String competition, LocalDate date, int rank, Time result) {
+    public UUID registerCompetitionResult(String id, String competition, LocalDate date, int rank, TimeResult result) {
         var compResult = _createCompetitionResult.create(id,competition,rank,date,result);
         _competitionResults.add(compResult);
+        return compResult.id;
     }
 
     @Override
@@ -72,6 +73,13 @@ public class DolphinCompetition implements Competition {
     public TrainingResult trainingResult(UUID id) {
         var result = _trainingResults.stream()
                 .filter(r -> r.id.equals(id)).findFirst().orElse(null);
+        return result;
+    }
+
+    @Override
+    public CompetitionResult competitionResult(UUID id) {
+        var result = _competitionResults.stream()
+                .filter(c -> c.id.equals(id)).findFirst().orElse(null);
         return result;
     }
 

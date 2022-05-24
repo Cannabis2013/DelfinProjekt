@@ -1,4 +1,4 @@
-package UI.ReadUserInput.Date;
+package UI.Controllers.ReadUserInput.ReadDate;
 
 public class InvalidDateException extends RuntimeException{
 }

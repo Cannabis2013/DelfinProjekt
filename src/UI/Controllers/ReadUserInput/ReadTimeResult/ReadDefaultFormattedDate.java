@@ -1,12 +1,12 @@
-package UI.Controllers.RegisterTrainingResult.Results.Date;
+package UI.Controllers.ReadUserInput.ReadTimeResult;
 
-import UI.ReadUserInput.Date.ReadDateFromUser;
+import UI.Controllers.ReadUserInput.ReadDate.ReadDateFromUser;
 
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class ReadResultDate extends ReadDateFromUser {
-    public ReadResultDate() {
+public class ReadDefaultFormattedDate extends ReadDateFromUser {
+    public ReadDefaultFormattedDate() {
         super(LocalDate.now());
     }
 

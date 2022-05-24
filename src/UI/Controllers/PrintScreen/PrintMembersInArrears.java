@@ -5,7 +5,7 @@ import Backend.Contracts.Members.Member;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
-import UI.ReadUserInput.ConsoleHaltForInput;
+import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
 
 import java.util.List;
 

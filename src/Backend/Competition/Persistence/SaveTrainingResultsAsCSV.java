@@ -1,7 +1,7 @@
 package Backend.Competition.Persistence;
 
 
-import Backend.Competition.Result.Time.Time;
+import Backend.Competition.Result.Time.TimeResult;
 import Backend.Competition.Result.CreateTrainingResults.CreateDolphinResults;
 import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
@@ -42,9 +42,9 @@ public class SaveTrainingResultsAsCSV extends AbstractPersistence<TrainingResult
         Scanner lineScanner = new Scanner(line).useDelimiter(";");
         String id = lineScanner.next();
         Discipline discipline = Discipline.valueOf(lineScanner.next().toUpperCase());
-        Time time;
+        TimeResult time;
         try {
-            time = Time.fromString(lineScanner.next());
+            time = TimeResult.fromString(lineScanner.next());
         }catch (TimeParseFormatException e){
             time = null;
         }

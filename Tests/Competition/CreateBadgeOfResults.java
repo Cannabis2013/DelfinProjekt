@@ -1,6 +1,6 @@
 package Competition;
 
-import Backend.Competition.Result.Time.Time;
+import Backend.Competition.Result.Time.TimeResult;
 import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.Result.CreateTrainingResults.Team;
 import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
@@ -18,7 +18,7 @@ public class CreateBadgeOfResults {
         result.team = Team.JUNIOR;
         result.date = LocalDate.now();
         var rand = new Random();
-        result.result = Time.fromString(time);
+        result.result = TimeResult.fromString(time);
         result.discipline = discipline;
         result.subscriberID = String.format("%d",_resultID++);
         return result;
@@ -29,7 +29,7 @@ public class CreateBadgeOfResults {
         result.team = Team.SENIOR;
         result.date = LocalDate.now();
         var rand = new Random();
-        result.result = Time.fromString(time);
+        result.result = TimeResult.fromString(time);
         result.discipline = discipline;
         result.subscriberID = String.format("%d",_resultID++);
         return result;

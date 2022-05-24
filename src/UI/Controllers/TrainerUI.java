@@ -5,13 +5,11 @@ import UI.Contracts.Controller;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
-import UI.Models.CompetitionDetails;
 import UI.Controllers.PrintScreen.PrintMemberNotFoundScreen;
 import UI.Controllers.PrintScreen.PrintTop5;
 import UI.Controllers.PrintScreen.PrintTrainerOptions;
-import UI.Controllers.PrintScreen.RegisterCompetitionResultScreen;
-import UI.ReadUserInput.DefaultReadUserOption;
-import UI.ReadUserInput.ReadCompetitionDetails;
+import UI.Controllers.ReadUserInput.DefaultReadUserOption;
+import UI.Controllers.RegisterCompetitionResult.RegisterCompetitionResultScreen;
 import UI.Controllers.RegisterTrainingResult.PrintRegisterTrainingResult;
 
 public class TrainerUI implements Controller {
@@ -19,20 +17,13 @@ public class TrainerUI implements Controller {
     private PrintScreen _printTrainerOptions = new PrintTrainerOptions();
     private ReadUserInput <Integer> _readTrainerOption = new DefaultReadUserOption();
 
-    private PrintScreen _registerCompetitionResultScreen = new RegisterCompetitionResultScreen();
     private PrintScreen _memberNotFoundScreen = new PrintMemberNotFoundScreen();
     private PrintScreenByDomain _printTop5 = new PrintTop5();
     private PrintScreenByDomain _printRegisterTrainingResult = new PrintRegisterTrainingResult();
-    ReadUserInput<CompetitionDetails> _readCompetitionResult = new ReadCompetitionDetails();
+    PrintScreenByDomain _readCompetitionResult = new RegisterCompetitionResultScreen();
 
     public TrainerUI(BackendDomain backend) {
         _backend = backend;
-    }
-
-    private void registerCompetitionResult() {
-        CompetitionDetails compDetails = _readCompetitionResult.read();
-        _backend.registerCompetitionResult(compDetails.id(), compDetails.convention(), compDetails.date(), compDetails.rank(), compDetails.result());
-        _registerCompetitionResultScreen.print();
     }
 
     public void run (){
@@ -42,7 +33,7 @@ public class TrainerUI implements Controller {
             var command = _readTrainerOption.read();
             switch (command){
                 case 1 -> _printRegisterTrainingResult.print(_backend);
-                case 2 -> registerCompetitionResult();
+                case 2 -> _readCompetitionResult.print(_backend);
                 case 3 -> _printTop5.print(_backend);
                 case 4 -> running = false;
             }

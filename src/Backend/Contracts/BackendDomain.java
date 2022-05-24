@@ -1,7 +1,8 @@
 package Backend.Contracts;
 
+import Backend.Competition.Result.CreateCompetitionResult.CompetitionResult;
 import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
-import Backend.Competition.Result.Time.Time;
+import Backend.Competition.Result.Time.TimeResult;
 import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.SortCompetitors.TopSwimmerResult;
 import Backend.Contracts.Members.Member;
@@ -15,10 +16,11 @@ public interface BackendDomain {
     String registerContactDetails(String id, String phone, String mail, String address);
     Member member(String id);
     List<Member> members();
-    UUID registerTrainingResult(String id, Time result, Discipline discipline, LocalDate date);
+    UUID registerTrainingResult(String id, TimeResult result, Discipline discipline, LocalDate date);
     //Skal vi skifte navn for registerResult til registerTrainingResult?
-    void registerCompetitionResult(String id, String convention, LocalDate date, int rank, Time result);
+    UUID registerCompetitionResult(String id, String convention, LocalDate date, int rank, TimeResult result);
     TrainingResult trainingResult(UUID id);
+    CompetitionResult competitionResult(UUID id);
     void registerPayment(String id);
     List<TopSwimmerResult> topFiveBestSwimmers();
     List<Member> membersInArrears();

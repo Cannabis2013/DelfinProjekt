@@ -11,7 +11,26 @@ public class PrintRegisterTrainingResult implements PrintScreenByDomain {
         var screen = """
                 Dolphin results registration
                 
-                Register training results.
+                * Type in id as usual
+                
+                * Time results
+                  
+                  Please enter results in accepted format as shown below:
+                  
+                  m:ss:CC (minutes, seconds, centi seconds)
+                  
+                  Examples of accepted results:
+                  
+                  Ex.: 0:24.44
+                  Ex.: 12:01.12
+                  
+                * Date formats:
+                
+                  Examples of accepted date formats:
+                  
+                  5 august 2000
+                  5 aug 2000
+                  05-05-2000 (feel free to use your own delimiter)
                 """;
         System.out.println(screen);
     }

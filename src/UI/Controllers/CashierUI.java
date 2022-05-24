@@ -9,7 +9,7 @@ import UI.Controllers.PrintScreen.PrintBlankScreen;
 import UI.Controllers.PrintScreen.PrintCashierOptions;
 import UI.Controllers.PrintScreen.PrintExpectedIncomeScreen;
 import UI.Controllers.PrintScreen.PrintMembersInArrears;
-import UI.ReadUserInput.DefaultReadUserOption;
+import UI.Controllers.ReadUserInput.DefaultReadUserOption;
 
 
 public class CashierUI implements Controller {
