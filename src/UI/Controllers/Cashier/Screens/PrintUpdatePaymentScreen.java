@@ -3,13 +3,12 @@ package UI.Controllers.Cashier.Screens;
 import Backend.Contracts.BackendDomain;
 import Backend.Members.MemberManager.MemberNotFoundException;
 import UI.Contracts.PrintScreen;
-import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
+import UI.Controllers.Chairman.RegisterMemberDetails.ContactInformation.ID.ReadID;
 import UI.Controllers.ConsoleUtils.PrintBlankScreen;
 import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
-import UI.Controllers.Chairman.RegisterMemberDetails.ContactInformation.ID.ReadID;
 
-public class PrintUpdatePaymentScreen implements PrintScreenByDomain {
+public class PrintUpdatePaymentScreen implements PrintScreen {
     private ReadUserInput<String> _readInput = new ReadID();
     private PrintScreen _printBlankScreen = new PrintBlankScreen();
     private ReadUserInput<String> _haltScreen = new ConsoleHaltForInput();
@@ -20,17 +19,17 @@ public class PrintUpdatePaymentScreen implements PrintScreenByDomain {
         while (true) {
             try {
                 domain.registerPayment(enteredId);
-                _printBlankScreen.print();
+                _printBlankScreen.print(null);
                 System.out.println(String.format("""
                         -----------------------------------
                         Payment status updated for ID: %s
                         -----------------------------------
                         """, enteredId));
                 _haltScreen.read();
-                _printBlankScreen.print();
+                _printBlankScreen.print(null);
                 break;
             } catch (MemberNotFoundException e) {
-                _printBlankScreen.print();
+                _printBlankScreen.print(null);
                 if (enteredId.equals("EXIT")) break;
                 System.out.println("Enter EXIT to escape");
                 System.out.print("Enter a MemberID: ");

@@ -1,8 +1,8 @@
 package Backend.Contracts.Competition;
 
-import Backend.Competition.Result.Time.TimeResult;
 import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
+import Backend.Competition.Result.Time.TimeResult;
 
 import java.time.LocalDate;
 import java.util.List;

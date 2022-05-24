@@ -1,9 +1,8 @@
 package UI.Controllers.ReadUserInput;
 
+import Backend.Competition.Result.Time.TimeResult;
 import UI.Contracts.ReadUserInput;
 import UI.Controllers.Trainer.Models.CompetitionDetails;
-
-import Backend.Competition.Result.Time.TimeResult;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

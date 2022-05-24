@@ -1,5 +1,6 @@
 package UI.Controllers.Main.Screen;
 
+import Backend.Contracts.BackendDomain;
 import UI.Contracts.PrintScreen;
 import UI.Controllers.ConsoleUtils.ClearScrollBuffer;
 
@@ -8,7 +9,7 @@ public class PrintExitScreen implements PrintScreen {
 
 
     @Override
-    public void print() {
+    public void print(BackendDomain domain) {
         System.out.println("""                                  
                                 ------------------------------------------------------------
                                 Have a good day. Thanks for using Dolphin Member Management.
@@ -43,6 +44,6 @@ public class PrintExitScreen implements PrintScreen {
                                 Nikki Delorian (Scuffed UI design, scuffed analytics, scuffed organizing)
                                 ------------------------------------------------------------
                                 """);
-        _clearScrollBuffer.print();
+        _clearScrollBuffer.print(null);
     }
 }

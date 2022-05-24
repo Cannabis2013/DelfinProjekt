@@ -1,18 +1,13 @@
 package UI.Controllers.Main.Screen;
 
+import Backend.Contracts.BackendDomain;
 import UI.Contracts.PrintScreen;
 import UI.Controllers.ConsoleUtils.ClearScrollBuffer;
 import UI.Controllers.ConsoleUtils.PrintBlankScreen;
 
-public class PrintDolphinWelcomeScreen implements PrintScreen {
+public class PrintWelcomeScreen implements PrintScreen {
     PrintScreen _printBlank = new PrintBlankScreen();
     PrintScreen _clearScrollBuffer = new ClearScrollBuffer();
-    private final String hideCursor = "\33[?25l";
-    private final String showCursor = "\33[?25h";
-    private final String greenFont = "\33[32m";
-    private final String reset = "\33[m";
-    private final int LOAD_LIMIT = 3;
-    private final int SLEEP_DURATION = 400;
 
     private void printLogo(){
         var logo = """
@@ -20,6 +15,8 @@ public class PrintDolphinWelcomeScreen implements PrintScreen {
                     [ DELFIN - DATABASE ]
                     ---------------------
                 """;
+        String greenFont = "\33[32m";
+        String reset = "\33[m";
         System.out.println(greenFont + logo + reset);
     }
 
@@ -29,29 +26,29 @@ public class PrintDolphinWelcomeScreen implements PrintScreen {
     }
 
     private void printLoading(){
-        System.out.print("\33[?25l");
         var i = 0;
         System.out.print("Loading");
+        int LOAD_LIMIT = 3;
         while (i++ < LOAD_LIMIT){
             if(i % 4 == 0)
                 eraseDots();
             else
                 System.out.print(".");
             try {
+                int SLEEP_DURATION = 400;
                 Thread.sleep(SLEEP_DURATION);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
-        System.out.print("\33[?25h");
     }
 
     @Override
-    public void print() {
-        _printBlank.print();
+    public void print(BackendDomain domain) {
+        _printBlank.print(null);
         printLogo();
-        _clearScrollBuffer.print();
+        _clearScrollBuffer.print(null);
         printLoading();
-        _printBlank.print();
+        _printBlank.print(null);
     }
 }

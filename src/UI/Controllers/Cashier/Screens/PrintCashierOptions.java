@@ -1,12 +1,11 @@
 package UI.Controllers.Cashier.Screens;
 
+import Backend.Contracts.BackendDomain;
 import UI.Contracts.PrintScreen;
 
 public class PrintCashierOptions implements PrintScreen {
-
-
     @Override
-    public void print() {
+    public void print(BackendDomain domain) {
 
         System.out.println("""
                            

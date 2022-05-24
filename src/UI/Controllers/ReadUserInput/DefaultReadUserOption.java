@@ -1,10 +1,10 @@
 package UI.Controllers.ReadUserInput;
 
-import UI.Controllers.ConsoleUtils.ConsoleScrollUp;
 import UI.Contracts.ClearLines;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.ReadUserInput;
 import UI.Controllers.ConsoleUtils.ClearScrollBuffer;
+import UI.Controllers.ConsoleUtils.ConsoleScrollUp;
 import UI.Controllers.ConsoleUtils.PrintBlankScreen;
 
 import java.util.Scanner;
@@ -40,11 +40,11 @@ public class DefaultReadUserOption implements ReadUserInput<Integer> {
         int option;
         while (true){
             printCMD();
-            _clearScrollBuffer.print();
+            _clearScrollBuffer.print(null);
             var input = reader.nextLine();
             try {
                 option = Integer.parseInt(input);
-                _printBlankScreen.print();
+                _printBlankScreen.print(null);
                 return option;
             } catch (NumberFormatException e){
                 _scrollUp.clear(4);

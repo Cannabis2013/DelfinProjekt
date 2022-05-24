@@ -32,9 +32,9 @@ public class ReadExitOption implements ReadUserInput<Boolean> {
         boolean option;
         while (true){
             printCMD();
-            _clearScrollBuffer.print();
+            _clearScrollBuffer.print(null);
             var input = reader.nextLine();
-            _printBlankScreen.print();
+            _printBlankScreen.print(null);
             return !(input.equals("Y") || input.equals("y"));
         }
     }

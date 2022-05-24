@@ -2,12 +2,11 @@ package UI.Controllers.Cashier.Screens;
 
 import Backend.Contracts.BackendDomain;
 import UI.Contracts.PrintScreen;
-import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
 import UI.Controllers.ConsoleUtils.PrintBlankScreen;
 import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
 
-public class PrintExpectedIncomeScreen implements PrintScreenByDomain {
+public class PrintExpectedIncomeScreen implements PrintScreen {
     private PrintScreen _printBlankScreen = new PrintBlankScreen();
     private ReadUserInput<String> _haltScreen = new ConsoleHaltForInput();
     @Override
@@ -20,6 +19,6 @@ public class PrintExpectedIncomeScreen implements PrintScreenByDomain {
                 -----------------
                 """, incomeInfo));
         _haltScreen.read();
-        _printBlankScreen.print();
+        _printBlankScreen.print(null);
     }
 }

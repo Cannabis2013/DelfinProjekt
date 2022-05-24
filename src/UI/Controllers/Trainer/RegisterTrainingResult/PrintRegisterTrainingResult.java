@@ -1,64 +1,57 @@
 package UI.Controllers.Trainer.RegisterTrainingResult;
 
 import Backend.Contracts.BackendDomain;
-import UI.Contracts.PrintScreenByDomain;
-import UI.Controllers.Trainer.RegisterTrainingResult.Results.PrintReadResultDetails;
+import UI.Contracts.PrintScreen;
+import UI.Contracts.ReadUserInput;
+import UI.Controllers.ConsoleUtils.ClearScrollBuffer;
+import UI.Controllers.ConsoleUtils.PrintBlankScreen;
+import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
+import UI.Controllers.ReadUserInput.ReadConfirmation;
+import UI.Controllers.Trainer.RegisterTrainingResult.Confirmation.PrintConfirmation;
+import UI.Controllers.Trainer.RegisterTrainingResult.HelpScreen.PrintHelpScreen;
+import UI.Controllers.Trainer.RegisterTrainingResult.Results.ReadResultDetails;
+import UI.Controllers.Trainer.RegisterTrainingResult.Results.TrainingDetails;
 
 import java.util.UUID;
 
-public class PrintRegisterTrainingResult implements PrintScreenByDomain {
-    private void printHelpScreen(){
-        var screen = """
-                Dolphin results registration
-                
-                * Type in id as usual
-                
-                * Time results
-                  
-                  Please enter results in accepted format as shown below:
-                  
-                  m:ss:CC (minutes, seconds, centi seconds)
-                  
-                  Examples of accepted results:
-                  
-                  Ex.: 0:24.44
-                  Ex.: 12:01.12
-                  
-                * Date formats:
-                
-                  Examples of accepted date formats:
-                  
-                  5 august 2000
-                  5 aug 2000
-                  05-05-2000 (feel free to use your own delimiter)
-                """;
-        System.out.println(screen);
+public class PrintRegisterTrainingResult implements PrintScreen {
+    private PrintScreen _printHelpScreen = new PrintHelpScreen();
+    private PrintScreen _printBlank = new PrintBlankScreen();
+    private PrintScreen _clearBuffer = new ClearScrollBuffer();
+    private PrintConfirmation _printConfirmation = new PrintConfirmation();
+    private ReadUserInput<Boolean> _readConfirmation = new ReadConfirmation();
+    private ReadUserInput<String> _halt = new ConsoleHaltForInput();
+
+    private void updateDomain(BackendDomain domain, TrainingDetails trainingDetails){
+        var subscriptionID = trainingDetails.id();
+        var result = trainingDetails.result();
+        var discipline = trainingDetails.discipline();
+        var date = trainingDetails.date();
+        domain.registerTrainingResult(subscriptionID,result,discipline,date);
+        System.out.println("Registered!");
     }
 
-    private void printConfirmationScreen(UUID id, BackendDomain domain){
-        var trainingResult = domain.trainingResult(id);
-        var subscriberID = trainingResult.subscriberID;
-        var member = domain.member(subscriberID);
-        var name = member.name();
-        var result = trainingResult.result.toString();
-        var date = trainingResult.date.toString();
-        var discipline = trainingResult.discipline.toString();
-        var screen = String.format("""
-                You have registered the following informations for %s:
-                
-                Discipline: %s
-                Date: %s
-                Result: %s
-                """,name,discipline,date,result);
-        System.out.println(screen);
+    private void clearScreen(){
+        _printBlank.print(null);
+        _clearBuffer.print(null);
+    }
+
+    private void confirm(BackendDomain domain, TrainingDetails trainingDetails){
+        _printConfirmation.print(trainingDetails);
+        if(_readConfirmation.read())
+            updateDomain(domain,trainingDetails);
+        else
+            System.out.println("Discarded!");
     }
 
     @Override
     public void print(BackendDomain domain) {
-        printHelpScreen();
-        var printReadingScreen = new PrintReadResultDetails();
-        var id = printReadingScreen.print(domain);
-        if(id != null)
-            printConfirmationScreen(id,domain);
+        _printHelpScreen.print(null);
+        var printReadingScreen = new ReadResultDetails();
+        var trainingDetails = printReadingScreen.read(domain);
+        clearScreen();
+        confirm(domain,trainingDetails);
+        _halt.read();
+        clearScreen();
     }
 }

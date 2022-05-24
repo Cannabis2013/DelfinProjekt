@@ -1,14 +1,14 @@
 package UI.Controllers.Trainer.RegisterCompetitionResult;
 
 import Backend.Contracts.BackendDomain;
-import UI.Contracts.PrintScreenByDomain;
+import UI.Contracts.PrintScreen;
 import UI.Contracts.ReadUserInput;
 import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
 import UI.Controllers.Trainer.RegisterCompetitionResult.CompetitionResult.ReadCompetitionDetailsScreen;
 
 import java.util.UUID;
 
-public class RegisterCompetitionResultScreen implements PrintScreenByDomain {
+public class RegisterCompetitionResultScreen implements PrintScreen {
     private ReadUserInput<String> _halt = new ConsoleHaltForInput();
 
     private void printHelpScreen(){

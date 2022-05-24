@@ -1,4 +1,4 @@
-package UI.Controllers.Trainer.Models;
+package UI.Controllers.Trainer.RegisterTrainingResult.Results;
 
 import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.Result.Time.TimeResult;

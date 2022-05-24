@@ -5,6 +5,7 @@ import Backend.Competition.Result.CreateCompetitionResult.DolphinCreateCompetiti
 import Backend.Competition.Result.Time.TimeResult;
 import Backend.Contracts.Competition.CreateCompetitionResult;
 import Backend.Persistence.AbstractPersistence;
+
 import java.io.PrintStream;
 import java.time.LocalDate;
 import java.util.ArrayList;

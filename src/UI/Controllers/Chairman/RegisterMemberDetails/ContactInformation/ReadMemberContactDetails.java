@@ -1,6 +1,5 @@
 package UI.Controllers.Chairman.RegisterMemberDetails.ContactInformation;
 
-import Backend.Contracts.BackendDomain;
 import UI.Contracts.ReadUserInput;
 import UI.Controllers.Chairman.RegisterMemberDetails.ContactInformation.Address.InvalidAddressFormatException;
 import UI.Controllers.Chairman.RegisterMemberDetails.ContactInformation.Address.ReadDanishAddress;
@@ -10,7 +9,7 @@ import UI.Controllers.Chairman.RegisterMemberDetails.ContactInformation.Phone.In
 import UI.Controllers.Chairman.RegisterMemberDetails.ContactInformation.Phone.ReadDanishPhoneNumber;
 import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
 
-public class RegisterContactInformation {
+public class ReadMemberContactDetails {
     private ReadUserInput<String> _readPhone = new ReadDanishPhoneNumber();
     private ReadUserInput<String> _readMail = new ReadMail();
     private ReadUserInput<String> _readAddress = new ReadDanishAddress();
@@ -50,23 +49,25 @@ public class RegisterContactInformation {
     }
 
     public String readAddress(){
-        System.out.print("Enter address: ");;
+        var err = "";
         String address;
-        try {
-            address = _readAddress.read();
-        } catch (InvalidAddressFormatException e){
-            clearLine();
-            return "No address. Probably homeless.";
+        while (true){
+            try {
+                System.out.printf("Enter address%s: ",err);
+                address = _readAddress.read();
+                clearLine();
+                return address;
+            } catch (InvalidAddressFormatException e){
+                clearLine();
+                err = "Invalid address format";
+            }
         }
-        clearLine();
-        return address;
     }
 
-    public String register(BackendDomain domain, String id){
+    public ContactDetails register(){
         var phone = readPhone();
         var mail = readMail();
         var address = readAddress();
-        domain.registerContactDetails(id,phone,mail,address);
-        return id;
+        return new ContactDetails(phone,mail,address);
     }
 }
