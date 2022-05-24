@@ -1,11 +1,11 @@
 package UI.Controllers.ReadUserInput;
 
-import UI.ConsoleManipulation.ConsoleScrollUp;
+import UI.Controllers.ConsoleUtils.ConsoleScrollUp;
 import UI.Contracts.ClearLines;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.ReadUserInput;
-import UI.Controllers.PrintScreen.ClearScrollBuffer;
-import UI.Controllers.PrintScreen.PrintBlankScreen;
+import UI.Controllers.ConsoleUtils.ClearScrollBuffer;
+import UI.Controllers.ConsoleUtils.PrintBlankScreen;
 
 import java.util.Scanner;
 

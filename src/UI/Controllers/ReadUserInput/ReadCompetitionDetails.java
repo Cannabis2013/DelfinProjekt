@@ -1,7 +1,7 @@
 package UI.Controllers.ReadUserInput;
 
 import UI.Contracts.ReadUserInput;
-import UI.Models.CompetitionDetails;
+import UI.Controllers.Trainer.Models.CompetitionDetails;
 
 import Backend.Competition.Result.Time.TimeResult;
 
