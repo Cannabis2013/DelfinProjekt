@@ -6,10 +6,7 @@ import UI.Contracts.Controller;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
-import UI.Controllers.PrintScreen.PrintDolphinWelcomeScreen;
-import UI.Controllers.PrintScreen.PrintExitScreen;
-import UI.Controllers.PrintScreen.PrintMainOptions;
-import UI.Controllers.PrintScreen.PrintMembersInArrears;
+import UI.Controllers.PrintScreen.*;
 import UI.Controllers.ReadUserInput.DefaultReadUserOption;
 import UI.Controllers.ReadUserInput.ReadExitOption;
 
@@ -22,6 +19,7 @@ public class MainUI implements Controller {
     private ReadUserInput<Integer> _readMainMenuOption = new DefaultReadUserOption();
     private ReadUserInput<Boolean> _readExitOption = new ReadExitOption();
     private PrintScreenByDomain _printMembersInArreas = new PrintMembersInArrears();
+    private PrintScreenByDomain _printMembers = new PrintAllMembers();
 
     private Controller _chairMan ;
     private Controller _cashier;
@@ -44,6 +42,7 @@ public class MainUI implements Controller {
                 case 1 -> _chairMan.run();
                 case 2 -> _cashier.run();
                 case 3 -> _trainer.run();
+                case 4 -> _printMembers.print(_backend);
                 default -> running = _readExitOption.read();
             }
         }
