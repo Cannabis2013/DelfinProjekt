@@ -1,9 +1,9 @@
-package UI.ReadUserInput;
+package UI.Controllers.ReadUserInput;
 
 import UI.Contracts.ReadUserInput;
 import UI.Models.CompetitionDetails;
 
-import Backend.Competition.Result.Time.Time;
+import Backend.Competition.Result.Time.TimeResult;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -37,7 +37,7 @@ public class ReadCompetitionDetails implements ReadUserInput<CompetitionDetails>
         int rank = Integer.parseInt(keyboard.nextLine());
         clearLine();
         System.out.print("Enter result (mm:ss.CC): ");
-        Time result = Time.fromString(keyboard.nextLine());
+        TimeResult result = TimeResult.fromString(keyboard.nextLine());
         var competitionResult = new CompetitionDetails(membershipID,conventionName, dateAsString, rank, result);
         return competitionResult;
 

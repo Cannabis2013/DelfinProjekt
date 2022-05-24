@@ -1,24 +1,25 @@
-package UI.Controllers.RegisterTrainingResult.Results;
+package UI.Controllers.RegisterCompetitionResult.CompetitionResult;
 
-import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.Result.Time.TimeResult;
 import Backend.Contracts.BackendDomain;
 import Backend.Members.MemberManager.MemberNotFoundException;
 import UI.Contracts.ReadUserInput;
-import UI.Controllers.ReadUserInput.ReadString.ReadStringMinimalConstraints;
 import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
+import UI.Controllers.ReadUserInput.ReadString.ReadStringMinimalConstraints;
 import UI.Controllers.ReadUserInput.ReadTimeResult.ReadDefaultFormattedDate;
-import UI.Controllers.RegisterTrainingResult.Results.Discipline.ReadDiscipline;
+import UI.Controllers.RegisterCompetitionResult.CompetitionResult.Rank.ReadCompetitionRank;
 import UI.Controllers.RegisterTrainingResult.Results.Time.InvalidResultFormatException;
 import UI.Controllers.RegisterTrainingResult.Results.Time.ReadMemberResult;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class PrintReadResultDetails {
-    private ReadUserInput<String> _readMemberID = new ReadStringMinimalConstraints();
-    private ReadUserInput<Discipline> _readDiscipline = new ReadDiscipline();
+public class ReadCompetitionDetailsScreen {
     private ReadUserInput<TimeResult> _readTime = new ReadMemberResult();
     private ReadUserInput<LocalDate> _readDate = new ReadDefaultFormattedDate();
+    private ReadUserInput<String> _readMemberID = new ReadStringMinimalConstraints();
+    private ReadUserInput<String> _readCompetitionName = new ReadStringMinimalConstraints();
+    private ReadUserInput<Integer> _readRank = new ReadCompetitionRank();
     private ReadUserInput<String> _halt = new ConsoleHaltForInput();
 
     private void clearLine(){
@@ -40,6 +41,20 @@ public class PrintReadResultDetails {
         return id;
     }
 
+    private String readCompetitionName(){
+        System.out.print("Enter name of competition: ");
+        var name = _readCompetitionName.read();
+        clearLine();
+        return name;
+    }
+
+    private LocalDate readDate(){
+        System.out.print("Read date: ");
+        var date = _readDate.read();
+        clearLine();
+        return date;
+    }
+
     private TimeResult readTimeResult(){
         var cmdLine = "Enter result: ";
         var err = "Invalid time format. Try again: ";
@@ -57,41 +72,20 @@ public class PrintReadResultDetails {
         }
     }
 
-    private boolean validateDiscipline(Discipline discipline, String id, BackendDomain domain){
-        var disciplines = domain.registeredDisciplines(id);
-        return disciplines.contains(discipline);
-    }
-
-    private Discipline readDiscipline(BackendDomain domain) {
-        System.out.print("Read discipline: ");
-        var discipline = _readDiscipline.read();
+    private int readRank(){
+        System.out.print("Enter rank: ");
+        var rank = _readRank.read();
         clearLine();
-        return discipline;
+        return rank;
     }
-
-    private LocalDate readDate() {
-        System.out.print("Read date: ");
-        var date = _readDate.read();
-        clearLine();
-        return date;
-    }
-
-    private void printErrorScreen(){}
 
     public UUID print(BackendDomain domain){
-        var id = readMemberID(domain);
-        if(id.isEmpty()){
-            printErrorScreen();
-            return null;
-        }
-        var time = readTimeResult();
-        var discipline = readDiscipline(domain);
-        if(!validateDiscipline(discipline,id,domain)){
-            printErrorScreen();
-            return null;
-        }
+        var memberID = readMemberID(domain);
+        var competitionName = readCompetitionName();
         var date = readDate();
-        var resultID = domain.registerTrainingResult(id,time,discipline,date);
-        return resultID;
+        var result = readTimeResult();
+        var rank = readRank();
+        var id = domain.registerCompetitionResult(memberID,competitionName,date,rank,result);
+        return id;
     }
 }

@@ -3,28 +3,28 @@ package Backend.Competition.Result.Time;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-public class Time {
+public class TimeResult {
     public int minutes;
     public int seconds;
     public int centiSeconds;
-    private Time(){
+    private TimeResult(){
     };
 
-    public static Time of(int minutes, int seconds, int centiSeconds){
-        Time t = new Time();
+    public static TimeResult of(int minutes, int seconds, int centiSeconds){
+        TimeResult t = new TimeResult();
         t.minutes = minutes;
         t.seconds = seconds;
         t.centiSeconds = centiSeconds;
         return t;
     }
 
-    public static Time fromString(String str){
+    public static TimeResult fromString(String str){
         var pattern = Pattern.compile("\\d+:\\d+.\\d+");
         var matchFormat = pattern.matcher(str);
         if(!matchFormat.find())
             throw new TimeParseFormatException();
         var reader = new Scanner(str).useDelimiter("\\W");
-        var time = new Time();
+        var time = new TimeResult();
         time.minutes = reader.nextInt();
         time.seconds = reader.nextInt();
         time.centiSeconds = reader.nextInt();
@@ -39,7 +39,7 @@ public class Time {
         return milliseconds;
     }
 
-    public int compareTo(Time other){
+    public int compareTo(TimeResult other){
         if(toMilliseconds() < other.toMilliseconds())
             return -1;
         if(toMilliseconds() > other.toMilliseconds())

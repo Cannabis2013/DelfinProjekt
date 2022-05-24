@@ -10,8 +10,8 @@ import UI.Controllers.PrintScreen.PrintDolphinWelcomeScreen;
 import UI.Controllers.PrintScreen.PrintExitScreen;
 import UI.Controllers.PrintScreen.PrintMainOptions;
 import UI.Controllers.PrintScreen.PrintMembersInArrears;
-import UI.ReadUserInput.DefaultReadUserOption;
-import UI.ReadUserInput.ReadExitOption;
+import UI.Controllers.ReadUserInput.DefaultReadUserOption;
+import UI.Controllers.ReadUserInput.ReadExitOption;
 
 public class MainUI implements Controller {
     protected BackendDomain _backend;

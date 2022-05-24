@@ -2,7 +2,7 @@ package UI.Controllers.PrintScreen;
 
 import UI.Contracts.PrintScreen;
 import UI.Contracts.ReadUserInput;
-import UI.ReadUserInput.ConsoleHaltForInput;
+import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
 
 public class PrintMemberCreatedScreen implements PrintScreen {
     private PrintScreen _blankScreen = new PrintBlankScreen();

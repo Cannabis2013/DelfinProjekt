@@ -1,4 +1,4 @@
-package UI.ReadUserInput;
+package UI.Controllers.ReadUserInput;
 
 import UI.Contracts.PrintScreen;
 import UI.Contracts.ReadUserInput;

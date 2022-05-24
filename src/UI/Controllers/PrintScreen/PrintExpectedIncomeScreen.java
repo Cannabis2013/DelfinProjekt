@@ -4,7 +4,7 @@ import Backend.Contracts.BackendDomain;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
-import UI.ReadUserInput.ConsoleHaltForInput;
+import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
 
 public class PrintExpectedIncomeScreen implements PrintScreenByDomain {
     private PrintScreen _printBlankScreen = new PrintBlankScreen();

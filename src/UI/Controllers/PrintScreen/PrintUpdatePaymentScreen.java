@@ -5,8 +5,8 @@ import Backend.Members.MemberManager.MemberNotFoundException;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
+import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
 import UI.Controllers.RegisterMemberDetails.ContactInformation.ID.ReadID;
-import UI.ReadUserInput.ConsoleHaltForInput;
 
 public class PrintUpdatePaymentScreen implements PrintScreenByDomain {
     private ReadUserInput<String> _readInput = new ReadID();

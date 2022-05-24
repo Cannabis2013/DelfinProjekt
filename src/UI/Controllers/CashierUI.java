@@ -6,7 +6,7 @@ import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
 import UI.Controllers.PrintScreen.*;
-import UI.ReadUserInput.DefaultReadUserOption;
+import UI.Controllers.ReadUserInput.DefaultReadUserOption;
 
 
 public class CashierUI implements Controller {

@@ -1,7 +1,8 @@
 package Backend;
 
+import Backend.Competition.Result.CreateCompetitionResult.CompetitionResult;
 import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
-import Backend.Competition.Result.Time.Time;
+import Backend.Competition.Result.Time.TimeResult;
 import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.Manager.DolphinCompetition;
 import Backend.Competition.SortCompetitors.TopSwimmerResult;
@@ -37,19 +38,25 @@ public class DolphinDomain implements BackendDomain {
     public List<Member> members() {return _members.members();}
 
     @Override
-    public UUID registerTrainingResult(String id, Time result, Discipline discipline, LocalDate date) {
+    public UUID registerTrainingResult(String id, TimeResult result, Discipline discipline, LocalDate date) {
         var member = _members.member(id);
         return _competition.registerTrainingResult(member.subscriptionID(),result,discipline,date);
     }
 
     @Override
-    public void registerCompetitionResult(String id, String convention, LocalDate date, int rank, Time result) {
+    public UUID registerCompetitionResult(String id, String convention, LocalDate date, int rank, TimeResult result) {
         var member = _members.member(id);
-        _competition.registerCompetitionResult(member.subscriptionID(),convention,date,rank,result);
+        var compID = _competition.registerCompetitionResult(member.subscriptionID(),convention,date,rank,result);
+        return compID;
     }
 
     @Override
     public TrainingResult trainingResult(UUID id) {return null;}
+
+    @Override
+    public CompetitionResult competitionResult(UUID id) {
+        return _competition.competitionResult(id);
+    }
 
     @Override
     public void registerPayment(String id) {_members.updatePaymentStatus(id);}

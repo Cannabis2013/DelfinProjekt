@@ -9,7 +9,7 @@ import UI.Contracts.ReadUserInput;
 import UI.Controllers.PrintScreen.ClearScrollBuffer;
 import UI.Controllers.PrintScreen.PrintBlankScreen;
 import UI.Controllers.RegisterMemberDetails.BasicDetails.RegisterBasicDetails;
-import UI.ReadUserInput.ConsoleHaltForInput;
+import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
 import UI.Controllers.RegisterMemberDetails.ContactInformation.RegisterContactInformation;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,14 +21,34 @@ public class PrintRegisterMemberDetailsScreen implements PrintScreenByDomain {
     private ReadUserInput<String> _halt = new ConsoleHaltForInput();
     private void printHelpScreen(){
         var msg = """
-                Dolphin user registration.
-                * Please use full name
-                * Please enter date in format dd-MM-yyyy (Ex. 02-04-1985)
-                * As a competitor, please type in numberdesignators for each desired disciplines separated by space
+                Dolphin member registration.
+                
+                * Please provide full name
+                  Ex. of accepted formats : Martin Hansen, Murat Kaan Arici
+                  Ex. of not accepted formats: Martin, Murat, Nikki
+                  
+                * Accepted date formats: 3 feb 2012, 3 february 2012, 03-02-2012
+                  
+                  Note: Months in letters are matched against danish and english abbreviations/names
+                  
+                  Ex. : January and Januar always match. Likewise for abbreviations.
+                  
+                * Disciplines:
+                  
+                  The following disciplines are all marked with a number id:
                     
-                    CRAWL(1) BREAST(2) BUTTERFLY(3) BACKSTROKE(4)
+                  CRAWL(1) BREAST(2) BUTTERFLY(3) BACKSTROKE(4)
+                  
+                  You can use numbers or names (case insensitive), but don't mix. Please see examples below:
+                  
+                  Accepted formats:
                     
-                    Ex.: 2 3 4 (BREAST, BUTTERFLY,BACKSTROKE)
+                  Ex.: 2 3 4 (BREAST, BUTTERFLY,BACKSTROKE)
+                  Ex.: BREAST BACKSTROKE CRAWL
+                  
+                  Not accepted formats:
+                  
+                  Ex.: 2 CRAWL 3
                 """;
         System.out.println(msg);
     }

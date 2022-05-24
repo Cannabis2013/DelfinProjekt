@@ -2,7 +2,7 @@ package Backend.Competition.Persistence;
 
 import Backend.Competition.Result.CreateCompetitionResult.CompetitionResult;
 import Backend.Competition.Result.CreateCompetitionResult.DolphinCreateCompetitionResult;
-import Backend.Competition.Result.Time.Time;
+import Backend.Competition.Result.Time.TimeResult;
 import Backend.Contracts.Competition.CreateCompetitionResult;
 import Backend.Persistence.AbstractPersistence;
 import java.io.PrintStream;
@@ -19,7 +19,7 @@ public class SaveCompResultsAsCSV extends AbstractPersistence<CompetitionResult>
 
     String toQueryString(CompetitionResult r){
         var id = r.subscriberID;
-        var convention = r.convention;
+        var convention = r.competition;
         var date = r.date.toString();
         var rank = r.rank;
         var result = r.result.toString();
@@ -42,7 +42,7 @@ public class SaveCompResultsAsCSV extends AbstractPersistence<CompetitionResult>
         var convention = wordReader.next();
         var date = LocalDate.parse(wordReader.next());
         var rank = wordReader.nextInt();
-        var result = Time.fromString(wordReader.next());
+        var result = TimeResult.fromString(wordReader.next());
         var compResult = builder.create(id,convention,rank,date,result);
         return compResult;
     }
