@@ -4,7 +4,7 @@ import Backend.Contracts.BackendDomain;
 import UI.Contracts.Controller;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.ReadUserInput;
-import UI.Controllers.Chairman.RegisterMemberDetails.PrintRegisterMemberDetailsScreen;
+import UI.Controllers.Chairman.RegisterMemberDetails.RegisterMemberDetailsScreen;
 import UI.Controllers.Chairman.Screens.PrintChairmanOptions;
 import UI.Controllers.ReadUserInput.DefaultReadUserOption;
 
@@ -12,7 +12,7 @@ public class ChairmanUI implements Controller {
     private final BackendDomain _backend;
     private ReadUserInput<Integer> _readMainMenuOption = new DefaultReadUserOption();
     private PrintScreen _printMenu = new PrintChairmanOptions();
-    private PrintScreen _registerMemberDetailsScreen = new PrintRegisterMemberDetailsScreen();
+    private PrintScreen _registerMemberDetailsScreen = new RegisterMemberDetailsScreen();
 
     public ChairmanUI(BackendDomain domain){
         _backend = domain;

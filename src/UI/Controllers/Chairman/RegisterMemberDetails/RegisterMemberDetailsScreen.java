@@ -14,7 +14,7 @@ import UI.Controllers.ConsoleUtils.ClearScrollBuffer;
 import UI.Controllers.ConsoleUtils.PrintBlankScreen;
 import UI.Controllers.ReadUserInput.ConsoleHaltForInput;
 
-public class PrintRegisterMemberDetailsScreen implements PrintScreen {
+public class RegisterMemberDetailsScreen implements PrintScreen {
     private PrintScreen _printBlank = new PrintBlankScreen();
     private PrintScreen _clearBuffer = new ClearScrollBuffer();
     private PrintScreen _printHelp = new PrintRMDHelpScreen();
