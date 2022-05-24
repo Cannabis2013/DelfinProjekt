@@ -5,10 +5,7 @@ import UI.Contracts.Controller;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
-import UI.Controllers.PrintScreen.PrintBlankScreen;
-import UI.Controllers.PrintScreen.PrintCashierOptions;
-import UI.Controllers.PrintScreen.PrintExpectedIncomeScreen;
-import UI.Controllers.PrintScreen.PrintMembersInArrears;
+import UI.Controllers.PrintScreen.*;
 import UI.ReadUserInput.DefaultReadUserOption;
 
 
@@ -19,7 +16,7 @@ public class CashierUI implements Controller {
     private PrintScreen _printBlankScreen = new PrintBlankScreen();
     private PrintScreenByDomain _PrintExpectedIncomeScreen = new PrintExpectedIncomeScreen();
     private PrintScreenByDomain _printMembersInArrears = new PrintMembersInArrears();
-    private PrintScreenByDomain _printRegisterPaymentScreen;
+    private PrintScreenByDomain _printRegisterPaymentScreen = new PrintUpdatePaymentScreen();
 
     public CashierUI(BackendDomain domain){
         _backend = domain;
