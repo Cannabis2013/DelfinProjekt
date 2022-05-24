@@ -19,7 +19,7 @@ public class PrintMainOptions implements PrintScreen {
                     
                     4). Print members
                     
-                    *). Exit
+                    q). Exit
                     
                     """);
     }

@@ -10,11 +10,11 @@ import UI.Controllers.Cashier.CashierUI;
 import UI.Controllers.Cashier.Screens.PrintMembersInArrears;
 import UI.Controllers.Chairman.ChairmanUI;
 import UI.Controllers.ConsoleUtils.ConsoleCSICursorConfig;
+import UI.Controllers.Main.ReadOption.ReadMainMenuOption;
 import UI.Controllers.Main.Screen.PrintAllMembers;
 import UI.Controllers.Main.Screen.PrintWelcomeScreen;
 import UI.Controllers.Main.Screen.PrintExitScreen;
 import UI.Controllers.Main.Screen.PrintMainOptions;
-import UI.Controllers.ReadUserInput.DefaultReadUserOption;
 import UI.Controllers.ReadUserInput.ReadExitOption;
 import UI.Controllers.Trainer.TrainerUI;
 
@@ -24,7 +24,7 @@ public class MainUI implements Controller {
     private PrintScreen _printWelcomeScreen = new PrintWelcomeScreen();
     private PrintScreen _printMainMenu = new PrintMainOptions();
     private PrintScreen _printExitScreen = new PrintExitScreen();
-    private ReadUserInput<Integer> _readMainMenuOption = new DefaultReadUserOption();
+    private ReadUserInput<Integer> _readMainMenuOption = new ReadMainMenuOption();
     private ReadUserInput<Boolean> _readExitOption = new ReadExitOption();
     private PrintScreen _printMembersInArreas = new PrintMembersInArrears();
     private PrintScreen _printMembers = new PrintAllMembers();
@@ -52,7 +52,7 @@ public class MainUI implements Controller {
                 case 2 -> _cashier.run();
                 case 3 -> _trainer.run();
                 case 4 -> _printMembers.print(_backend);
-                default -> running = _readExitOption.read();
+                case -1 -> running = _readExitOption.read();
             }
         }
         _backend.save();

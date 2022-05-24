@@ -1,4 +1,4 @@
-package UI.Controllers.ReadUserInput;
+package UI.Controllers.Main.ReadOption;
 
 import UI.Contracts.ClearLines;
 import UI.Contracts.PrintScreen;
@@ -9,7 +9,7 @@ import UI.Controllers.ConsoleUtils.PrintBlankScreen;
 
 import java.util.Scanner;
 
-public class DefaultReadUserOption implements ReadUserInput<Integer> {
+public class ReadMainMenuOption implements ReadUserInput<Integer> {
     private final String greenFont = "\33[32m";
     private final String redFont = "\33[31m";
     private final String reset = "\33[m";
@@ -23,8 +23,7 @@ public class DefaultReadUserOption implements ReadUserInput<Integer> {
                             -----------------------------
                             Choose a Number & Press Enter
                             -----------------------------
-                            "[Enter here]:
-                            """;
+                            "[Enter here]:""";
         var formatted = greenFont + cmd + reset;
         System.out.printf(formatted);
     }
@@ -37,6 +36,8 @@ public class DefaultReadUserOption implements ReadUserInput<Integer> {
             printCMD();
             _clearScrollBuffer.print(null);
             var input = reader.nextLine();
+            if(input.equals("q"))
+                return -1;
             try {
                 option = Integer.parseInt(input);
                 _printBlankScreen.print(null);

@@ -15,7 +15,7 @@ public class PrintConfirmation {
                 Date: %s
                 Result: %s
                 
-                Are you sure? 
+                Are you sure? (Y/n):
                 """,subscriberID,discipline,date,result);
         System.out.print(screen);
     }
