@@ -9,6 +9,8 @@ import Backend.Competition.Result.Time.TimeParseFormatException;
 import Backend.Persistence.AbstractPersistence;
 
 import java.io.PrintStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,8 +22,9 @@ public class SaveTrainingResultsAsCSV extends AbstractPersistence<TrainingResult
     private String toQueryString(TrainingResult result){
         String id = result.subscriberID;
         String discipline = result.discipline.toString();
+        String date = result.date.toString();
         String time = result.result != null ? result.result.toString() : " ";
-        String queryString = String.format("%s;%s;%s;\n", id, discipline, time);
+        String queryString = String.format("%s;%s;%s;%s;\n", id,discipline,time,date);
         return queryString;
     }
 
@@ -45,7 +48,13 @@ public class SaveTrainingResultsAsCSV extends AbstractPersistence<TrainingResult
         }catch (TimeParseFormatException e){
             time = null;
         }
-        var fetchedResult = creator.create(id, discipline, time);
+        LocalDate date;
+        try {
+            date = LocalDate.parse(lineScanner.next());
+        } catch (DateTimeParseException e){
+            date = null;
+        }
+        var fetchedResult = creator.create(id, discipline, time, date);
         return fetchedResult;
     }
 

@@ -31,9 +31,10 @@ public class DolphinDomain implements BackendDomain {
     }
 
     @Override
-    public Member member(String id) {
-        return _members.member(id);
-    }
+    public Member member(String id) {return _members.member(id);}
+
+    @Override
+    public List<Member> members() {return _members.members();}
 
     @Override
     public UUID registerTrainingResult(String id, Time result, Discipline discipline, LocalDate date) {
@@ -48,14 +49,10 @@ public class DolphinDomain implements BackendDomain {
     }
 
     @Override
-    public TrainingResult trainingResult(UUID id) {
-        return null;
-    }
+    public TrainingResult trainingResult(UUID id) {return null;}
 
     @Override
-    public void registerPayment(String id) {
-        _members.updatePaymentStatus(id);
-    }
+    public void registerPayment(String id) {_members.updatePaymentStatus(id);}
 
     @Override
     public List<TopSwimmerResult> topFiveBestSwimmers() {
@@ -64,14 +61,10 @@ public class DolphinDomain implements BackendDomain {
 }
 
     @Override
-    public List<Member> membersInArrears() {
-        return  _members.membersInArrears();
-    }
+    public List<Member> membersInArrears() {return  _members.membersInArrears();}
 
     @Override
-    public List<Discipline> registeredDisciplines(String id) {
-        return _competition.registeredDisciplines(id);
-    }
+    public List<Discipline> registeredDisciplines(String id) {return _competition.registeredDisciplines(id);}
 
     @Override
     public int expectedEarnings() {

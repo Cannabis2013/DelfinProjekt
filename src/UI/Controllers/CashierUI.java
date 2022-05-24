@@ -5,10 +5,10 @@ import UI.Contracts.Controller;
 import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
-import UI.PrintScreen.PrintBlankScreen;
-import UI.PrintScreen.PrintCashierOptions;
-import UI.PrintScreen.PrintExpectedIncomeScreen;
-import UI.PrintScreen.PrintMembersInArrears;
+import UI.Controllers.PrintScreen.PrintBlankScreen;
+import UI.Controllers.PrintScreen.PrintCashierOptions;
+import UI.Controllers.PrintScreen.PrintExpectedIncomeScreen;
+import UI.Controllers.PrintScreen.PrintMembersInArrears;
 import UI.ReadUserInput.DefaultReadUserOption;
 
 

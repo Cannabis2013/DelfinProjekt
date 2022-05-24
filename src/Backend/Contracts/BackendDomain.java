@@ -14,6 +14,7 @@ public interface BackendDomain {
     String registerBasicDetails(String name, LocalDate birthDay, boolean active, List<Discipline> disciplines);
     String registerContactDetails(String id, String phone, String mail, String address);
     Member member(String id);
+    List<Member> members();
     UUID registerTrainingResult(String id, Time result, Discipline discipline, LocalDate date);
     //Skal vi skifte navn for registerResult til registerTrainingResult?
     void registerCompetitionResult(String id, String convention, LocalDate date, int rank, Time result);

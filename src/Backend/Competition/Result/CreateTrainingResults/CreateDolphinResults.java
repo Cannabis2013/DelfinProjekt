@@ -3,6 +3,7 @@ package Backend.Competition.Result.CreateTrainingResults;
 import Backend.Competition.Result.Time.Time;
 import Backend.Contracts.Competition.CreateTrainingResult;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -29,7 +30,7 @@ public class CreateDolphinResults implements CreateTrainingResult {
     }
 
     @Override
-    public TrainingResult create(String id, Discipline discipline, Time result) {
+    public TrainingResult create(String id, Discipline discipline, Time result, LocalDate date) {
         TrainingResult newResult = new TrainingResult();
         newResult.subscriberID = id;
         newResult.discipline = discipline;

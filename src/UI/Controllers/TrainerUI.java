@@ -6,12 +6,13 @@ import UI.Contracts.PrintScreen;
 import UI.Contracts.PrintScreenByDomain;
 import UI.Contracts.ReadUserInput;
 import UI.Models.CompetitionDetails;
-import UI.PrintScreen.PrintMemberNotFoundScreen;
-import UI.PrintScreen.PrintTop5;
-import UI.PrintScreen.PrintTrainerOptions;
-import UI.PrintScreen.RegisterCompetitionResultScreen;
+import UI.Controllers.PrintScreen.PrintMemberNotFoundScreen;
+import UI.Controllers.PrintScreen.PrintTop5;
+import UI.Controllers.PrintScreen.PrintTrainerOptions;
+import UI.Controllers.PrintScreen.RegisterCompetitionResultScreen;
 import UI.ReadUserInput.DefaultReadUserOption;
 import UI.ReadUserInput.ReadCompetitionDetails;
+import UI.Controllers.RegisterTrainingResult.PrintRegisterTrainingResult;
 
 public class TrainerUI implements Controller {
     private final BackendDomain _backend;
@@ -21,7 +22,7 @@ public class TrainerUI implements Controller {
     private PrintScreen _registerCompetitionResultScreen = new RegisterCompetitionResultScreen();
     private PrintScreen _memberNotFoundScreen = new PrintMemberNotFoundScreen();
     private PrintScreenByDomain _printTop5 = new PrintTop5();
-    private PrintScreenByDomain _printRegisterTrainingResult;
+    private PrintScreenByDomain _printRegisterTrainingResult = new PrintRegisterTrainingResult();
     ReadUserInput<CompetitionDetails> _readCompetitionResult = new ReadCompetitionDetails();
 
     public TrainerUI(BackendDomain backend) {
