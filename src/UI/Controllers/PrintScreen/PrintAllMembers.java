@@ -47,6 +47,7 @@ public class PrintAllMembers implements PrintScreenByDomain {
             if (member.name().length() > longest)
                 longest = member.name().length();
         }
+        
         return longest;
     }
 
