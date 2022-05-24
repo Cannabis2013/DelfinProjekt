@@ -5,6 +5,7 @@ import Backend.Contracts.Competition.CreateTrainingResult;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class CreateDolphinResults implements CreateTrainingResult {
     private final int SENIOR_THRESHOLD = 18;
@@ -13,6 +14,7 @@ public class CreateDolphinResults implements CreateTrainingResult {
         var trainingResult = new TrainingResult();
         trainingResult.subscriberID = id;
         trainingResult.discipline = discipline;
+        trainingResult.id = UUID.randomUUID();
         return trainingResult;
     }
 

@@ -10,7 +10,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ReadDisciplinesFromUser implements ReadUserInput<List<Discipline>> {
-    private Discipline toDiscipline(int index){
+    private final String NUMBER_REGEX = "[0-4]\\b";
+    private final String STRING_REGEX = "\\w+";
+
+    private Discipline fromNumber(int index){
         switch (index){
             case 1 : return Discipline.CRAWL;
             case 2 : return Discipline.BREAST;
@@ -19,13 +22,17 @@ public class ReadDisciplinesFromUser implements ReadUserInput<List<Discipline>> 
         }
     }
 
-    private Matcher matcher(String str){
-        var pattern = Pattern.compile("[0-4]\\b");
-        var matcher = pattern.matcher(str);
-        return matcher;
+    private Discipline fromString(String str){
+        switch (str.toUpperCase()){
+            case "CRAWL" : return Discipline.CRAWL;
+            case "BREAST" : return Discipline.BREAST;
+            case "BUTTERFLY" : return Discipline.BUTTERFLY;
+            default: return Discipline.BACKSTROKE;
+        }
     }
 
-    public List<Discipline> toDisciplines(Matcher matcher) {
+    public List<Discipline> fromNumerics(String input) {
+        var matcher = Pattern.compile(NUMBER_REGEX).matcher(input);
         var disciplines = new ArrayList<Discipline>();
         while (matcher.find()){
             var match = matcher.group();
@@ -35,7 +42,18 @@ public class ReadDisciplinesFromUser implements ReadUserInput<List<Discipline>> 
             } catch (NumberFormatException e){
                 continue;
             }
-            disciplines.add(toDiscipline(index));
+            disciplines.add(fromNumber(index));
+        }
+        return disciplines;
+    }
+
+    public List<Discipline> fromStrings(String input){
+        var matcher = Pattern.compile(STRING_REGEX).matcher(input);
+        var disciplines = new ArrayList<Discipline>();
+        while (matcher.find()){
+            var match = matcher.group();
+            var discipline = fromString(match);
+            disciplines.add(discipline);
         }
         return disciplines;
     }
@@ -43,7 +61,11 @@ public class ReadDisciplinesFromUser implements ReadUserInput<List<Discipline>> 
     @Override
     public List<Discipline> read() {
         var input = new Scanner(System.in).nextLine();
-        var matcher = matcher(input);
-        return toDisciplines(matcher);
+        if (input.matches(NUMBER_REGEX))
+            return fromNumerics(input);
+        else if(input.matches(STRING_REGEX))
+            return fromStrings(input);
+        else
+            return new ArrayList<Discipline>();
     }
 }

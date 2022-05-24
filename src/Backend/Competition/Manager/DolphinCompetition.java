@@ -16,6 +16,7 @@ import Backend.Contracts.Persistence.Persistence;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 public class DolphinCompetition implements Competition {
     List<CompetitionResult> _competitionResults;
@@ -44,12 +45,13 @@ public class DolphinCompetition implements Competition {
     }
 
     @Override
-    public void registerTrainingResult(String id, Time result, Discipline discipline, LocalDate date) {
+    public UUID registerTrainingResult(String id, Time result, Discipline discipline, LocalDate date) {
         var trainingResult = _trainingResults.stream()
                 .filter(r -> r.subscriberID.equals(id) && r.discipline.equals(discipline))
                 .findFirst().orElseThrow(NoResultMatchCriteriasException::new);
         trainingResult.result = result;
         trainingResult.date = date;
+        return trainingResult.id;
     }
 
     @Override
@@ -64,6 +66,13 @@ public class DolphinCompetition implements Competition {
                 .filter(r -> r.subscriberID.equals(id))
                 .map(r -> r.discipline).distinct().toList();
         return disciplines;
+    }
+
+    @Override
+    public TrainingResult trainingResult(UUID id) {
+        var result = _trainingResults.stream()
+                .filter(r -> r.id.equals(id)).findFirst().orElse(null);
+        return result;
     }
 
     @Override

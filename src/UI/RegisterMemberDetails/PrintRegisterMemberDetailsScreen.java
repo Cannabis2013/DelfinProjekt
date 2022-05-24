@@ -19,7 +19,7 @@ public class PrintRegisterMemberDetailsScreen implements PrintScreenByDomain {
     private PrintScreen _printBlank = new PrintBlankScreen();
     private PrintScreen _clearBuffer = new ClearScrollBuffer();
     private ReadUserInput<String> _halt = new ConsoleHaltForInput();
-    private void printMessage(){
+    private void printHelpScreen(){
         var msg = """
                 Dolphin user registration.
                 * Please use full name
@@ -78,7 +78,7 @@ public class PrintRegisterMemberDetailsScreen implements PrintScreenByDomain {
     public void print(BackendDomain domain) {
         var registerBasics = new RegisterBasicDetails();
         var registerContactInfo = new RegisterContactInformation();
-        printMessage();
+        printHelpScreen();
         var id = registerBasics.register(domain);
         registerContactInfo.register(domain,id);
         var member = domain.member(id);

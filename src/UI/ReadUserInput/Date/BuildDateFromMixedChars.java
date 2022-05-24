@@ -1,7 +1,6 @@
-package UI.RegisterMemberDetails.BasicDetails.BirthDate;
+package UI.ReadUserInput.Date;
 
 import java.time.LocalDate;
-import java.util.Locale;
 import java.util.Scanner;
 
 /*

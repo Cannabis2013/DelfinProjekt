@@ -1,5 +1,6 @@
 package Backend;
 
+import Backend.Competition.Result.CreateTrainingResults.TrainingResult;
 import Backend.Competition.Result.Time.Time;
 import Backend.Competition.Result.CreateTrainingResults.Discipline;
 import Backend.Competition.Manager.DolphinCompetition;
@@ -11,6 +12,7 @@ import Backend.Contracts.Members.Members;
 import Backend.Members.MemberManager.DolphinMembers;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 public class DolphinDomain implements BackendDomain {
     Members _members = new DolphinMembers();
@@ -34,15 +36,20 @@ public class DolphinDomain implements BackendDomain {
     }
 
     @Override
-    public void registerTrainingResult(String id, Time result, Discipline discipline, LocalDate date) {
+    public UUID registerTrainingResult(String id, Time result, Discipline discipline, LocalDate date) {
         var member = _members.member(id);
-        _competition.registerTrainingResult(member.subscriptionID(),result,discipline,date);
+        return _competition.registerTrainingResult(member.subscriptionID(),result,discipline,date);
     }
 
     @Override
     public void registerCompetitionResult(String id, String convention, LocalDate date, int rank, Time result) {
         var member = _members.member(id);
         _competition.registerCompetitionResult(member.subscriptionID(),convention,date,rank,result);
+    }
+
+    @Override
+    public TrainingResult trainingResult(UUID id) {
+        return null;
     }
 
     @Override
