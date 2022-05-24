@@ -38,16 +38,9 @@ public class PrintExitScreen implements PrintScreen {
                                 into writing really bad code. Scuffed code.
                                 
                                 Martin Hansen (Scuff coder)
-                                Mail: MH2012@outlook.dk
-                                
                                 Stefan Jensen (Scuff master)
-                                Mail: stef240p@stud.kea.dk
-                                
                                 Murat Kaan (Provider of scuffed ideas)
-                                Mail: Unknown
-                                
                                 Nikki Delorian (Scuffed UI design, scuffed analytics, scuffed organizing)
-                                Mail: Unknown
                                 ------------------------------------------------------------
                                 """);
         _clearScrollBuffer.print();
