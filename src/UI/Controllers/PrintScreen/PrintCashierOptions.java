@@ -21,7 +21,7 @@ public class PrintCashierOptions implements PrintScreen {
                 3). Register payment                
                 -------------------------------------
                   
-                3). Back to Main Menu
+                4). Back to Main Menu
 
                 """);
 
